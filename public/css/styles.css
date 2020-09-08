@@ -5,7 +5,10 @@
     color: rgb(43, 30, 71);
     font-size:1.1rem;
 }
-
+.section-heading{
+    padding: 5px;
+}
+/* *********************************Header Section************************* */
 .header{
     height: 100vh;
     width: 100%;
@@ -29,7 +32,6 @@
     color: white;
     height: inherit;
     text-align: center;
-    position: relative;
 }
 .header-section h1,.header-section p,.header-section i{
     color: white;
@@ -63,12 +65,17 @@
     background-color: black;
     color: white;
     text-decoration: none;
+    border-color: black;
 }
 .button:hover i{
     color: white;
 }
+.header-section i.fab{
+    color: white;
+}
+/* ********************Header Section End *********************** */
 
-
+/* ********************Category Section Start *********************** */
 .category{
     width: 100%;
     height: 100vh;
@@ -78,7 +85,29 @@
 }
 .card{
     border-radius: 20px;
+    transition:  0.5s;
+   border:1px solid white;
 }
+.card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 0 10px rgb(255, 240, 153);
+}
+.card-title{
+    color: white;
+    margin: 0;
+}
+/* ********************Category Section End *********************** */
+
+
+.wordOfDay{
+
+    width: 100%;
+    height: 500px;
+    margin: 10px 0;
+    color: white;
+    text-align: center;
+}
+
 /************NavBar Css Start*********************/
 .navbar{
     background-color: transparent !important;
