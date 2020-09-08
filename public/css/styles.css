@@ -5,15 +5,19 @@
     color: rgb(43, 30, 71);
     font-size:1.1rem;
 }
+html{
+    scroll-behavior: smooth;
+}
 .section-heading{
     padding: 5px;
+    text-align: center;
 }
 /* *********************************Header Section************************* */
 .header{
-    height: 100vh;
     width: 100%;
-    background: linear-gradient(45deg,rgb(43, 30, 71),black);
+    height: 100vh;
     position: relative;
+    background: linear-gradient(45deg,rgb(43, 30, 71),black);
 
 }
 .center-div{
@@ -31,6 +35,7 @@
     height: inherit;
     color: white;
     height: inherit;
+    position: relative;
     text-align: center;
 }
 .header-section h1,.header-section p,.header-section i{
@@ -78,15 +83,23 @@
 /* ********************Category Section Start *********************** */
 .category{
     width: 100%;
-    height: 100vh;
+    height: auto;
     background: linear-gradient(135deg,rgb(43, 30, 71),black);
     color: white;
     text-align: center;
+    position: relative;
+}
+.category .container{
+    padding-bottom: 50px
 }
 .card{
     border-radius: 20px;
     transition:  0.5s;
-   border:1px solid white;
+    border:1px solid white;
+    height: 250px;
+}
+#container-row1{
+    padding-bottom:20px;
 }
 .card:hover{
     transform: translateY(-8px);
@@ -102,10 +115,14 @@
 .wordOfDay{
 
     width: 100%;
-    height: 500px;
-    margin: 10px 0;
+    padding: 50px 0;
+    height: auto;
+    margin: 20px 0;
     color: white;
     text-align: center;
+}
+#wordimg{
+    border-radius: 50px 200px;
 }
 
 /************NavBar Css Start*********************/
@@ -126,6 +143,18 @@
 /****************NavBar End************************/
 
 
+
+.film{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg,rgb(43, 30, 71)50%,black 50%);
+    position: relative;
+}
+video{
+    box-shadow: 0 0 20px gold;
+    border-radius: 10px;
+}
+
 /***************MeadiaQuerry**********************/
 @media(max-width:962px){
     .row{
@@ -135,5 +164,24 @@
         transform: rotate(0deg);
         width: 40%;
     }
-    
+    .card{
+        height: 150px;
+        margin-bottom: 10px;
+    }
+    .card:hover{
+        transform: translateY(-5px);
+    }
+    #container-row1{
+        padding:0;
+        margin: 0;
+    }
+    #container-row2{
+        margin:0;
+    }
+    .category{
+        height: auto;
+    }
+    .film{
+        height: auto;
+    }
 }
