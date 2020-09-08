@@ -90,7 +90,7 @@ html{
     position: relative;
 }
 .category .container{
-    padding-bottom: 50px
+    padding-bottom: 5rem;
 }
 .card{
     border-radius: 20px;
@@ -117,12 +117,31 @@ html{
     width: 100%;
     padding: 50px 0;
     height: auto;
-    margin: 20px 0;
     color: white;
+    background: radial-gradient(rgb(247, 240, 201),#E6B32E);
     text-align: center;
+    
 }
 #wordimg{
-    border-radius: 50px 200px;
+    border-radius: 50px;
+    width: 100%;
+    height: 300px;
+    position: relative;
+}
+#quotes1{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(180deg);
+}
+#quotes2{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 /************NavBar Css Start*********************/
@@ -147,6 +166,7 @@ html{
 .film{
     width: 100%;
     height: 100vh;
+    padding: 20px 0;
     background: linear-gradient(135deg,rgb(43, 30, 71)50%,black 50%);
     position: relative;
 }
