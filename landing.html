@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css" integrity="sha256-6hqHMqXTVEds1R8HgKisLm3l/doneQs+rS1a5NLmwwo=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet"> 
     <script src="https://kit.fontawesome.com/1f7ae91032.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -23,7 +24,7 @@
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
+              <a class="nav-link" href="#about">About Us</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Members</a>
@@ -75,7 +76,7 @@
             </div>
                 <div class="row" id="container-row1">
                     <div class="col-md-8">
-                        <a href="#">
+                        <a href="/inspiration">
                         <div class="card" style="background: url(/images/srk.jpg);background-size: cover;background-position: center;">
                             <div class="center-div">
                             <div class="card-body">
@@ -87,7 +88,7 @@
                     </a>
                     </div>
                     <div class="col-md-4">
-                        <a href="#">
+                        <a href="/love">
                         <div class="card" style="background: url(images/love.jpg);background-size: cover;background-position: center;">
                             <div class="center-div">
                             <div class="card-body">
@@ -101,7 +102,7 @@
                 </div>
                 <div class="row" id="container-row2" >
                     <div class="col-md-4">
-                     <a href="#">
+                     <a href="/sad">
                         <div class="card" style="background: url(/images/sad1.jfif);background-size: cover;background-position: center;">
                             <div class="center-div">
                             <div class="card-body">
@@ -113,7 +114,7 @@
                         </a>
                     </div>
                     <div class="col-md-8">
-                        <a href="#">
+                        <a href="/science">
                         <div class="card" style="background: url(/images/space.jpg);background-size: cover;background-position:center ;">
                             <div class="center-div">
                             <div class="card-body">
@@ -146,36 +147,47 @@
 
 
     <section class="film">
+      <div class="center" style="margin:20px">
       <div class="section-heading">
         <h2 class="text-white">Short Film</h2>
       </div>
         <div class="container" style="padding: 10px;">
             <video width="100%" height="auto" controls ></video>
         </div>
+      </div>
       
     </section>
 
 
-    <section class="about">
-      <div class="center-div">
+    <section class="about" id="about">
         <div class="container">
-          
-        </div>
-      </div>
+          <div id="about"><h2>About Us</h2></div>
+  <div class="box">
+     
+       <div id="para"><p>The main idea to develop this app was to build our own platform to deliver different form of art works created by us.
+
+This app brings you a collection of art pieces from different domains. So far we have focused on different genres of writings namely Inspiration, Sad, Love and Science Fiction. These genres are divided in different categories namely Quotes, Poetry, Articles and Stories. Users get a chance to showcase their writing skills by submitting their writings, best among all would be updated every day on the app. The app also has a section for short films, which would be updated every 15 days. The theme for the short film is based on social awareness. If you are very passionate about writing and have good managerial skills, be the campus ambassador in your college to promote this app and win exciting prizes.
+     </p></div>
+    <div class="figure"></div>
+  </div>
+</div>
     </section>
 
-
-    <section class="about">
-      <div class="center-div">
-        <div class="container">
-          
-        </div>
-      </div>
+    <section class="copyright">
+      <p class="text-center">© Copyright ScriptInk. All Rights Reserved</p>
     </section>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+
         
 
     

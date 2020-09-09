@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScriptInk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css" integrity="sha256-6hqHMqXTVEds1R8HgKisLm3l/doneQs+rS1a5NLmwwo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css" >
+    <script src="https://kit.fontawesome.com/1f7ae91032.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="mainNav">
+        <div class="container">
+        <a class="navbar-brand" href="#"><img class="nav-logo" src="/images/Captureaaaa.PNG" width="50" height="50" class="d-inline-block align-top" alt="">ScriptInk</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Members</a>
+              </li>
+            
+          </ul>
+    </div>
+</div>
+      </nav>
+
+      <div class="headers" style="background: linear-gradient(45deg,rgb(43, 30, 71),black);">
+        <section class="header-section">
+              <div class="container" style="padding: 20px 0;">
+                <div class="card" style="background: url(/images/<%= image %>);background-size: cover;background-position: center;">
+                    <div class="center-div">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= category %></h5>
+                      <i class="text-white" style="font-size: .7rem;"><%= caption %></i>
+                    </div>
+                  </div>
+                </div>  
+                <div class="filter-article">
+                    <h2 class="text-white">Options</h2>
+                    <div class="filter-buttons" id="filter-section">
+                      <button type="button" name="button" class="active-button">Quotes</button>
+                      <button type="button" name="button">Stories</button>
+                      <button type="button" name="button">Articles</button>
+                      <button type="button" name="button">Poetry</button>
+                    </div>
+                  </div>
+                  <ul class="article-list" id="articles">
+      
+                    <% posts.forEach(post => { %>
+                        <li>
+                          <div class="center-div">
+                            <p class="post-body text-black"><%= post %> </p>
+                          </div>
+                          
+                        </li>
+                    <% }) %>
+
+                  </ul>
+            </div>
+        </section>
+    </div>
+    
+</body>
+</html>

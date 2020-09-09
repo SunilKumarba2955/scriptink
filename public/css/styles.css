@@ -98,6 +98,15 @@ html{
     border:1px solid white;
     height: 250px;
 }
+.card::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+}
 #container-row1{
     padding-bottom:20px;
 }
@@ -111,7 +120,7 @@ html{
 }
 /* ********************Category Section End *********************** */
 
-
+/* ********************WordOfDay Section Start *********************** */
 .wordOfDay{
 
     width: 100%;
@@ -143,6 +152,8 @@ html{
     bottom: 0;
     right: 0;
 }
+/* ********************WordOfDay Section End *********************** */
+
 
 /************NavBar Css Start*********************/
 .navbar{
@@ -162,7 +173,7 @@ html{
 /****************NavBar End************************/
 
 
-
+/*****************Film Section Start*******************/
 .film{
     width: 100%;
     height: 100vh;
@@ -174,6 +185,152 @@ video{
     box-shadow: 0 0 20px gold;
     border-radius: 10px;
 }
+
+/*****************Film Section End*******************/
+
+.category-image{
+    /* background-image: url(/images/srk.jpg);
+    width: 100%;
+    height: 350px; */
+    background-size: cover;
+    background-position:center;
+    /* border-radius: 20px; */
+}
+.filter-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+.filter-buttons button{
+    padding: 10px;
+    margin: 2px;
+    background-color: goldenrod;
+    outline: none;
+    border-radius: 10px;
+    width: 100%;
+    border: none;
+}
+.filter-buttons .active-button{
+    background-color: rgb(147, 112, 24);
+    color: white;
+}
+
+
+
+.about{
+    padding: 20px 0;
+    background: radial-gradient(rgb(247, 240, 201),#E6B32E);
+}
+
+
+/************************About effect Start**************************/
+.box{
+    width:100%;
+    position: relative;
+  }
+  
+  .figure{
+    width: 100%;
+    height: 100%;
+  }
+  .figure:before{
+    content: '';
+    position:absolute;
+    width:50%;
+    top:0;
+    left: 0;
+    border-radius: 20px 0 0 20px;
+    height:100%;
+    background:url(/images/logo.png);
+    opacity: 0.2;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    transform-origin:bottom;
+    transition: 0.5s;
+  
+  }
+  .box:hover .figure:before{
+    transform: rotateX(90deg) translateY(50%);
+  }
+  .figure:after{
+    content: '';
+    position:absolute;
+    top: 0;
+    right: 0;
+    width:50%;
+    background:url(/images/logo.png);
+    border-radius: 0 20px 20px 0;
+    height:100%;
+    opacity: 0.2;
+    background-size:cover;
+    background-position:center;
+    background-repeat: no-repeat;
+    transform-origin:top;
+    transition:0.5s;
+   
+  }
+  .box:hover .figure:after{
+    transform: rotateX(90deg) translateY(-50%);
+  }
+  #about{
+    text-align:center;
+    padding: 20px;
+  }
+  #para{
+  color:#ed8adb;
+  font-family:'Dancing Script', cursive;
+  text-align:center;
+  padding-top:70px;
+  font-size:20px;
+  }
+
+  #about h2{
+      margin:0;
+      padding:0;
+      font-size: 30px;
+      font-family: sans-serif;
+      text-transform: uppercase;
+  }
+
+  /************************About effect Start**************************/
+
+
+
+  #filter-section > button:hover{
+    background: rgb(255, 197, 39);
+    color : white;
+  }
+
+  .article-list{
+    width : 100%;
+    margin : 40px 0px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+  
+  }
+  .article-list>a{
+    width : 250px;
+    margin : 0px 10px;
+  }
+  .article-list li{
+    height : 200px;
+    padding: 10px;
+    width: 100%;
+    list-style-type: none;
+    border-radius: 10px;
+    background: #493d5d;
+    color : white;
+    margin: 10px;
+    transition: .2s linear all;
+  }
+  .article-list li:hover
+  {
+    transform: translateY(-10px);
+    -webkit-box-shadow: 0px 30px 22px 0px rgba(0,0,0,0.16);
+  -moz-box-shadow: 0px 30px 22px 0px rgba(0,0,0,0.16);
+  box-shadow: 0px 30px 22px 0px rgba(0,0,0,0.16);
+  }
 
 /***************MeadiaQuerry**********************/
 @media(max-width:962px){
