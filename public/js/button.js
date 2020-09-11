@@ -56,7 +56,6 @@ function generateList(posts) {
             snap1.forEach(element => {
                 backimg.push(element.val());
             });
-            console.log(backimg);
             for (var i = 0; i < array.length; i++) {
                 result +=
                   `
