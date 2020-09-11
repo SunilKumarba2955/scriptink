@@ -19,7 +19,7 @@ app.use(express.static(__dirname + '/public'));
 
 //home route
 app.get("/",function(req,res){
-    res.sendFile(__dirname+"/landing.html");
+    res.render(__dirname+"/views/landing.ejs");
 })
 
 
@@ -27,7 +27,6 @@ app.get("/",function(req,res){
 app.get("/:post",function(req,res){
 
     posts=[];
-    console.log(req.params.post)
     var category=req.params.post;
     var categoryName,caption,image;
 
@@ -52,7 +51,7 @@ app.get("/:post",function(req,res){
         image="space.jpg";
     }
 
-    res.render("posts.ejs",{category:categoryName,caption:caption,image:image});
+    res.render(__dirname+"/views/posts.ejs",{category:categoryName,caption:caption,image:image});
     
 
 })
