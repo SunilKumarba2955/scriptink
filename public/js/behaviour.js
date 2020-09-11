@@ -1,5 +1,10 @@
 var mybutton =document.getElementById('myBtn');
 
+var date =new Date;
+var year=date.getFullYear();
+
+$(".footer p").html('Copyright © ScriptInk '+year);
+
 window.onscroll=function(){
     scrollfunction()
 };
