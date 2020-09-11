@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css" integrity="sha256-6hqHMqXTVEds1R8HgKisLm3l/doneQs+rS1a5NLmwwo=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css" >
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet"> 
     <script src="https://kit.fontawesome.com/1f7ae91032.js" crossorigin="anonymous"></script>
 </head>
@@ -24,13 +25,21 @@
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#about">About Us</a>
+              <a class="nav-link" href="#about">About</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Members</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Category</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Category
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/inspiration">Inspiration</a>
+                  <a class="dropdown-item" href="/love">Love</a>
+                  <a class="dropdown-item" href="/sad">Sad</a>
+                  <a class="dropdown-item" href="/science">Science</a>
+                  </div>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Contact us</a>
@@ -42,18 +51,18 @@
       </nav>
     <div class="header">
         <section class="header-section">
-            <div class="center-div">
+            <div style="display: flex;justify-content: center;align-items: center;">
               <div class="container">
                 <div class="row">
-                    <div class="col-md-6" id="scriptink-info">
+                    <div data-aos="fade-right" data-aos-duration="3000" class="col-md-6" id="scriptink-info">
                         <div class="center-div">
                             <h1 id="heading">ScriptInk</h1>
                         <p><i>voice of thoughts</i><p>
                             <p id ="info" style="font-size: 2rem;">the Regd. Arts & Litreture non-profit Organization and Literary Club of SIT</p>
-                            <a class="button" href="#"><i class="fab fa-google-play"></i>Get the App</a>
+                            <a class="button" href="https://play.google.com/store/apps/details?id=com.scriptink.official&hl=en"><i class="fab fa-google-play"></i>Get the App</a>
                         </div>
                     </div>
-                    <div class="col-md-6" style="text-align: left;">
+                    <div data-aos="fade-left" data-aos-duration="3000" class="col-md-6" style="text-align: left;">
                         <div class="center-div">
                         <img src="/images/scitrans.png" alt="Scriptink image" id="mobile">
                     </div>
@@ -75,7 +84,7 @@
                 <h2 style="color:white">Choose Category</h2>
             </div>
                 <div class="row" id="container-row1">
-                    <div class="col-md-8">
+                    <div data-aos="fade-up-right" data-aos-duration="1500"  class="col-md-8">
                         <a href="/inspiration">
                         <div class="card" style="background: url(/images/srk.jpg);background-size: cover;background-position: center;">
                             <div class="center-div">
@@ -87,7 +96,7 @@
                         </div>
                     </a>
                     </div>
-                    <div class="col-md-4">
+                    <div data-aos="fade-up-left" data-aos-duration="1500" class="col-md-4">
                         <a href="/love">
                         <div class="card" style="background: url(images/love.jpg);background-size: cover;background-position: center;">
                             <div class="center-div">
@@ -101,7 +110,7 @@
                     </div>
                 </div>
                 <div class="row" id="container-row2" >
-                    <div class="col-md-4">
+                    <div data-aos="fade-down-right" data-aos-duration="1500" class="col-md-4">
                      <a href="/sad">
                         <div class="card" style="background: url(/images/sad1.jfif);background-size: cover;background-position: center;">
                             <div class="center-div">
@@ -113,7 +122,7 @@
                           </div>
                         </a>
                     </div>
-                    <div class="col-md-8">
+                    <div data-aos="fade-down-left" data-aos-duration="1500" class="col-md-8">
                         <a href="/science">
                         <div class="card" style="background: url(/images/space.jpg);background-size: cover;background-position:center ;">
                             <div class="center-div">
@@ -131,7 +140,7 @@
     </section>
 
     <!-- -------------------------Category Section End-------------------------->
-    <section class="wordOfDay">
+    <section class="wordOfDay" data-aos="fade-up" data-aos-duration="2000">
         <div class="section-heading">
             <h2>Word Of Day</h2>
         </div>
@@ -152,16 +161,17 @@
         <h2 class="text-white">Short Film</h2>
       </div>
         <div class="container" style="padding: 10px;">
-            <video width="100%" height="auto" controls ></video>
+            <video data-aos="flip-left" data-aos-duration="2000" width="100%" height="auto" controls ></video>
         </div>
       </div>
       
     </section>
 
 
-    <section class="about" id="about">
-        <div class="container">
-          <div id="about"><h2>About Us</h2></div>
+    <section class="about" id="about" style="display: flex;justify-content: center;align-items: center;">
+     
+            <div class="container" >
+              <div id="about" ><h2>About</h2></div>
   <div class="box">
      
        <div id="para"><p>The main idea to develop this app was to build our own platform to deliver different form of art works created by us.
@@ -169,13 +179,46 @@
 This app brings you a collection of art pieces from different domains. So far we have focused on different genres of writings namely Inspiration, Sad, Love and Science Fiction. These genres are divided in different categories namely Quotes, Poetry, Articles and Stories. Users get a chance to showcase their writing skills by submitting their writings, best among all would be updated every day on the app. The app also has a section for short films, which would be updated every 15 days. The theme for the short film is based on social awareness. If you are very passionate about writing and have good managerial skills, be the campus ambassador in your college to promote this app and win exciting prizes.
      </p></div>
     <div class="figure"></div>
-  </div>
+</div>
 </div>
     </section>
+    <section class="contact-section" id="contact">
+      <div class="container contact-sec">
+          <div class="row">
+              <div class="col-md-4 mb-3 mb-md-0">
+                 
+                          <i style="color: white;" class="fa-2x fa fa-location-arrow"></i>
+                          <h4 class="text-uppercase text-white m-0">Address</h4>
+                          <div class="small text-white-50">Siddaganga Institute Of Technology,Tumkur</div>
+                
+              </div>
+              <div class="col-md-4 mb-3 mb-md-0">
+                
+                          <i style="color: white;" class=" fa-2x fa fa-envelope"></i>
+                          <h4 class="text-uppercase text-white m-0">Email</h4>
+                          <div class="small text-white-50">reachscriptink@gmail.com</div>
+                
+              </div>
+              <div class="col-md-4 mb-3 mb-md-0">
+                      
+                          <i style="color: white;" class="fa-2x fa fa-phone"></i>
+                          <h4 class="text-uppercase text-white m-0">Phone</h4>
+                          <div class="small text-white-50">Not Available</div>
+                   
+                    </div>
+              </div>
+          <div class="social d-flex justify-content-center">
+              <a class="mx-2" href="https://www.instagram.com/scriptink_official/"><i class="fa fa fa-instagram"></i></a><a class="mx-2" href="https://www.facebook.com/anurag.kumargupta.92"><i class="fa fa fa-facebook-f"></i></a><a class="mx-2" href="https://github.com/AnuragCool"><i class="fa fa fa-linkedin"></i></a>
+          </div>
+      
+      <footer class="footer bg-black small text-center text-white-50"><div class="container"><p class="text-white">Copyright © ScriptInk 2020</p></div>
+      <div class="scrolltop float-right">
+          <i class="fa fa-arrow-up" onclick="topFunction()" id="myBtn"></i>
+      </div>
+      </footer>
+  </div>
+  </section>
 
-    <section class="copyright">
-      <p class="text-center">© Copyright ScriptInk. All Rights Reserved</p>
-    </section>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -187,6 +230,11 @@ This app brings you a collection of art pieces from different domains. So far we
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+<script src="/js/behaviour.js"></script>
 
         
 
