@@ -270,7 +270,7 @@ video{
     margin: 10px;
 }
 .headers{
-    height: 100vh;
+    height: auto;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
