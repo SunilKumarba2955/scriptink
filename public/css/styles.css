@@ -34,7 +34,7 @@ html{
     left: 0;
     right: 0;
     width: 100%;
-    background: linear-gradient(to bottom,rgba(43, 30, 71, 0.775),black);
+    background: linear-gradient(to bottom,rgba(43, 30, 71, 0.775),rgb(24, 23, 29));
     z-index: -1;
 }
 .center-div{
@@ -101,7 +101,7 @@ html{
 .category{
     width: 100%;
     height: auto;
-    background: linear-gradient(to bottom,black,rgb(0, 0, 0));
+    background: linear-gradient(to bottom,rgb(24, 23, 29),rgb(0, 0, 0));
     color: white;
     text-align: center;
     position: relative;
@@ -176,7 +176,7 @@ html{
 
 /************NavBar Css Start*********************/
 .navbar{
-    background-color: white !important;
+    background-color: transparent !important;
 }
 .nav-item a.nav-link{
     color:rgb(150, 129, 10) !important ;
@@ -226,6 +226,7 @@ video{
     margin: 2px;
     background-color: rgb(71, 68, 96);
     outline: none;
+    color: white;
     border-radius: 10px;
     width: 100%;
     border: none;
@@ -270,6 +271,23 @@ video{
 }
 .headers{
     height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: 10;
+    background-position: center;
+    position: relative;
+}
+.headers::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: linear-gradient(to bottom,rgba(43, 30, 71, 0.598),rgba(43, 30, 71, 0.782));
+    z-index: -1;
 }
 
 
@@ -403,8 +421,11 @@ video{
       position: fixed;
       right: 20px;
       bottom:20px;
+      padding: 5px;
+      border-radius: 10px;
       z-index: 10000;
       color: white;
+      background-color:rgb(0, 0, 0) ;
   }
   .contact-section{
       padding: 20px;
@@ -417,7 +438,7 @@ video{
 /***************MeadiaQuerry**********************/
 @media(max-width:962px){
     .hideOverflowOnMobile {
-        overflow-x: hidden;
+        overflow: hidden;
         }
     .header{
         height: auto;
@@ -464,5 +485,8 @@ video{
     }
     #about{
         height: auto;
+    }
+    .filter-buttons button {
+        padding: 0;
     }
 }

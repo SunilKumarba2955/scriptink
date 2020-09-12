@@ -45,7 +45,7 @@
 </div>
       </nav>
 
-      <div class="headers" style="background: linear-gradient(45deg,rgb(43, 30, 71),black);">
+      <div class="headers" style="background-image: url(/images/<%= back %>);" >
         <section class="header-section">
               <div class="container" style="padding: 20px 0;">
                 <div class="card" id="posts-card" style="background: url(/images/<%= image %>);background-size: cover;background-position: center;">
@@ -70,7 +70,7 @@
                   </ul>
                   <div class="loading">
                     <div class="center-div">
-                      <img src="/images/loading.gif" alt="loading" height="50px" width="50px">
+                      <img src="/images/loading.gif" alt="loading" height="100px" width="100px">
                     </div>
                   </div>
                   <div class="message">
@@ -80,10 +80,10 @@
         </section>
         
     </div>
-    <section class="copyright">
-      <p class="text-center">© Copyright ScriptInk. All Rights Reserved</p>
-    </section>
-
+    <footer class="footer bg-black small text-center text-white-50"><div class="container"><p></p></div>
+      <div class="scrolltop float-right">
+        <i class="fa fa-arrow-up" onclick="topFunction()" id="myBtn"></i>
+    </div>
    
    
 
@@ -104,6 +104,7 @@
 <script>
   AOS.init();
 </script>
+<script src="/js/behaviour.js"></script>
     
 </body>
 </html>

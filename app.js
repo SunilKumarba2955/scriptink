@@ -28,30 +28,34 @@ app.get("/:post",function(req,res){
 
     posts=[];
     var category=req.params.post;
-    var categoryName,caption,image;
+    var categoryName,caption,image,back;
 
     if(category==="inspiration"){
          categoryName="Inspiration";
          caption="Grow Inspired";
          image="srk.jpg";
+         back="inspiration.jpg";
 
     }
     else if(category=="love"){
         categoryName="Love";
         caption="A Bliss Feeling";
         image="love.jpg";
+        back="loveback.jpg";
     }
     else if(category=="sad"){
         categoryName="Sad";
         caption="Life shows it's way";
         image="sad1.jfif";
+        back="sadb.jpg";
     }else{
         categoryName="Science";
         caption="Innovate with Science";
         image="space.jpg";
+        back="spaceb.jpg";
     }
 
-    res.render(__dirname+"/views/posts.ejs",{category:categoryName,caption:caption,image:image});
+    res.render(__dirname+"/views/posts.ejs",{category:categoryName,caption:caption,image:image,back:back});
     
 
 })
