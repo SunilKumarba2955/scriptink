@@ -416,6 +416,10 @@ video{
 
 
 /*********************CSS FOR POSTS.EJS FILE*************************************/
+
+.filter-article{
+    padding-top: 3rem;
+}
 .category-image{
     background-size: cover;
     background-position:center;
