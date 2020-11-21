@@ -126,7 +126,6 @@ body{
     transition:  0.15s;
     height: 250px;
     z-index: 10;
-    box-shadow: 0 .3rem 1rem rgba(255, 255, 255, .3);
     outline: .4rem solid white;
     transition: all .2s;
     margin: .5rem;
@@ -157,6 +156,7 @@ body{
     transform: translateY(-8px) scale(1.05);
     outline: .9rem solid white;
     outline-offset:1rem ;
+    box-shadow: 0 .3rem 1rem rgba(255, 255, 255, .3);
     z-index: 20;
     
 }
@@ -629,6 +629,7 @@ video{
     .header{
         padding-top: 20%;
         height: auto;
+        padding-bottom: 10%;
     }
     .row{
         margin: 10px 0;

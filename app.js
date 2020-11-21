@@ -58,11 +58,13 @@ app.get("/:post",function(req,res){
         caption="Life shows it's way";
         image="sad1.jfif";
         back="sadb.jpg";
-    }else{
+    }else if(category=="science"){
         categoryName="Science";
         caption="Innovate with Science";
         image="space.jpg";
         back="spaceb.jpg";
+    }else{
+        res.send("Error 404");
     }
    
     res.render(__dirname+"/views/posts.ejs",{category:categoryName,caption:caption,image:image,back:back});
