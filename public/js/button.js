@@ -26,15 +26,13 @@ function loadData(type,result1,message){
         method:'post',
         data:{type:type,category:category},
         success:function(result,status,xhr){
-            console.log("successfull");
-            console.log(result.array);
                     for (var i = 0; i < result.array.length; i++) {
                         result1 +=
                           `
-                            <li data-aos="zoom-in" style="background-image:url('${result.backimg[i]}');background-size:cover;background-poosition:center">
-                            <div class="center-div">
+                            <li data-aos="zoom-in" style="background-image:url('${result.backimg[i]}');background-size:cover;background-poosition:center;display:flex;justify-content:center;align-items:center">
+                            
                               <p class="party-body">${result.array[i]}</p>
-                              </div>
+                         
                             </li>
                             `
                     }

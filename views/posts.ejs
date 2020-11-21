@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ScriptInk</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css" integrity="sha256-6hqHMqXTVEds1R8HgKisLm3l/doneQs+rS1a5NLmwwo=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css" >
@@ -51,7 +53,7 @@
       <div class="headers" style="background-image: url(/images/<%= back %>);" >
         <section class="header-section">
               <div class="container" style="padding: 20px 0;">
-                <div class="card" id="posts-card" style="background: url(/images/<%= image %>);background-size: cover;background-position: center;">
+                <div class="card-posts" id="posts-card" style="background: url(/images/<%= image %>);background-size: cover;background-position: center;">
                     <div class="center-div">
                     <div class="card-body">
                       <h5 class="card-title"><%= category %></h5>
@@ -60,7 +62,7 @@
                   </div>
                 </div>  
                 <div class="filter-article">
-                    <h2 class="text-white">Options</h2>
+                    <h2 class="heading-posts">Options</h2>
                     <div class="filter-buttons" id="filter-section">
                       <button type="button" name="button" class="active-button">Quotes</button>
                       <button type="button" name="button">Stories</button>
@@ -83,7 +85,7 @@
         </section>
         
     </div>
-    <footer class="footer bg-black small text-center text-white-50"><div class="container"><p></p></div>
+    <footer class="footer small text-center" style="background: #f7f7f7;"><div class="container"><p></p></div>
       <div class="scrolltop float-right">
         <i class="fa fa-arrow-up" onclick="topFunction()" id="myBtn"></i>
     </div>

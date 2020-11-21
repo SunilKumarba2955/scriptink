@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ScriptInk</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css" integrity="sha256-6hqHMqXTVEds1R8HgKisLm3l/doneQs+rS1a5NLmwwo=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css" >
@@ -45,7 +47,7 @@
                   </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Contact us</a>
+                <a class="nav-link" href="#contact">Contact us</a>
               </li>
             
           </ul>
@@ -53,11 +55,10 @@
 </div>
       </nav>
     <div class="header">
-        <section class="header-section">
-            <div style="display: flex;justify-content: center;align-items: center;">
+        <section class="header-section" style="display: flex;justify-content: center;align-items: center;">
               <div class="container">
                 <div class="row">
-                    <div data-aos="fade-right" data-aos-duration="3000" class="col-md-6" id="scriptink-info">
+                    <div class="col-md-6" id="scriptink-info">
                         <div class="center-div">
                             <h1 id="heading">ScriptInk</h1>
                         <p><i>voice of thoughts</i><p>
@@ -72,23 +73,21 @@
                     </div>
                 </div>
                 </div>
-                
-            </div>
-            <div class="container" style="text-align: left;">
-                
-            </div>
+            
         </section>
     </div>
 
 <!-- -----------------Category Section--------------------------- -->
     <section class="category">
-      <div class="container">
-            <div class="section-heading">
-                <h2 style="color:white">Choose Category</h2>
-            </div>
+      <div class="section-heading">
+        <h2 class="heading-secondary">Choose Category</h2>
+    </div>
+
+      <div class="container" style="padding: 2rem 0;">
+            
                 <div class="row" id="container-row1">
-                    <div data-aos="fade-up-right" data-aos-duration="1500"  class="col-md-8">
-                        <a href="/inspiration">
+                    <div class="col-md-8">
+                        <a href="/inspiration" style="text-decoration: none;">
                         <div class="card" style="background: url(/images/srk.jpg);background-size: cover;background-position: center;">
                             <div class="center-div">
                             <div class="card-body">
@@ -99,8 +98,8 @@
                         </div>
                     </a>
                     </div>
-                    <div data-aos="fade-up-left" data-aos-duration="1500" class="col-md-4">
-                        <a href="/love">
+                    <div class="col-md-4">
+                        <a href="/love" style="text-decoration: none;">
                         <div class="card" style="background: url(images/love.jpg);background-size: cover;background-position: center;">
                             <div class="center-div">
                             <div class="card-body">
@@ -113,8 +112,8 @@
                     </div>
                 </div>
                 <div class="row" id="container-row2" >
-                    <div data-aos="fade-down-right" data-aos-duration="1500" class="col-md-4">
-                     <a href="/sad">
+                    <div class="col-md-4">
+                     <a href="/sad" style="text-decoration: none;">
                         <div class="card" style="background: url(/images/sad1.jfif);background-size: cover;background-position: center;">
                             <div class="center-div">
                             <div class="card-body">
@@ -125,8 +124,8 @@
                           </div>
                         </a>
                     </div>
-                    <div data-aos="fade-down-left" data-aos-duration="1500" class="col-md-8">
-                        <a href="/science">
+                    <div class="col-md-8">
+                        <a href="/science" style="text-decoration: none;">
                         <div class="card" style="background: url(/images/space.jpg);background-size: cover;background-position:center ;">
                             <div class="center-div">
                             <div class="card-body">
@@ -146,10 +145,14 @@
     <section class="wordOfDay" >
       <div class="content" data-aos="fade-up" data-aos-duration="2000">
         <div class="section-heading">
-            <h2>Word Of Day</h2>
+            <h2 class=" heading-wordOfDay">Word of the Day</h2>
         </div>
-            <div class="container">
+            <div class="container wordOfDay-content">
                <div id="wordimg">
+                 <p>21.12.19</p>
+                 <h3>VOW</h3>
+                 <i>verb</i>
+                 <p style="width: 30%; margin: auto;">to make a determined decision or promise to do something</p>
                  <img id="quotes1" src="/images/writer.png">
                  <img id="quotes2" src="/images/writer.png">
                </div>
@@ -160,23 +163,25 @@
     </section>
 
 
-    <section class="film">
-      <div class="center" style="margin:20px">
+    <!-- <section class="film" style="display: flex;
+    justify-content: center;
+    align-items: center;">
+      <div class="center film-container" style="margin:20px;width: 100%;">
       <div class="section-heading">
-        <h2 class="text-white">Short Film</h2>
+        <h2 class="heading-secondary">Short Film</h2>
       </div>
         <div class="container" style="padding: 10px;">
             <video data-aos="flip-left" data-aos-duration="2000" width="100%" height="auto" controls ></video>
         </div>
       </div>
       
-    </section>
+    </section> -->
 
 
     <section class="about" id="about" style="display: flex;justify-content: center;align-items: center;">
      
-            <div class="container" >
-              <div id="about" ><h2>About</h2></div>
+            <div class="container about-content" >
+              <div id="about"  ><h2 class="heading-secondary">About</h2></div>
   <div class="box">
      
        <div id="para"><p>The main idea to develop this app was to build our own platform to deliver different form of art works created by us.
@@ -192,23 +197,23 @@ This app brings you a collection of art pieces from different domains. So far we
           <div class="row">
               <div class="col-md-4 mb-3 mb-md-0">
                  
-                          <i style="color: white;" class="fa-2x fa fa-location-arrow"></i>
-                          <h4 class="text-uppercase text-white m-0">Address</h4>
-                          <div class="small text-white-50">Siddaganga Institute Of Technology,Tumkur</div>
+                          <i class="fa-2x fa fa-location-arrow"></i>
+                          <h4 class="text-uppercase m-0">Address</h4>
+                          <div class="small ">Siddaganga Institute Of Technology,Tumkur</div>
                 
               </div>
               <div class="col-md-4 mb-3 mb-md-0">
                 
-                          <i style="color: white;" class=" fa-2x fa fa-envelope"></i>
-                          <h4 class="text-uppercase text-white m-0">Email</h4>
-                          <div class="small text-white-50">reachscriptink@gmail.com</div>
+                          <i  class=" fa-2x fa fa-envelope"></i>
+                          <h4 class="text-uppercase  m-0">Email</h4>
+                          <div class="small ">reachscriptink@gmail.com</div>
                 
               </div>
               <div class="col-md-4 mb-3 mb-md-0">
                       
-                          <i style="color: white;" class="fa-2x fa fa-phone"></i>
-                          <h4 class="text-uppercase text-white m-0">Phone</h4>
-                          <div class="small text-white-50">Not Available</div>
+                          <i class="fa-2x fa fa-phone"></i>
+                          <h4 class="text-uppercase  m-0">Phone</h4>
+                          <div class="small ">Not Available</div>
                    
                     </div>
               </div>
@@ -216,13 +221,14 @@ This app brings you a collection of art pieces from different domains. So far we
               <a class="mx-2" href="https://www.instagram.com/scriptink_official/"><i class="fa fa fa-instagram"></i></a><a class="mx-2" href="https://www.facebook.com/anurag.kumargupta.92"><i class="fa fa fa-facebook-f"></i></a><a class="mx-2" href="https://github.com/AnuragCool"><i class="fa fa fa-linkedin"></i></a>
           </div>
       
-      <footer class="footer bg-black small text-center text-white-50"><div class="container"><p class="text-white"></p></div>
-      <div class="scrolltop float-right">
-          <i class="fa fa-arrow-up" onclick="topFunction()" id="myBtn"></i>
-      </div>
+      <footer class="footer bg-black small text-center"><div class="container"><p></p></div>
+      
       </footer>
   </div>
   </section>
+  <div class="scrolltop float-right">
+    <i class="fa fa-arrow-up" id="myBtn"></i>
+ </div>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

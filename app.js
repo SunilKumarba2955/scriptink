@@ -72,7 +72,6 @@ app.get("/:post",function(req,res){
 })
 
 app.post("/getData",function(req,res){
-     console.log(req.body);
      var type=req.body.type;
      var array=[];
      var backimg=[];

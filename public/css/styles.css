@@ -1,12 +1,24 @@
-*{
+/*
+Author:Anurag
+Date:6.09.2020
+Css for the Website
+*/
+
+
+*,
+*::after,
+*::before{
     margin:0;
     padding:0;
     box-sizing: border-box;
-    color: rgb(43, 30, 71);
     font-size:1.1rem;
 }
 html{
     scroll-behavior: smooth;
+}
+
+body{
+    padding: 1.2rem;
 }
 
 .section-heading{
@@ -101,7 +113,8 @@ html{
 .category{
     width: 100%;
     height: auto;
-    background: linear-gradient(to bottom,rgb(24, 23, 29),rgb(0, 0, 0));
+    padding: 10rem 0;
+    background: linear-gradient(to bottom,rgb(24, 23, 29),rgb(24, 22, 37));
     color: white;
     text-align: center;
     position: relative;
@@ -110,10 +123,21 @@ html{
     padding-bottom: 5rem;
 }
 .card{
-    border-radius: 20px;
-    transition:  0.5s;
-    border:1px solid white;
+    transition:  0.15s;
     height: 250px;
+    z-index: 10;
+    box-shadow: 0 .3rem 1rem rgba(255, 255, 255, .3);
+    outline: .4rem solid white;
+    transition: all .2s;
+    margin: .5rem;
+}
+.card-posts{
+    transition:  0.15s;
+    height: 250px;
+    z-index: 10;
+    box-shadow: 0 .3rem 1rem rgba(255, 255, 255, .3);
+    outline: .4rem solid white;
+    margin: .5rem;
 }
 .card::after{
     content: "";
@@ -121,20 +145,127 @@ html{
     top: 0;
     bottom: 0;
     right: 0;
+    /* background-image: linear-gradient(to right bottom,rgba(93, 197, 231, 0.741),rgba(128, 0, 128, 0.755)); */
     left: 0;
 
 }
+
 #container-row1{
     padding-bottom:20px;
 }
 .card:hover{
-    transform: translateY(-8px);
-    box-shadow: 0 0 10px rgb(255, 240, 153);
+    transform: translateY(-8px) scale(1.05);
+    outline: .9rem solid white;
+    outline-offset:1rem ;
+    z-index: 20;
+    
+}
+.card:active{
+    transform: translateY(-5px);
+    box-shadow: 0 .1rem 1rem rgba(255, 255, 255, .3);
 }
 .card-title{
     color: white;
     margin: 0;
 }
+/* .circle:nth-child(1){
+    background-color: transparent;
+    border: 2px solid white;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    transform-origin: center;
+    top: 10%;
+    left: 10%;
+    transform: rotate(20deg);
+    animation: ripple 10s linear infinite;
+}
+.circle:nth-child(2){
+    background-color: transparent;
+    border: 2px solid white;
+    position: absolute;
+    top: 10%;
+    height: 50px;
+    width: 50px;
+    left: 6%;
+    animation: ripple 20s linear infinite;
+}
+
+.circle:nth-child(4){
+    background-color: transparent;
+    border: 2px solid white;
+    position: absolute;
+    top: 20%;
+    left: 8%;
+    height: 50px;
+    width: 50px;
+    animation: ripple 5s linear infinite;
+}
+.circle:nth-child(5){
+    background-color: white;
+    border: 2px solid white;
+    position: absolute;
+    top: 30%;
+    left: 9%;
+    height: 50px;
+    width: 50px;
+    animation: ripple 4s linear infinite;
+}
+.circle:nth-child(6){
+    background-color: white;
+    border: 2px solid white;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+    height: 50px;
+    width: 50px;
+    animation: ripple 15s linear infinite;
+}
+.circle:nth-child(7){
+    background-color: white;
+    border: 2px solid white;
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    height: 50px;
+    width: 50px;
+    animation: ripple 15s linear infinite;
+}
+.circle:nth-child(8){
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid white;
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    height: 50px;
+    width: 50px;
+    animation: ripple 20s linear infinite;
+}
+.circle:nth-child(9){
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid white;
+    position: absolute;
+    top: 40%;
+    left: 6%;
+    height: 50px;
+    width: 50px;
+    animation: ripple 30s linear infinite;
+}
+
+.circle:nth-child(11){
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid white;
+    position: absolute;
+    top: 50%;
+    left: 8%;
+    height: 50px;
+    width: 50px;
+    animation: ripple 9s linear infinite;
+} */
+
 /* ********************Category Section End *********************** */
 
 /* ********************WordOfDay Section Start *********************** */
@@ -146,15 +277,26 @@ html{
     color: white;
     /* background: radial-gradient(rgb(247, 240, 201),#E6B32E);
      */
-     background: radial-gradient(rgb(255, 255, 255),#3b4d6c);
+     background: radial-gradient(rgb(255, 255, 255),rgb(245, 245, 245));
     text-align: center;
+    transform: skewY(3deg);
+    margin-top: -70px;
+    position: relative;
+    z-index: 30;
     
+}
+.wordOfDay-content{
+    transform: skewY(-3deg);
+    padding: 1rem 0;
+    color: rgb(43, 30, 71);
+
 }
 #wordimg{
     border-radius: 50px;
     width: 100%;
     height: 300px;
     position: relative;
+    /* transform: skewY(2deg); */
 }
 #quotes1{
     height: 50px;
@@ -163,6 +305,7 @@ html{
     top: 0;
     left: 0;
     transform: rotate(180deg);
+    /* transform: skewY(2deg); */
 }
 #quotes2{
     height: 50px;
@@ -170,20 +313,33 @@ html{
     position: absolute;
     bottom: 0;
     right: 0;
+    /* transform: skewY(2deg); */
+}
+
+.heading-wordOfDay{
+    text-transform: uppercase;
+    font-size:2rem;
+    display: inline-block;
+    background-image: linear-gradient(to right,rgb(92, 213, 253),purple);
+    -webkit-background-clip: text;
+    color: transparent;
 }
 /* ********************WordOfDay Section End *********************** */
 
 
 /************NavBar Css Start*********************/
 .navbar{
-    background-color: transparent !important;
+    /* background: linear-gradient(to bottom,rgb(228, 228, 228),rgb(255, 255, 255)) !important; */
+    background-color: #f7f7f7 !important;
+    /* box-shadow: 0 .8rem 1rem rgba(0, 0, 0, .2); */
+    padding: 0;
 }
 .nav-item a.nav-link{
-    color:rgb(150, 129, 10) !important ;
+    color:rgb(43, 30, 71) !important ;
     margin-left: 2rem !important;
 }
 .nav-item a:hover{
-    color:rgb(204, 181, 47) !important ;
+    color:rgb(116, 85, 184) !important ;
 }
 .nav-logo{
     border-radius: 50%;
@@ -195,11 +351,29 @@ html{
 /*****************Film Section Start*******************/
 .film{
     width: 100%;
-    height: 100vh;
-    padding: 20px 0;
-    background: linear-gradient(to bottom,rgb(43, 30, 71),black);
-    /* background: linear-gradient(135deg,linear-gradient(45deg,rgb(43, 30, 71)50%,black 50%)50%,black 50%); */
+    min-height: 100vh;
+    padding: 6rem 0;
+    margin-top: -40px;
+    background: linear-gradient(to right bottom,rgba(43, 30, 71, 0.898),rgba(0, 0, 0, 0.619)),url(/images/cinema.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+     
     position: relative;
+    z-index: 10;
+}
+/* .film::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* background: linear-gradient(135deg,rgba(43, 30, 71, 0.932)50%,rgba(0, 0, 0, 0.476) 30%); */
+    /* z-index: -1;  */
+/* } */ 
+.film-container{
+    padding: 2rem 0;
 }
 video{
     box-shadow: 0 0 20px rgb(255, 255, 255);
@@ -208,13 +382,43 @@ video{
 
 /*****************Film Section End*******************/
 
+
+/**********************ABOUT SECTION START******************/
+.about{
+    background-image: url(/images/day.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+    transform: skewY(3deg);
+    color: rgb(43, 30, 71);
+    margin-top: -70px;
+    z-index: 10;
+}
+.about::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom,rgba(43, 30, 71, 0.837),rgba(0, 0, 0, 0.769));
+    z-index: -1;
+}
+.about-content{
+    transform: skewY(-3deg);
+    margin: 10rem 0;
+}
+
+
+/**********************ABOUT SECTION END******************/
+
+
+/*********************CSS FOR POSTS.EJS FILE*************************************/
 .category-image{
-    /* background-image: url(/images/srk.jpg);
-    width: 100%;
-    height: 350px; */
     background-size: cover;
     background-position:center;
-    /* border-radius: 20px; */
 }
 .filter-buttons{
     display: flex;
@@ -226,6 +430,7 @@ video{
     margin: 2px;
     background-color: rgb(71, 68, 96);
     outline: none;
+    text-transform: uppercase;
     color: white;
     border-radius: 10px;
     width: 100%;
@@ -237,26 +442,7 @@ video{
 }
 
 
-.about{
-    padding: 20px 0;
-    background-image: url(/images/forest.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    position: relative;
-    z-index: 10;
-}
-.about::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to bottom,black,rgba(43, 30, 71, 0.775));
-    z-index: -1;
-}
+
 .headers .container{
     border:2px solid white;
     padding :20px;
@@ -286,97 +472,26 @@ video{
     left: 0;
     right: 0;
     width: 100%;
-    background: linear-gradient(to bottom,rgba(43, 30, 71, 0.598),rgba(43, 30, 71, 0.782));
+    /* background: linear-gradient(to bottom,rgba(43, 30, 71, 0.598),rgba(43, 30, 71, 0.782)); */
+    background: linear-gradient(to bottom,rgba(211, 211, 211, 0.598),rgba(0, 0, 0, 0.782));
     z-index: -1;
 }
 
-
-
-/************************About effect Start**************************/
-.box{
-    width:100%;
-    position: relative;
-  }
-  
-  .figure{
-    width: 100%;
-    height: 100%;
-  }
-  .figure:before{
-    content: '';
-    position:absolute;
-    width:50%;
-    top:0;
-    left: 0;
-    border-radius: 20px 0 0 20px;
-    height:100%;
-    /* background:url(/images/logo.png);
-     */
-     background-color: gray;
-    opacity: 0.2;
-    /* background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat; */
-    transform-origin:bottom;
-    transition: 0.5s;
-  
-  }
-  .box:hover .figure:before{
-    transform: rotateX(90deg) translateY(50%);
-  }
-  .figure:after{
-    content: '';
-    position:absolute;
-    top: 0;
-    right: 0;
-    width:50%;
-    background-color: gray;
-    /* background:url(/images/logo.png); */
-    border-radius: 0 20px 20px 0;
-    height:100%;
-    opacity: 0.2;
-    /* background-size:cover;
-    background-position:center;
-    background-repeat: no-repeat; */
-    transform-origin:top;
-    transition:0.5s;
-   
-  }
-  .box:hover .figure:after{
-    transform: rotateX(90deg) translateY(-50%);
-  }
-  /* .box:hover #para{
-    font-family:'Dancing Script', cursive;
-  } */
-  #about{
-    text-align:center;
-    padding: 20px;
-  }
-  #para{
-  text-align:center;
-  padding-top:70px;
-  font-size:20px;
-  }
-
-  #about h2{
-      margin:0;
-      padding:0;
-      color: white;
-      font-size: 30px;
-      font-family: sans-serif;
-      text-transform: uppercase;
-  }
-  #about p{
-      color: white;
-  }
-
-  /************************About effect Start**************************/
-
-
-
-  #filter-section > button:hover{
+#filter-section > button:hover{
     background: rgb(255, 255, 255);
     color : rgb(0, 0, 0);
+  }
+  #articles li::after{
+      background-color: rgba(0, 0, 0, 0.327);
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      border-radius: 10px;
+      z-index: -1;
+      width: 100%;
   }
 
   .article-list{
@@ -398,20 +513,85 @@ video{
     background-position:center;
     background-repeat: no-repeat;
     list-style-type: none;
-    border-radius: 10px;
+    border-radius: 2px;
     color : white;
-    transition: .2s linear all;
+    transition: .10s linear all;
   }
   .article-list li:hover
   {
 
-    -webkit-box-shadow: 0px 30px 22px 0px rgba(0,0,0,0.16);
+  -webkit-box-shadow: 0px 30px 22px 0px rgba(0,0,0,0.16);
   -moz-box-shadow: 0px 30px 22px 0px rgba(0,0,0,0.16);
   box-shadow: 0px 30px 22px 0px rgba(0,0,0,0.16);
   }
 
 
 
+
+/************************    ABOUT EFFECT START     **************************/
+.box{
+    width:100%;
+    position: relative;
+  }
+  
+  .figure{
+    width: 100%;
+    height: 100%;
+  }
+  .figure:before{
+    content: '';
+    position:absolute;
+    width:50%;
+    top:0;
+    left: 0;
+    border-radius: 20px 0 0 20px;
+    height:100%;
+    background-color: gray;
+    opacity: 0.2;
+    transform-origin:bottom;
+    transition: 0.5s;
+  
+  }
+  .box:hover .figure:before{
+    transform: rotateX(90deg) translateY(50%);
+  }
+  .figure:after{
+    content: '';
+    position:absolute;
+    top: 0;
+    right: 0;
+    width:50%;
+    background-color: gray;
+    border-radius: 0 20px 20px 0;
+    height:100%;
+    opacity: 0.2;
+    transform-origin:top;
+    transition:0.5s;
+   
+  }
+  .box:hover .figure:after{
+    transform: rotateX(90deg) translateY(-50%);
+  }
+  #about{
+    text-align:center;
+    padding: 20px;
+  }
+  #para{
+  text-align:center;
+  padding-top:70px;
+  font-size:20px;
+  }
+  #about p{
+      color: white;
+  }
+
+  /************************ABOUT EFFECT END**************************/
+
+
+
+  
+
+ /************************CONTACT START**************************/
   .contact-section .row{
       text-align: center;
       padding:50px;
@@ -422,25 +602,32 @@ video{
       right: 20px;
       bottom:20px;
       padding: 5px;
-      border-radius: 10px;
+      border-radius: 50%;
       z-index: 10000;
       color: white;
       background-color:rgb(0, 0, 0) ;
   }
   .contact-section{
       padding: 20px;
-      background: linear-gradient(to bottom,rgb(43, 30, 71),rgb(80, 76, 110));
+      background: linear-gradient(to bottom,rgb(255, 255, 255),rgb(228, 228, 228));
+    
   }
 
   .social a:hover i{
       color: white;
   }
-/***************MeadiaQuerry**********************/
-@media(max-width:962px){
+
+
+/************************CONTACT END*********************/
+
+
+/***************  MeadiaQuerry   **********************/
+@media(max-width:1362px){
     .hideOverflowOnMobile {
         overflow: hidden;
         }
     .header{
+        padding-top: 20%;
         height: auto;
     }
     .row{
@@ -490,3 +677,53 @@ video{
         padding: 0;
     }
 }
+
+@media(max-width:600px){
+    body{
+        padding: 0;
+    }
+    .filter-buttons button{
+        font-size: .9rem;
+    }
+}
+
+
+
+@keyframes ripple{
+    0%{
+            transform: scale(1) translate(0) rotate(0);  
+    }
+   33%{
+          transform: translateY(100px);
+         
+   }
+   66%{
+       transform: translateY(-100px);
+      
+   }
+   100%{
+     transform: scale(1) translate(0) rotate(360deg);  
+   }
+}
+
+.heading-secondary{
+    text-transform: uppercase;
+    font-size:2rem;
+    display: inline-block;
+    background-image: linear-gradient(to right,rgb(92, 213, 253),purple);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+.heading-posts{
+    text-transform: uppercase;
+    font-size:2rem;
+    display: inline-block;
+    letter-spacing: .5rem;
+    background-image: linear-gradient(to right,rgb(6, 103, 135),rgb(79, 1, 79));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* .heading-secondary:hover{
+    transform: skewY(2deg) skewX(20deg);
+} */

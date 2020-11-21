@@ -1,3 +1,6 @@
+$(document).ready(function(){
+
+
 var mybutton =document.getElementById('myBtn');
 
 var date =new Date;
@@ -21,4 +24,6 @@ function topFunction(){
     document.documentElement.scrollTop=0;
 }
 
-$('[data-aos]').parent().addClass('hideOverflowOnMobile');
+$("#myBtn").on('click',topFunction);
+
+});
