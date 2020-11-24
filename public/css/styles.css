@@ -348,6 +348,10 @@ body{
 .nav-item a.nav-link{
     color:rgb(43, 30, 71) !important ;
     margin-left: 2rem !important;
+    font-weight: 500;
+}
+.navbar .navbar-brand{
+    font-weight: 700;
 }
 .nav-item a:hover{
     color:rgb(116, 85, 184) !important ;
@@ -761,3 +765,10 @@ video{
     transform: rotate(90deg);
     bottom: 13rem;
 }
+
+/* .round-icon{
+    display: inline-block;
+    border-radius: 50%;
+    padding: 1rem;
+    box-shadow: 0 1rem 1rem black;
+} */
