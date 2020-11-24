@@ -336,6 +336,7 @@ body{
     position: fixed;
     top: 0;
     width: 100%;
+    left: 0;
     z-index: 10000;
 }
 .navbar-transparent{
@@ -468,6 +469,7 @@ video{
     background-position:center;
     background-size: cover;
     margin: 10px;
+    
 }
 .headers{
     height: auto;
