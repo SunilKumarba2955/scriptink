@@ -28,11 +28,12 @@ app.use(express.static(__dirname + '/public'));
 
 //home route
 app.get("/",function(req,res){
-    var ref=firebase.database().ref("/Video");
-    ref.once('value').then(snap=>{
-        console.log(snap.val());
-    })
+    // var ref=firebase.database().ref("/Video");
+    // ref.once('value').then(snap=>{
+    //     console.log(snap.val());
+    // })
     res.render("landing");
+    
 })
 
 app.get("/members",(req,res)=>{

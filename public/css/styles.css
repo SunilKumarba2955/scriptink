@@ -730,6 +730,10 @@ html{
     .team-list{
         grid-template-columns: 1fr;
     }
+    iframe{
+        width: 85%;
+        
+    }
 
 }
 

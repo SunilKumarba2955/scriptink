@@ -130,7 +130,7 @@ function loadMembers(){
       url:'/getTeam',
       method:'post',
       success:function(result,status,xhr){
-        console.log("worrking!!");
+        // console.log("worrking!!");
         for (var i = 0; i < result.array.length; i++) {
           result2 +=
             `<li data-aos="zoom-in" style="display:flex;justify-content:center;align-items:center;height:300px;flex-direction:column">
@@ -164,7 +164,7 @@ function loadMembers(){
 
 },
       error:function(xhr,status,error){
-          console.log("error");
+        //   console.log("error");
       }
 
  });
