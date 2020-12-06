@@ -744,6 +744,31 @@ input{
     cursor: pointer;
 }
 
+
+
+
+
+.guest-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 5rem;
+    
+}
+.guest-image{
+    height: 250px;
+    width: 250px;
+    background-color: white;
+    border-radius: 50%;
+    border: .2rem solid white;
+}
+.guest-about{
+    
+}
+.guest-container{
+   
+}
+
+
 /***************  MeadiaQuerry   **********************/
 @media(max-width:1362px){
     .hideOverflowOnMobile {
@@ -807,6 +832,15 @@ input{
 @media (max-width:800px){
     .team-list{
         grid-template-columns: repeat(2,1fr);
+    }
+    .guest-info{
+        grid-template-columns: 1fr;
+    }
+    .guest-info .heading-posts{
+        font-size: 1rem;
+    }
+    .guest-about{
+        margin-top: 1rem;
     }
 }
 

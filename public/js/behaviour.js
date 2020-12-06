@@ -50,13 +50,14 @@ $('.close').on('click',function(){
     var email=$('#email').val();
     var phone=$('#phone').val();
     var city=$('#city').val();
+    var college=$('#college').val();
    
    
    
        $.ajax({
          url:"/registerParticipants",
          method:"post",
-         data:{name:name,email:email,usn:usn,city:city,phone:phone},
+         data:{name:name,email:email,usn:usn,city:city,phone:phone,college:college},
          success:function(result,status,xhr){
              console.log(result.message);
                 if(result.message==='empty'){
@@ -72,13 +73,20 @@ $('.close').on('click',function(){
                  $(".message-info").html(
                    "Successfully Submitted"
                  )
-               $('#name').val("");
-               $('#email').val("");
-               $('#usn').val("");
-                $('#phone').val("");
-               $('#city').val("");
+                    
+                $('#name').val("");
+                $('#email').val("");
+                $('#usn').val("");
+                    $('#phone').val("");
+                $('#city').val("");
                 }
-                else{
+                else if(result.message==="not started"){
+                    $(".message").css({"display":"block"})
+                    $(".message").css({'background-color':"red"});
+                    $(".message-info").html(
+                       "Registration has not been started yet!"
+                    )
+                 }else{
                     $(".message").css({"display":"block"})
                     $(".message").css({'background-color':"red"});
                     $(".message-info").html(

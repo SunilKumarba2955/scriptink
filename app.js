@@ -36,13 +36,25 @@ app.get("/",function(req,res){
 })
 
 
+
+const checkRegistrationStart = (callback)=>{
+    var ref = firebase.database().ref("/WritoFest");
+    ref.once('value').then(snap=>{
+        callback(snap.val().registrationstart);
+    })
+}
+
+
+
 const checkParticipants=(email,usn,callback)=>{
     var message="";
-    var ref = firebase.database().ref("/WritoFest/Registration2k20");
+    var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2020/ViaWebsite");
+   
     ref.once('value').then(snap=>{
         if(snap.val()!=null){
         snap.forEach(element=>{
             if(email===element.val().Email || usn===element.val().USN){
+            
                 message="already exists";
                  return callback(message);
             }else{
@@ -71,51 +83,50 @@ app.get("/register",(req,res)=>{
 
 app.post("/registerParticipants",(req,res)=>{
     var messageback="";
-    var name=req.body.name
-    var usn=req.body.usn
-    var email=req.body.email
-    var phone=req.body.phone
-    var city=req.body.city
-
-    if(name===""){
-        messageback="empty";
-    }else if(email===""){
-        messageback="empty";
-    }
-    else if(usn===""){
-        messageback="empty";
-    }
-    else if(phone===""){
-        messageback="empty";
-    }
-    else if(city===""){
-        messageback="empty";
-    }else{
+    var name=req.body.name;
+    var usn=req.body.usn;
+    var email=req.body.email;
+    var phone=req.body.phone;
+    var city=req.body.city;
+    var college=req.body.college;
         var date=new Date();
 
-        var ref = firebase.database().ref("/WritoFest/Registration2k20");
+        var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2020/ViaWebsite");
         
         var userkey = ref.push().key;
-      
-        checkParticipants(email,usn,(message)=>{
-            if(message==="already exists"){
-                messageback=message;
+
+        checkRegistrationStart((start)=>{
+            if(start===1){
+                checkParticipants(email,usn,(info)=>{
+                    console.log(info);
+                    if(info === "already exists"){
+                        console.log("true");
+                        messageback=info;
+                        res.send({message:messageback});
+                    }else{
+                        ref.child(userkey).set({
+                            Name:name,
+                            Email:email,
+                            USN:usn,
+                            "Phone Number":phone,
+                            City:city,
+                            College:college,
+                            "Time of Registration":date.toString(),
+                            "Date of Registration":date.toLocaleDateString()
+                        });
+                        messageback="success";
+                        res.send({message:messageback});
+                    }
+                })
             }else{
-                ref.child(userkey).set({
-                    Name:name,
-                    Email:email,
-                    USN:usn,
-                    Phone:phone,
-                    City:city,
-                    Time:date.toString()
-                });
-                messageback="success";
-             
+                messageback="not started"
+                res.send({message:messageback});
             }
         })
+      
+      
         
-    }
-    res.send({message:messageback});
+   
 })
 
 
