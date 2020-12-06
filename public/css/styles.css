@@ -636,9 +636,12 @@ html{
       background: linear-gradient(to bottom,rgb(255, 255, 255),rgb(228, 228, 228));
     
   }
+  .social a i{
+      color: #202645;
+  }
 
   .social a:hover i{
-      color: white;
+      color: rgb(186, 184, 184);
   }
 
 
