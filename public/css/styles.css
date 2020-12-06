@@ -65,8 +65,10 @@ html{
     color: white;
     height: inherit;
     position: relative;
+    margin-top: 1.5rem;
     text-align: center;
 }
+
 .header-section h1,.header-section p,.header-section i{
     color: white;
 }
@@ -94,6 +96,7 @@ html{
     border-radius: 20px;
     padding: 10px;
     color: white;
+    margin-top: 1rem;
 }
 .button:hover{
     background-color: black;
@@ -333,6 +336,8 @@ html{
     background-color: #f7f7f7 !important;
     box-shadow: 0 .2rem .2rem rgba(0, 0, 0, .2);
     padding: 0;
+    position: fixed;
+    top: 0;
     width: 100%;
     left: 0;
     z-index: 10000;
@@ -648,6 +653,92 @@ html{
 /************************CONTACT END*********************/
 
 
+/*******************************EVENT START*************************/
+.event-container{
+    padding: 3rem 2rem;
+}
+.event-heading{
+    text-align: left;
+}
+.event-container p{
+    text-align: left;
+}
+.event-section{
+    width: 100%;
+    color: rgb(255, 255, 255);
+    position: relative;
+    margin-top: 1.5rem;
+    text-align: center;
+    background-image:linear-gradient(to right bottom,#231B34,rgb(57, 53, 53));
+    height: auto;
+}
+.general-info p{
+  margin: 0;
+}
+
+
+
+.form-container{
+    padding: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.card-form button{
+    border: none;
+    padding: 5px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    display: inline;
+    position: absolute; 
+    right: 20px;
+}
+.card-form button:active{
+    outline: none;
+    background-color: gray;
+    border: none;
+}
+.card-form{
+    padding: 20px;
+    border: none;
+    min-height: 500px;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 5px 10px rgb(122, 122, 122);
+    position: relative;
+}
+.form-div{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+}
+input{
+    padding: .5rem;
+    width: 65%;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(238, 238, 238);
+}
+.message{
+    background-color: green;
+    position: fixed;
+    right: 0;
+    bottom: 20px;
+    width: 50%;
+    min-height: 50px;
+    color: white;
+    z-index: 100000;
+    display: none;
+}
+.form-content{
+    width: 75%;
+}
+
+
 /***************  MeadiaQuerry   **********************/
 @media(max-width:1362px){
     .hideOverflowOnMobile {
@@ -737,6 +828,20 @@ html{
         width: 85%;
         
     }
+    .form-container{
+        padding-top: 5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 1rem;
+
+    }
+    .form-container .heading-posts{
+        font-size: 1.5rem;
+    }
+    .form-content{
+        width: 100%;
+    }
+    
 
 }
 
@@ -772,7 +877,7 @@ html{
     font-size:2rem;
     display: inline-block;
     letter-spacing: .5rem;
-    background-image: linear-gradient(to right,rgb(6, 103, 135),rgb(79, 1, 79));
+    background-image: linear-gradient(to right,rgb(6, 103, 135),rgb(145, 3, 145));
     -webkit-background-clip: text;
     color: transparent;
 }

@@ -21,70 +21,77 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="mainNav">
         <div class="container">
         <a class="navbar-brand" href="/"><img class="nav-logo" src="/images/Captureaaaa.png" width="50" height="50" class="d-inline-block align-top" alt="">ScriptInk</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-p="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/event">Event</a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/team">Our Team</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="/#category">Category</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact">Contact us</a>
-              </li>
-            
-          </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/event">Event</a>
+                    </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/team">Our Team</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link" href="/#category">Category</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact us</a>
+                  </li>
+                
+              </ul>
     </div>
 </div>
       </nav>
 
-      <div class="headers" style="background-image: url(/images/<%= back %>);" >
-        <section class="header-section">
-              <div class="container" style="padding: 20px 0;">
-                <div class="card-posts" id="posts-card" style="background: url(/images/<%= image %>);background-size: cover;background-position: center;">
-                    <div class="center-div">
-                    <div class="card-body">
-                      <h5 class="card-title"><%= category %></h5>
-                      <i class="text-white" style="font-size: .7rem;"><%= caption %></i>
-                    </div>
+      <div class="headers" style="height: auto;" >
+        <div class="form-container">
+            <h2 class="heading-posts">Registration for WritoFest 2k20</h2>
+            <div class="form-content">
+        <form id="register">
+            <div class="card-form ">
+                <div style="text-align: left;">
+                <form>
+                  <div class="form-div">
+                  <label>Name</label>
+                  <input id="name" placeholder="Jane" name="first-name" required>
+                 </div>
+                 <div class="form-div">
+                   <label>USN</label>
+                   <input id="usn" placeholder="1SI1XXXXX" name="usn" required>
                   </div>
-                </div>  
-                <div class="filter-article">
-                    <h2 class="heading-posts">Genre</h2>
-                    <div class="filter-buttons" id="filter-section">
-                      <button type="button" name="button" class="active-button">Quotes</button>
-                      <button type="button" name="button">Story</button>
-                      <button type="button" name="button">Article</button>
-                      <button type="button" name="button">Poetry</button>
-                    </div>
+                  <div class="form-div">
+                   <label>Email </label>
+                   <input id="email" placeholder="janedoe@example.com" type="email" name="email" required>
                   </div>
-                  <ul class="article-list" id="articles" >
-                    
-                  </ul>
-                  <div class="loading">
-                    <div class="center-div">
-                      <img src="/images/loading.gif" alt="loading" height="100px" width="100px">
-                    </div>
+                  <div class="form-div">
+                   <label>City</label>
+                   <input id="city" placeholder="City name" name="city" required>
                   </div>
+                  <div class="form-div">
+                   <label>Phone Number</label>
+                   <input id="phone" placeholder="Phone number" name="phone" type="tel" required>
+                  </div>
+                  
+                  <button class="submit-button" type="submit">Register</button>
                   <div class="message">
-                    
+                     <p style="position: absolute;left: 10px;top: 50%;transform: translateY(-50%);" class="message-info text-white">Success</p>
+                     <i style="position: absolute;right: 0;top: 50%;transform: translateY(-50%);" class="fas fa-times-circle text-white close" aria-hidden="true"></i>
                   </div>
-            </div>
-        </section>
-        
+                </form>
+       
+               </div>
+              </div>
+          </form>
+        </div>
+        </div>
     </div>
   </section>
   <section class="contact-section" id="contact">
@@ -115,8 +122,8 @@
             <div class="map" style="text-align: center;"> <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15529.528091766753!2d77.1258022!3d13.3264961!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb1f104efe2eaf8fa!2sScriptink!5e0!3m2!1sen!2sin!4v1607256738223!5m2!1sen!2sin" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
             </div>
             <div class="social d-flex justify-content-center">
-              <a class="mx-2" href="https://www.instagram.com/scriptink_official/"><i class="fa fa fa-instagram fa-2x"></i></a><a class="mx-2" href="https://www.facebook.com/ScriptInk-101960781188230"><i class="fa fa fa-facebook-f fa-2x"></i></a><a class="mx-2" href="https://www.linkedin.com/company/scriptink-official/?originalSubdomain=in"><i class="fa fa fa-linkedin fa-2x"></i></a><a class="mx-2" href="https://t.me/s/scriptink"><i class="fa fa fa-telegram fa-2x"></i></a>
-          </div>
+                <a class="mx-2" href="https://www.instagram.com/scriptink_official/"><i class="fa fa fa-instagram fa-2x"></i></a><a class="mx-2" href="https://www.facebook.com/ScriptInk-101960781188230"><i class="fa fa fa-facebook-f fa-2x"></i></a><a class="mx-2" href="https://www.linkedin.com/company/scriptink-official/?originalSubdomain=in"><i class="fa fa fa-linkedin fa-2x"></i></a><a class="mx-2" href="https://t.me/s/scriptink"><i class="fa fa fa-telegram fa-2x"></i></a>
+            </div>
     
     <footer class="footer bg-black small text-center"><div class="container"><p></p></div>
     
@@ -133,7 +140,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<script src="/js/button.js"></script>
+<!-- <script src="/js/button.js"></script> -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init();

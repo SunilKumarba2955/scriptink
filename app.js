@@ -25,7 +25,6 @@ app.use(express.static(__dirname + '/public'));
 
 
 
-
 //home route
 app.get("/",function(req,res){
     // var ref=firebase.database().ref("/Video");
@@ -33,11 +32,60 @@ app.get("/",function(req,res){
     //     console.log(snap.val());
     // })
     res.render("landing");
-    
+
 })
 
-app.get("/members",(req,res)=>{
+app.get("/team",(req,res)=>{
     res.render("members");
+})
+
+app.get("/event",(req,res)=>{
+    res.render("event");
+})
+
+app.get("/register",(req,res)=>{
+    res.render("register");
+})
+
+app.post("/registerParticipants",(req,res)=>{
+    var messageback="";
+    var name=req.body.name
+    var usn=req.body.usn
+    var email=req.body.email
+    var phone=req.body.phone
+    var city=req.body.city
+
+    if(name===""){
+        messageback="empty";
+    }else if(email===""){
+        messageback="empty";
+    }
+    else if(usn===""){
+        messageback="empty";
+    }
+    else if(phone===""){
+        messageback="empty";
+    }
+    else if(city===""){
+        messageback="empty";
+    }else{
+        var date=new Date();
+
+        var ref = firebase.database().ref("/WritoFest/Registration2k20");
+        
+        var userkey = ref.push().key;
+        console.log(name);
+        ref.child(userkey).set({
+            Name:name,
+            Email:email,
+            USN:usn,
+            Phone:phone,
+            City:city,
+            Time:date.toString()
+        });
+        messageback="success";
+    }
+    res.send({message:messageback});
 })
 
 

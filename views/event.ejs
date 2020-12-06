@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="mainNav">
         <div class="container">
         <a class="navbar-brand" href="/"><img class="nav-logo" src="/images/Captureaaaa.png" width="50" height="50" class="d-inline-block align-top" alt="">ScriptInk</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-p="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
@@ -51,23 +51,73 @@
 </div>
       </nav>
 
-      <div class="headers" >
-        <section class="header-section">  
-                <div class="filter-article">
-                    <h2 class="heading-posts">Team Members</h2>
-                  </div>
-                  <ul class="team-list" id="teams" >
+      <div class="headers" style="height: auto;" >
+        <section class="event-section">  
+               <div class="event-container">
+                    <h2 class="heading-posts">Writo Fest 2k20</h2>
+                  
+                 
+               <div class="writofest-image"></div>
+               <h2 class="event-heading">Writo Fest 2k20</h2>
+               <p class="big text-white">Writo Fest is a National Level Annual Literary
+                event, comprising of two subevents consisting
+                of a Writing Competition event (Pen-it down) and
+                'Mic of Motivation' for the students.
+                In writing competition, the participants will write
+                in app on given themes to improve their thinking
+                ability and writing ability.
+                'Mic of Motivation' is for Speakers, Writers,
+                and Poets to guide, share their insights with
+                the participants along with recitations of their
+                writings and motivate the participants.
+                We encourage and inspire more women to
+                pursue it and be a part of it.
+                Let the weekend be full of Joy, learning, exposure
+                to how professional think, express in form of
+                literature and lifetime experience of meet. It is a
+                full day event. The participants have to choose a
+                theme and write in app.
+            <br>
+            Grab the opportunity to acknowledge, support
+            and witness the National Level Literary Fest of
+            the institute, SIT, being a participator of it.</p>
+            
+            <h2 class="event-heading">Objectives of the events : </h2>
+            <ul style="text-align: left;padding: 0 1rem;">
+                <li>
                     
-                  </ul>
-                  <div class="loading">
-                    <div class="center-div">
-                      <img src="/images/loading.gif" alt="loading" height="100px" width="100px">
-                    </div>
-                  </div>
-                  <div class="message">
-                    
-                  </div>
+            Showcase your writing skills in form of Poetry,
+            Article and Story for given themes.
+            Compete and Win!
+                </li>
+                <li>
+                    To improve their thinking and Writing ability
+                    To get motivated by Professional Speakers and
+                    Poets!
+                </li>
+            </ul>
+            <p class="big text-white">
+                Test, listen and improvise with entertainment
+                Give Pen to the thoughts!
+                Give 'Voice to the thoughts'!.</p>
+                <h2 class="event-heading">General Information</h2>
+                <div class="general-info">
+                    <p>Date : October 20th 2020</p>
+                    <p>Reporting time :  09:30 AM</p>
+                    <p>Event start time : 10:00 AM</p>
+                    <p>Event end time : 05:00 PM</p>
+                    <p>Venue : Online Virtual Platform</p>
+                    <p>Registration Fee : 100/-</p>
+                
+
+                </div>
+
+
+
+                <a style=" display: block;" href="/register" class="button">Register</a>
+               
             </div>
+           
         </section>
         
     </div>
@@ -124,55 +174,6 @@
   AOS.init();
 </script>
 <script src="/js/behaviour.js"></script>
-<script>
-    loadMembers();
-
-var result2=" ";
-function loadMembers(){
-  $.ajax({
-      url:'/getTeam',
-      method:'post',
-      success:function(result,status,xhr){
-        // console.log("worrking!!");
-        for (var i = 0; i < result.array.length; i++) {
-          result2 +=
-            `<li data-aos="zoom-in" style="display:flex;justify-content:center;align-items:center;height:300px;flex-direction:column">
-                <div style="background-image:url('${result.array[i].image}');background-size:cover;background-position:center;border-radius:50%;width:200px;height:200px"></div>
-                <h2 class="heading-posts" style="font-size:1rem;margin-top:5px">${result.array[i].title}</h2>
-                <p class="desc">${result.array[i].desc}</p>
-           
-              </li>
-              `
-      }
-          if(result.array.length ===  0){
-              $(".headers").css("height","100vh")
-              $(".headers .container").css("height","100vh")
-              message+=
-              `
-  
-              <div class="center-div">
-                <p class="party-body">No Post Available</p>
-                </div>
-              `
-              $('.message').html(message);
-              $('.loading').hide();
-          }else{
-              $(".headers").css("height","auto")
-              $(".headers .container").css("height","auto")
-              
-          }
-          $('#teams').html(result2);
-          $('.loading').hide();
-
-
-},
-      error:function(xhr,status,error){
-        //   console.log("error");
-      }
-
- });
-}
-</script>
     
 </body>
 </html>

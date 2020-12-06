@@ -1,16 +1,16 @@
 $(document).ready(function(){
 
 
-    // var navbarChange = function () {
-    //     if ($(".navbar").offset().top > 100) {
-    //         $(".navbar").addClass("navbar-transparent");
+    var navbarChange = function () {
+        if ($(".navbar").offset().top > 100) {
+            $(".navbar").addClass("navbar-transparent");
         
-    //     } else {
-    //         $(".navbar").removeClass("navbar-transparent");
+        } else {
+            $(".navbar").removeClass("navbar-transparent");
     
-    //     }
-    // };
-    // $(window).scroll(navbarChange); 
+        }
+    };
+    $(window).scroll(navbarChange); 
 
 
 var mybutton =document.getElementById('myBtn');
@@ -39,3 +39,50 @@ function topFunction(){
 $("#myBtn").on('click',topFunction);
 
 });
+$('.close').on('click',function(){
+    $('.message').css({"display":"none"});
+  })
+
+  $("#register").on("submit",(e)=>{
+    e.preventDefault();
+    var name=$('#name').val();
+    var usn=$('#usn').val();
+    var email=$('#email').val();
+    var phone=$('#phone').val();
+    var city=$('#city').val();
+   
+   
+   
+       $.ajax({
+         url:"/registerParticipants",
+         method:"post",
+         data:{name:name,email:email,usn:usn,city:city,phone:phone},
+         success:function(result,status,xhr){
+             console.log(result.message);
+                if(result.message==='empty'){
+                  $(".message").css({"display":"block"})
+                  $(".message").css({'background-color':"red"});
+                  $(".message-info").html(
+                     "Fill all the Fields"
+                  )
+                }
+                else if(result.message==='success'){
+                 $(".message").css({"display":"block"})
+                 $(".message").css({'background-color':"green"});
+                 $(".message-info").html(
+                   "Successfully Submitted"
+                 )
+               $('#name').val("");
+               $('#email').val("");
+               $('#usn').val("");
+                $('#phone').val("");
+               $('#city').val("");
+                }
+   
+         },
+         error:function(status,xhr,error){
+               console.log(error);
+         }
+   
+       })
+  })
