@@ -35,6 +35,28 @@ app.get("/",function(req,res){
 
 })
 
+
+const checkParticipants=(email,usn,callback)=>{
+    var message="";
+    var ref = firebase.database().ref("/WritoFest/Registration2k20");
+    ref.once('value').then(snap=>{
+        if(snap.val()!=null){
+        snap.forEach(element=>{
+            if(email===element.val().Email || usn===element.val().USN){
+                message="already exists";
+                 return callback(message);
+            }else{
+                return callback(message);
+            }
+        });
+    }else{
+        return callback(message);
+    }
+    })
+}
+
+
+
 app.get("/team",(req,res)=>{
     res.render("members");
 })
@@ -74,16 +96,24 @@ app.post("/registerParticipants",(req,res)=>{
         var ref = firebase.database().ref("/WritoFest/Registration2k20");
         
         var userkey = ref.push().key;
-        console.log(name);
-        ref.child(userkey).set({
-            Name:name,
-            Email:email,
-            USN:usn,
-            Phone:phone,
-            City:city,
-            Time:date.toString()
-        });
-        messageback="success";
+      
+        checkParticipants(email,usn,(message)=>{
+            if(message==="already exists"){
+                messageback=message;
+            }else{
+                ref.child(userkey).set({
+                    Name:name,
+                    Email:email,
+                    USN:usn,
+                    Phone:phone,
+                    City:city,
+                    Time:date.toString()
+                });
+                messageback="success";
+             
+            }
+        })
+        
     }
     res.send({message:messageback});
 })

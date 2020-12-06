@@ -78,6 +78,13 @@ $('.close').on('click',function(){
                 $('#phone').val("");
                $('#city').val("");
                 }
+                else{
+                    $(".message").css({"display":"block"})
+                    $(".message").css({'background-color':"red"});
+                    $(".message-info").html(
+                       "You have already registered !!!"
+                    )
+                 }
    
          },
          error:function(status,xhr,error){

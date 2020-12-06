@@ -11,7 +11,7 @@ Css for the Website
     margin:0;
     padding:0;
     box-sizing: border-box;
-    font-size:1.1rem;
+    /* font-size:1.1rem; */
 }
 html{
     scroll-behavior: smooth;
@@ -729,7 +729,8 @@ input{
     background-color: green;
     position: fixed;
     right: 0;
-    bottom: 20px;
+    top: 4rem;
+    padding: .5rem;
     width: 50%;
     min-height: 50px;
     color: white;
@@ -739,7 +740,9 @@ input{
 .form-content{
     width: 75%;
 }
-
+.close{
+    cursor: pointer;
+}
 
 /***************  MeadiaQuerry   **********************/
 @media(max-width:1362px){
@@ -843,7 +846,12 @@ input{
     .form-content{
         width: 100%;
     }
-    
+    .card:hover{
+        outline: none;
+    }
+    .message{
+        padding: 2rem;
+    }
 
 }
 
