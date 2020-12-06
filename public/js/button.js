@@ -38,7 +38,7 @@ function loadData(type,result1,message){
                     }
                         if(result.array.length ===  0){
                             $(".headers").css("height","100vh")
-                            $(".headers .container").css("height","100vh")
+                            $(".header-section .container").css("height","100vh")
                             message+=
                             `
                 
@@ -50,7 +50,7 @@ function loadData(type,result1,message){
                             $('.loading').hide();
                         }else{
                             $(".headers").css("height","auto")
-                            $(".headers .container").css("height","auto")
+                            $(".header-section .container").css("height","auto")
                             
                         }
                         $('#articles').html(result1);
@@ -64,6 +64,10 @@ function loadData(type,result1,message){
 
    });
 }
+
+
+
+
 
 
 

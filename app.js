@@ -28,7 +28,27 @@ app.use(express.static(__dirname + '/public'));
 
 //home route
 app.get("/",function(req,res){
-    res.render(__dirname+"/views/landing.ejs");
+    var ref=firebase.database().ref("/Video");
+    ref.once('value').then(snap=>{
+        console.log(snap.val());
+    })
+    res.render("landing");
+})
+
+app.get("/members",(req,res)=>{
+    res.render("members");
+})
+
+
+app.post("/getTeam",(req,res)=>{
+    var member=[];
+    var ref=firebase.database().ref("/Our Team");
+    ref.once("value").then(snap=>{
+        snap.forEach(element=>{
+            member.push(element.val());
+        })
+        res.send({array:member});
+    })
 })
 
 
