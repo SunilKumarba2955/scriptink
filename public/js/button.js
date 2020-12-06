@@ -29,7 +29,7 @@ function loadData(type,result1,message){
                     for (var i = 0; i < result.array.length; i++) {
                         result1 +=
                           `
-                            <li data-aos="zoom-in" style="background-image:url('${result.backimg[i]}');background-size:cover;background-poosition:center;display:flex;justify-content:center;align-items:center">
+                            <li data-aos="zoom-in" style="background-image:url('${result.backimg[i]}');background-size:cover;background-position:center;display:flex;justify-content:center;align-items:center;border-radius:1rem">
                             
                               <p class="party-body">${result.array[i]}</p>
                          

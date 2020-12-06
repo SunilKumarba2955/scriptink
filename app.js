@@ -5,15 +5,15 @@ const firebase = require("firebase");
 const app=express();
 
 var firebaseConfig = {
-    apiKey: "AIzaSyCNbV3njDF6x-GNyT3-4v5z0gQ4LkWEbqk",
-    authDomain: "scriptinktest.firebaseapp.com",
-    databaseURL: "https://scriptinktest.firebaseio.com",
-    projectId: "scriptinktest",
-    storageBucket: "scriptinktest.appspot.com",
-    messagingSenderId: "460801373887",
-    appId: "1:460801373887:web:a90692f8f53d6df119f80a",
-    measurementId: "G-GDD3MQCVXB"
+    apiKey: "AIzaSyAbM6QwPmIlHxSdLiWDjmWsyefmPiTl-bM",
+    authDomain: "android-app-5c25d.firebaseapp.com",
+    databaseURL: "https://android-app-5c25d.firebaseio.com",
+    projectId: "android-app-5c25d",
+    storageBucket: "android-app-5c25d.appspot.com",
+    messagingSenderId: "862615088549",
+    appId: "1:862615088549:web:6390609e12b6015a174c4c"
   };
+
   firebase.initializeApp(firebaseConfig);
 
 app.set('view engine','ejs');
@@ -79,7 +79,7 @@ app.post("/getData",function(req,res){
      var backimg=[];
      var category=req.body.category;
      var ref=firebase.database().ref("/categories/"+category.toLowerCase()+"/"+type+"/writings/english");
-     var ref1=firebase.database().ref("/categories/"+category.toLowerCase()+"/"+type+"/writings/backimgurl");
+     var ref1=firebase.database().ref("/categories/"+category.toLowerCase()+"/"+type+"/backimgurls/english");
      ref.once('value').then(snap=>{
          snap.forEach(element => {
              array.push(element.val());

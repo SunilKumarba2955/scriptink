@@ -1,16 +1,16 @@
 $(document).ready(function(){
 
 
-    var navbarChange = function () {
-        if ($(".navbar").offset().top > 100) {
-            $(".navbar").addClass("navbar-transparent");
+    // var navbarChange = function () {
+    //     if ($(".navbar").offset().top > 100) {
+    //         $(".navbar").addClass("navbar-transparent");
         
-        } else {
-            $(".navbar").removeClass("navbar-transparent");
+    //     } else {
+    //         $(".navbar").removeClass("navbar-transparent");
     
-        }
-    };
-    $(window).scroll(navbarChange); 
+    //     }
+    // };
+    // $(window).scroll(navbarChange); 
 
 
 var mybutton =document.getElementById('myBtn');
