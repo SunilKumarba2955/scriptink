@@ -764,8 +764,12 @@ input{
 .guest-about{
     
 }
-.guest-container{
-   
+.guest-container ul li{
+   text-align: left;
+   margin-left: 2rem;
+}
+.guest-about{
+    text-align: left;
 }
 
 
