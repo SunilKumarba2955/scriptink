@@ -71,7 +71,8 @@ $('.close').on('click',function(){
                  $(".message").css({"display":"block"})
                  $(".message").css({'background-color':"green"});
                  $(".message-info").html(
-                   "Successfully Submitted"
+                   "<p style="+"margin:0;"+">Successfully Submitted </p> Please Download our App from the Play store  <a href="+"https://play.google.com/store/apps/details?id=com.scriptink.official&hl=en"+"><i class="+"fab fa-google-play"+"></i>Get the App</a>"
+                   
                  )
                     
                 $('#name').val("");

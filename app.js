@@ -1,8 +1,10 @@
 const express=require("express");
+// var nodemailer = require('nodemailer');
 const bodyParser=require("body-parser");
 const ejs=require("ejs");
 const firebase = require("firebase");
 const app=express();
+require('dotenv').config()
 
 var firebaseConfig = {
     apiKey: "AIzaSyAbM6QwPmIlHxSdLiWDjmWsyefmPiTl-bM",
@@ -14,7 +16,14 @@ var firebaseConfig = {
     appId: "1:862615088549:web:6390609e12b6015a174c4c"
   };
 
-  firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+
+
+
+
+ 
+  
+ 
 
 app.set('view engine','ejs');
 
@@ -34,6 +43,8 @@ app.get("/",function(req,res){
     res.render("landing");
 
 })
+
+
 
 
 
@@ -115,6 +126,20 @@ app.post("/registerParticipants",(req,res)=>{
                             "Date of Registration":date.toLocaleDateString()
                         });
                         messageback="success";
+                        // var mailOptions = {
+                        //     from: '"ScriptInk" <anuragcoolkh@gmail.com>', // sender address
+                        //     to: `${name},${email}` , // list of receivers
+                        //     subject: "Registration Confirmation ✔", // Subject line
+                        //     html: "<p>Thank you <b>"+name+"</b> for registering for WritoFest 2k20. We are looking forward to meet you on 27 December 2020, Sunday at 10:00 AM on Cisco Webex.</p>", // html body
+                        //   };
+
+                        //   transporter.sendMail(mailOptions, function(error, info){
+                        //     if (error) {
+                        //       console.log(error);
+                        //     } else {
+                        //       console.log('Email sent: ' + info.response);
+                        //     }
+                        //   });
                         res.send({message:messageback});
                     }
                 })

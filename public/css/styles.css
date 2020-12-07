@@ -112,6 +112,26 @@ html{
 }
 /* ********************Header Section End *********************** */
 
+
+.event-section-landing{
+    width: 100%;
+    min-height: 100vh;
+    padding: 10rem 0;
+    background: linear-gradient(to bottom,rgb(24, 23, 29),rgb(24, 22, 37));
+    color: white;
+    text-align: center;
+    position: relative;
+}
+.event-section-landing .container{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-content: center;
+}
+.poster-writofest{
+    background-image: url("/images/day.jfif");
+    width: 100%;
+}
+
 /* ********************Category Section Start *********************** */
 .category{
     width: 100%;
@@ -374,7 +394,7 @@ html{
 /*****************Film Section Start*******************/
 .film{
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     padding: 6rem 0;
     margin-top: -40px;
     background: linear-gradient(to right bottom,rgba(43, 30, 71, 0.898),rgba(236, 236, 236, 0.619));
@@ -682,9 +702,21 @@ html{
   margin: 0;
 }
 
+.header-register{
+    height: 100vh;
+    z-index: 10;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
 
 
 
+
+#register{
+    width: 100%;
+}
 
 
 .form-container{
@@ -694,15 +726,13 @@ html{
     align-items: center;
     flex-direction: column;
 }
-.card-form button{
+form button{
     border: none;
-    padding: 5px;
+    padding: .7rem;
     background-color: black;
     color: white;
     border-radius: 10px;
-    display: inline;
-    position: absolute; 
-    right: 20px;
+    width: 65%;
 }
 .card-form button:active{
     outline: none;
@@ -710,7 +740,7 @@ html{
     border: none;
 }
 .card-form{
-    padding: 20px;
+    /* padding: 20px;
     border: none;
     min-height: 500px;
     width: 100%;
@@ -718,19 +748,24 @@ html{
     border-radius: 5px;
     background-color: white;
     box-shadow: 0 5px 10px rgb(122, 122, 122);
-    position: relative;
+    position: relative; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .form-div{
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
     padding-bottom: 15px;
 }
 input{
-    padding: .5rem;
+    padding: .7rem;
     width: 65%;
     border: none;
     border-radius: 5px;
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(236, 236, 241);
 }
 .message{
     background-color: green;
@@ -739,7 +774,7 @@ input{
     top: 4rem;
     padding: .5rem;
     width: 50%;
-    min-height: 50px;
+    min-height: 75px;
     color: white;
     z-index: 100000;
     display: none;
@@ -754,23 +789,88 @@ input{
 
 
 
+.guest-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+}
+#guest-anchor{
+    text-decoration: none;
+    color: white;
+}
+#guest-anchor:hover{
+    color:purple;
+}
 
 
 .guest-info{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    width: 65%;
     margin-top: 5rem;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: rgb(241, 239, 239);
+    border-radius: .5rem;
+    align-content: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.guest-image-container{
+    min-height: 20rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex:1;
+    position: relative;
+    z-index: 1;
+   
+
     
 }
+/* .guest-image-container::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: transparent;
+    z-index: -1;
+    transition: all 1s;
+    
+}
+.guest-info:hover > .guest-image-container::before{
+    background-image: url("/images/forest.jpg");
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+} */
+.guest-image-container .heading-posts{
+    margin-top: 1rem;
+}
+
 .guest-image{
-    height: 250px;
-    width: 250px;
-    background-color: white;
+    height: 150px;
+    width: 150px;
     border-radius: 50%;
-    border: .2rem solid white;
+    box-shadow: 0 .5rem 1rem rgba(128, 128, 128, 0.551);
 }
+
+
 .guest-about{
-    
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(to right,#9c7eaf,#552375);
+    align-items: flex-start;
+    flex: 1;
+    padding: 2rem;
+
+}
+.guest-info .heading-posts{
+    font-size: 1rem;
 }
 .guest-container ul li{
    text-align: left;
@@ -849,6 +949,9 @@ input{
     .follow-float{
         display: none;
     }
+    .guest-info{
+        width: 85%;
+    }
 }
 @media (max-width:800px){
     .article-list{
@@ -863,14 +966,14 @@ input{
     .guest-info .heading-posts{
         font-size: 1rem;
     }
-    .guest-about{
-        margin-top: 1rem;
-    }
     .message{
         width: 85%;
     }
     .card{
         height: 150px;
+    }
+    .guest-container{
+        grid-template-columns: 1fr;
     }
 }
 
@@ -916,7 +1019,12 @@ input{
     .message{
         padding: 2rem;
     }
-
+    .guest-info{
+        width: 100%;
+    }
+    input,#register button{
+        width: 85%;
+    }
 }
 
 
