@@ -77,8 +77,9 @@ $('.close').on('click',function(){
                 $('#name').val("");
                 $('#email').val("");
                 $('#usn').val("");
-                    $('#phone').val("");
+                $('#phone').val("");
                 $('#city').val("");
+                $('#college').val("");
                 }
                 else if(result.message==="not started"){
                     $(".message").css({"display":"block"})

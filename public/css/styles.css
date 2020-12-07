@@ -846,6 +846,9 @@ input{
     .guest-about{
         margin-top: 1rem;
     }
+    .message{
+        width: 85%;
+    }
 }
 
 @media(max-width:700px){
