@@ -487,6 +487,8 @@ html{
     height: 100vh;
     z-index: 10;
     background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
     position: relative;
 }
 .headers::after{
