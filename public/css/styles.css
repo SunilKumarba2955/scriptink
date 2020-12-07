@@ -65,7 +65,7 @@ html{
     color: white;
     height: inherit;
     position: relative;
-    margin-top: 1.5rem;
+    margin-top: 3.5rem;
     text-align: center;
 }
 
@@ -129,7 +129,7 @@ html{
     transition:  0.15s;
     height: 250px;
     z-index: 10;
-    outline: .4rem solid white;
+    border: .4rem solid white;
     transition: all .2s;
     margin: .5rem;
 }
@@ -156,11 +156,16 @@ html{
     padding-bottom:20px;
 }
 .card:hover{
-    transform: translateY(-8px) scale(1.05);
-    outline: .9rem solid white;
-    outline-offset:1rem ;
+    transform: translateY(-8px) scale(1.07);
+    /* outline: .9rem solid rgb(162, 8, 218); */
+    /* outline-offset:1rem ; */
     box-shadow: 0 .3rem 1rem rgba(255, 255, 255, .3);
     z-index: 20;
+
+    border: .5rem solid;
+    border-image-slice: 1;
+    padding: 1rem;
+    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
     
 }
 .card:active{
@@ -480,14 +485,12 @@ html{
 }
 .headers{
     height: 100vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-image:linear-gradient(to right bottom,#231B34,rgb(57, 53, 53));
     z-index: 10;
     background-position: center;
     position: relative;
 }
-.headers::after{
+/* .headers::after{
     content: "";
     position: absolute;
     top: 0;
@@ -495,10 +498,10 @@ html{
     left: 0;
     right: 0;
     width: 100%;
-    /* background: linear-gradient(to bottom,rgba(43, 30, 71, 0.598),rgba(43, 30, 71, 0.782)); */
+    background: linear-gradient(to bottom,rgba(43, 30, 71, 0.598),rgba(43, 30, 71, 0.782));
     background: linear-gradient(to bottom,rgba(211, 211, 211, 0.598),rgba(0, 0, 0, 0.782));
     z-index: -1;
-}
+} */
 
 #filter-section > button:hover{
     background: rgb(255, 255, 255);
@@ -680,6 +683,9 @@ html{
 
 
 
+
+
+
 .form-container{
     padding: 5rem;
     display: flex;
@@ -791,7 +797,7 @@ input{
         width: 40%;
     }
     .card{
-        height: 150px;
+        height: 250px;
         margin-bottom: 10px;
     }
     .card:hover{
@@ -849,6 +855,9 @@ input{
     .message{
         width: 85%;
     }
+    .card{
+        height: 150px;
+    }
 }
 
 @media(max-width:700px){
@@ -888,7 +897,7 @@ input{
         width: 100%;
     }
     .card:hover{
-        outline: none;
+       border: none;
     }
     .message{
         padding: 2rem;
