@@ -796,7 +796,7 @@ input{
         width: 40%;
     }
     .card{
-        height: 250px;
+        height: 200px;
         margin-bottom: 10px;
     }
     .card:hover{
