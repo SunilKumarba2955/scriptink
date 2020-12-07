@@ -524,7 +524,7 @@ html{
   .article-list{
     margin: 40px 10px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
   
   }
@@ -675,7 +675,7 @@ html{
     position: relative;
     margin-top: 1.5rem;
     text-align: center;
-    background-image:linear-gradient(to right bottom,#231B34,rgb(57, 53, 53));
+    background-image:linear-gradient(to right bottom,#231B34,rgb(58, 31, 62));
     height: auto;
 }
 .general-info p{
@@ -746,6 +746,7 @@ input{
 }
 .form-content{
     width: 75%;
+    
 }
 .close{
     cursor: pointer;
@@ -777,6 +778,15 @@ input{
 }
 .guest-about{
     text-align: left;
+}
+
+.header-member{
+    min-height: 100vh;
+    z-index: 10;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
 }
 
 
@@ -825,7 +835,7 @@ input{
         padding: 10px;
     }
     .article-list{
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
     .article-list li {
         margin: 10px;
@@ -841,6 +851,9 @@ input{
     }
 }
 @media (max-width:800px){
+    .article-list{
+        grid-template-columns: repeat(1, 1fr);
+    }
     .team-list{
         grid-template-columns: repeat(2,1fr);
     }
