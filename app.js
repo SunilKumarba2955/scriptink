@@ -188,6 +188,9 @@ app.post("/getData",function(req,res){
      var array=[];
      var backimg=[];
      var category=req.body.category;
+     if(category === "Science"){
+         category="science fiction"
+     }
      var ref=firebase.database().ref("/categories/"+category.toLowerCase()+"/"+type+"/writings/english");
      var ref1=firebase.database().ref("/categories/"+category.toLowerCase()+"/"+type+"/backimgurls/english");
      ref.once('value').then(snap=>{

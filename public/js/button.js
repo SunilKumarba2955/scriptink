@@ -17,6 +17,7 @@ $('#filter-section > button').on('click', function() {
     $(".headers").css("height","100vh")
     var list_name = $(this).text().toLowerCase();
     
+    
     loadData(list_name,result1,message);    
 });
 
