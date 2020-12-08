@@ -824,7 +824,7 @@ input{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex:1;
+    flex: 0 0 40%;
     padding-top: 1.5rem ;
     position: relative;
     z-index: 1;
@@ -871,7 +871,7 @@ input{
     align-items: center;
     background-image: linear-gradient(to right,#9c7eaf,#552375);
     align-items: flex-start;
-    flex: 1;
+    flex: 0 0 60%;
     padding: 2rem;
     color: rgb(236, 235, 235);
 
