@@ -59,7 +59,7 @@ $('.close').on('click',function(){
          method:"post",
          data:{name:name,email:email,usn:usn,city:city,phone:phone,college:college},
          success:function(result,status,xhr){
-             console.log(result.message);
+            //    console.log(result.message);
                 if(result.message==='empty'){
                   $(".message").css({"display":"block"})
                   $(".message").css({'background-color':"red"});
@@ -71,7 +71,7 @@ $('.close').on('click',function(){
                  $(".message").css({"display":"block"})
                  $(".message").css({'background-color':"green"});
                  $(".message-info").html(
-                   "<p style="+"margin:0;"+">Successfully Submitted </p> Please Download our App from the Play store  <a href="+"https://play.google.com/store/apps/details?id=com.scriptink.official&hl=en"+"><i class="+"fab fa-google-play"+"></i>Get the App</a>"
+                   "<p style="+"margin:0;"+">Successfully Submitted </p> Please Download our App from the Play store  <a class="+"message-anchor"+" href="+"https://play.google.com/store/apps/details?id=com.scriptink.official&hl=en"+"><i class="+"fab fa-google-play"+"></i>Get the App</a>"
                    
                  )
                     
@@ -87,6 +87,12 @@ $('.close').on('click',function(){
                     $(".message").css({'background-color':"red"});
                     $(".message-info").html(
                        "Registration has not been started yet!"
+                    )
+                 }else if(result.message==="error"){
+                    $(".message").css({"display":"block"})
+                    $(".message").css({'background-color':"red"});
+                    $(".message-info").html(
+                       "Something went wrong!!!"
                     )
                  }else{
                     $(".message").css({"display":"block"})

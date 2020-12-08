@@ -109,7 +109,7 @@ app.post("/registerParticipants",(req,res)=>{
         checkRegistrationStart((start)=>{
             if(start===1){
                 checkParticipants(email,usn,(info)=>{
-                    console.log(info);
+                    // console.log(info);
                     if(info === "already exists"){
                         console.log("true");
                         messageback=info;
@@ -124,8 +124,15 @@ app.post("/registerParticipants",(req,res)=>{
                             College:college,
                             "Time of Registration":date.toString(),
                             "Date of Registration":date.toLocaleDateString()
+                        },(error)=>{
+                            if(error){
+                                res.send({message:"error"});
+                            }else{
+                                messageback="success";
+                                res.send({message:messageback});
+                            }
                         });
-                        messageback="success";
+                      
                         // var mailOptions = {
                         //     from: '"ScriptInk" <anuragcoolkh@gmail.com>', // sender address
                         //     to: `${name},${email}` , // list of receivers
@@ -140,11 +147,10 @@ app.post("/registerParticipants",(req,res)=>{
                         //       console.log('Email sent: ' + info.response);
                         //     }
                         //   });
-                        res.send({message:messageback});
                     }
                 })
             }else{
-                messageback="not started"
+                messageback="not started";
                 res.send({message:messageback});
             }
         })
