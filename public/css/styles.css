@@ -137,7 +137,7 @@ html{
     width: 100%;
     height: auto;
     padding: 10rem 0;
-    background: linear-gradient(to bottom,rgb(24, 23, 29),rgb(24, 22, 37));
+    background: linear-gradient(to bottom,rgb(24, 22, 37),rgb(24, 22, 37));
     color: white;
     text-align: center;
     position: relative;
@@ -152,6 +152,7 @@ html{
     border: .4rem solid white;
     transition: all .2s;
     margin: .5rem;
+    border-radius: 1rem;
 }
 .card-posts{
     transition:  0.15s;
@@ -185,6 +186,7 @@ html{
     border: .5rem solid;
     border-image-slice: 1;
     padding: 1rem;
+    
     border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
     
 }
@@ -376,10 +378,9 @@ html{
 .nav-item a.nav-link{
     color:rgb(43, 30, 71) !important ;
     margin-left: 2rem !important;
-    font-weight: 500;
 }
 .navbar .navbar-brand{
-    font-weight: 700;
+    font-weight: 500;
 }
 .nav-item a:hover{
     color:rgb(116, 85, 184) !important ;
@@ -418,10 +419,11 @@ html{
 .film-container{
     padding: 2rem 0;
 }
-/* iframe{
+iframe{
     box-shadow: 0 0 20px rgb(255, 255, 255);
     border-radius: 10px;
-} */
+    width: 100%;
+}
 
 /*****************Film Section End*******************/
 
@@ -689,6 +691,24 @@ html{
 .event-container p{
     text-align: left;
 }
+.secondary-heading{
+    font-size: 1.5rem;
+}
+.big{
+    font-size: 1.2rem;
+    border: .5rem solid;
+    border-image-slice: 1;
+    padding: 2rem;
+    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+    cursor: default;
+    transition: all 1s;
+    box-shadow: 0 .2rem 2rem #743ad5;
+    margin-top: 2rem;
+}
+
+.secondary-heading{
+    background-image: linear-gradient(to right,rgb(184, 184, 184),rgb(255, 255, 255));color: transparent;-webkit-background-clip: text;
+}
 .event-section{
     width: 100%;
     color: rgb(255, 255, 255);
@@ -817,6 +837,7 @@ input{
     position: relative;
     display: flex;
     flex-direction: column;
+    box-shadow: 1rem 1rem 1rem rgb(124, 85, 223);
 }
 .guest-image-container{
     width: 100%;
@@ -832,6 +853,8 @@ input{
 
     
 }
+
+
 /* .guest-image-container::before{
     content: "";
     position: absolute;
@@ -861,7 +884,10 @@ input{
     border-radius: 50%;
     box-shadow: 0 .5rem 1rem rgba(128, 128, 128, 0.673);
     border: .15rem solid rgb(30, 165, 156);
+    position: relative;
+    z-index: 10;
 }
+
 
 
 .guest-about{
@@ -1107,6 +1133,6 @@ input{
     text-transform: uppercase;
     color: white;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.6rem;
     padding: .2rem .4rem;
 }
