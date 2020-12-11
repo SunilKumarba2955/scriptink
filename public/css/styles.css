@@ -615,6 +615,7 @@ iframe{
     position: relative;
     margin-top: 1.5rem;
     text-align: center;
+    /* font-family: 'Poppins', sans-serif; */
     /* background-image:linear-gradient(to right bottom,#231B34,rgb(58, 31, 62)); */
     background: linear-gradient(to bottom,rgb(24, 23, 29),rgb(24, 22, 37));
     height: auto;
@@ -636,7 +637,7 @@ iframe{
 
 
 #register{
-    width: 100%;
+    width: 65%;
 }
 
 
@@ -653,7 +654,7 @@ form button{
     background-color: black;
     color: white;
     border-radius: 10px;
-    width: 65%;
+    width: 100%;
 }
 .card-form button:active{
     outline: none;
@@ -676,14 +677,12 @@ form button{
     align-items: center;
 }
 .form-div{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding-bottom: 15px;
 }
-input{
+.text-field{
     padding: .7rem;
-    width: 65%;
+    width: 100%;
+    display: inline-block;
     border: none;
     border-radius: 5px;
     background-color: rgb(236, 236, 241);

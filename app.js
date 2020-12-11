@@ -36,13 +36,16 @@ app.use(express.static(__dirname + '/public'));
 
 //home route
 app.get("/",function(req,res){
-    // var ref=firebase.database().ref("/Video");
-    // ref.once('value').then(snap=>{
-    //     console.log(snap.val());
-    // })
     res.render("landing");
-
 })
+
+
+// var API_KEY = '2a60b96a4dec6c0db1b04bcb34811bd6-4879ff27-3eb0d390';
+// var DOMAIN = 'sandboxade4fa6e9b5a4349bde9fad073879113.mailgun.org';
+// var mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
+
+
+
 
 
 
@@ -100,6 +103,14 @@ app.post("/registerParticipants",(req,res)=>{
     var phone=req.body.phone;
     var city=req.body.city;
     var college=req.body.college;
+    var selected=req.body.selected;
+   
+    
+      
+       if(selected === ""){
+           res.send({message:"checkbox not selected"});
+       }else{
+
         var date=new Date();
 
         var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2020/ViaWebsite");
@@ -107,6 +118,7 @@ app.post("/registerParticipants",(req,res)=>{
         var userkey = ref.push().key;
 
         checkRegistrationStart((start)=>{
+            
             if(start===1){
                 checkParticipants(email,usn,(info)=>{
                     // console.log(info);
@@ -115,6 +127,8 @@ app.post("/registerParticipants",(req,res)=>{
                         messageback=info;
                         res.send({message:messageback});
                     }else{
+                        
+                       
                         ref.child(userkey).set({
                             Name:name,
                             Email:email,
@@ -123,30 +137,36 @@ app.post("/registerParticipants",(req,res)=>{
                             City:city,
                             College:college,
                             "Time of Registration":date.toString(),
-                            "Date of Registration":date.toLocaleDateString()
+                            "Date of Registration":date.toLocaleDateString(),
+                            "Opted For":selected
                         },(error)=>{
                             if(error){
                                 res.send({message:"error"});
                             }else{
                                 messageback="success";
+
+                                // const data = {
+                                //     from: 'ScriptInk <no-reply@scriptink.com>',
+                                //     to: email,
+                                //     subject: 'Registration Confirmation ✓',
+                                //     html: "<p>Thank you <b>"+name+"</b> for registering for WritoFest 2k20. We are looking forward to meet you on 27 December 2020, Sunday at 10:00 AM on Cisco Webex.</p>"
+                                //   };
+
+
+                                  
+                                //     mailgun.messages().send(data, (error, body) => {
+                                //         if(error){
+                                //             console.log(error);
+                                //         }else{
+                                //             res.send({message:messageback});
+                                //         }
+                                //     });
                                 res.send({message:messageback});
                             }
                         });
-                      
-                        // var mailOptions = {
-                        //     from: '"ScriptInk" <anuragcoolkh@gmail.com>', // sender address
-                        //     to: `${name},${email}` , // list of receivers
-                        //     subject: "Registration Confirmation ✔", // Subject line
-                        //     html: "<p>Thank you <b>"+name+"</b> for registering for WritoFest 2k20. We are looking forward to meet you on 27 December 2020, Sunday at 10:00 AM on Cisco Webex.</p>", // html body
-                        //   };
 
-                        //   transporter.sendMail(mailOptions, function(error, info){
-                        //     if (error) {
-                        //       console.log(error);
-                        //     } else {
-                        //       console.log('Email sent: ' + info.response);
-                        //     }
-                        //   });
+
+                    
                     }
                 })
             }else{
@@ -154,6 +174,7 @@ app.post("/registerParticipants",(req,res)=>{
                 res.send({message:messageback});
             }
         })
+    }
       
       
         

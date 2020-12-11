@@ -45,19 +45,30 @@ $('.close').on('click',function(){
 
   $("#register").on("submit",(e)=>{
     e.preventDefault();
+    $('.loading').show();
     var name=$('#name').val();
     var usn=$('#usn').val();
     var email=$('#email').val();
     var phone=$('#phone').val();
     var city=$('#city').val();
     var college=$('#college').val();
+    var selected="";
+    if($('#writing').prop("checked") == true && $('#micOfMotivation').prop("checked") == false){
+         selected=$('#writing').val();
+    }else if($('#micOfMotivation').prop("checked") == true && $('#writing').prop("checked") == false){
+        selected=$('#micOfMotivation').val();
+    }else if($('#micOfMotivation').prop("checked") == true && $('#writing').prop("checked") == true){
+        selected=[$('#writing').val(),$('#micOfMotivation').val()];
+    };
+    console.log(selected);
+    
    
    
    
        $.ajax({
          url:"/registerParticipants",
          method:"post",
-         data:{name:name,email:email,usn:usn,city:city,phone:phone,college:college},
+         data:{name:name,email:email,usn:usn,city:city,phone:phone,college:college,selected:selected},
          success:function(result,status,xhr){
             //    console.log(result.message);
                 if(result.message==='empty'){
@@ -66,6 +77,7 @@ $('.close').on('click',function(){
                   $(".message-info").html(
                      "Fill all the Fields"
                   )
+                  $('.loading').hide();
                 }
                 else if(result.message==='success'){
                  $(".message").css({"display":"block"})
@@ -81,6 +93,9 @@ $('.close').on('click',function(){
                 $('#phone').val("");
                 $('#city').val("");
                 $('#college').val("");
+                $('#writing').prop("checked",false);
+                $('#micOfMotivation').prop("checked",false);
+                $('.loading').hide();
                 }
                 else if(result.message==="not started"){
                     $(".message").css({"display":"block"})
@@ -88,18 +103,29 @@ $('.close').on('click',function(){
                     $(".message-info").html(
                        "Registration has not been started yet!"
                     )
+                    $('.loading').hide();
                  }else if(result.message==="error"){
                     $(".message").css({"display":"block"})
                     $(".message").css({'background-color':"red"});
                     $(".message-info").html(
                        "Something went wrong!!!"
                     )
-                 }else{
+                    $('.loading').hide();
+                 }else if(result.message === "checkbox not selected") {
+                    $(".message").css({"display":"block"})
+                    $(".message").css({'background-color':"red"});
+                    $(".message-info").html(
+                       "Please select the checkbox !!!"
+                    )
+                    $('.loading').hide();
+                 }
+                 else {
                     $(".message").css({"display":"block"})
                     $(".message").css({'background-color':"red"});
                     $(".message-info").html(
                        "You have already registered !!!"
                     )
+                    $('.loading').hide();
                  }
    
          },
