@@ -785,8 +785,17 @@ input{
     border-radius: 50%;
     box-shadow: 0 .5rem 1rem rgba(128, 128, 128, 0.673);
     border: .15rem solid rgb(30, 165, 156);
+    /* background-size: cover;
+    background-position: top; */
     position: relative;
     z-index: 10;
+}
+.highlighted{
+    background-image: linear-gradient(to right,orangered,yellowgreen);
+    color: transparent;
+    -webkit-background-clip: text;
+    font-size: 2rem;
+    animation: changeimage 1s infinite linear;
 }
 
 
@@ -991,6 +1000,16 @@ input{
    100%{
      transform: scale(1) translate(0) rotate(360deg);  
    }
+}
+
+@keyframes changeimage{
+    0%{
+        background-image: linear-gradient(to right,orangered,yellowgreen);
+    }
+    100%{
+        background-image: linear-gradient(to left,rgb(229, 255, 0),rgb(242, 255, 0));
+        
+    }
 }
 
 .heading-secondary{
