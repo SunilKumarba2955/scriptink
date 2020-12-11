@@ -397,13 +397,15 @@ html{
 .film{
     width: 100%;
     min-height: 60rem;
-    padding: 6rem 0;
+    padding: 5rem;
     margin-top: -40px;
     background: linear-gradient(to bottom,rgb(24, 23, 29),rgb(24, 22, 37));
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-     
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     z-index: 10;
 }
