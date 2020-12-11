@@ -978,7 +978,9 @@ form button{
         font-size: 1rem;
     }
     .film{
-        padding: 1rem;
+        padding-left:0 ;
+        padding-right: 0;
+        padding-bottom: 5rem;
     }
 }
 
