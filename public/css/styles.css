@@ -985,6 +985,9 @@ form button{
         padding-right: 0;
         padding-bottom: 5rem;
     }
+    .event-section-landing{
+        height: auto;
+    }
 }
 
 
