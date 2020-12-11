@@ -968,8 +968,8 @@ form button{
     .guest-info{
         width: 100%;
     }
-    input,#register button{
-        width: 85%;
+    #register{
+        width: 100%;
     }
     .guest-container{
         grid-template-columns: 1fr ;
