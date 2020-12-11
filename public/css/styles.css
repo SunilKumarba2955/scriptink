@@ -1065,6 +1065,9 @@ input{
     .film .secondary-heading{
         font-size: 1rem;
     }
+    .film{
+        padding: 1rem;
+    }
 }
 
 
