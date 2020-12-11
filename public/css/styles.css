@@ -116,7 +116,7 @@ html{
 
 .event-section-landing{
     width: 100%;
-    min-height: 100vh;
+    min-height: 60rem;
     padding: 10rem 0;
     background: linear-gradient(to bottom,rgb(24, 23, 29),rgb(24, 22, 37));
     color: white;
