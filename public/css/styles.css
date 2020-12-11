@@ -118,8 +118,12 @@ a:hover{
 
 
 .event-section-landing{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    min-height: 60rem;
+    min-height: 50rem;
     padding: 10rem 0;
     background: linear-gradient(to bottom,rgb(24, 23, 29),rgb(24, 22, 37));
     color: white;
