@@ -987,6 +987,8 @@ form button{
     }
     .event-section-landing{
         height: auto;
+        min-height: 0;
+        padding: 1rem 0;
     }
 }
 
