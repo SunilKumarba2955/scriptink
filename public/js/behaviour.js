@@ -60,7 +60,7 @@ $('.close').on('click',function(){
     }else if($('#micOfMotivation').prop("checked") == true && $('#writing').prop("checked") == true){
         selected=[$('#writing').val(),$('#micOfMotivation').val()];
     };
-    console.log(selected);
+    
     
    
    
@@ -108,7 +108,7 @@ $('.close').on('click',function(){
                     $(".message").css({"display":"block"})
                     $(".message").css({'background-color':"red"});
                     $(".message-info").html(
-                       "Something went wrong!!!"
+                       "Something went wrong! Please try Again"
                     )
                     $('.loading').hide();
                  }else if(result.message === "checkbox not selected") {

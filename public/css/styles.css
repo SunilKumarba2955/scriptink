@@ -20,6 +20,9 @@ html{
 /* body{
     padding: 0 1.2rem;
 } */
+a:hover{
+    text-decoration: none;
+}
 
 .section-heading{
     padding: 5px;
@@ -123,14 +126,10 @@ html{
     text-align: center;
     position: relative;
 }
-.event-section-landing .container{
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    justify-content: center;
-}
+
 .poster-writofest{
-    background-image: url("/images/day.jfif");
     width: 100%;
+    padding: 2rem 0;
 }
 
 /* ********************Category Section Start *********************** */

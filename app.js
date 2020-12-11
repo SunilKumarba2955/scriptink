@@ -1,5 +1,5 @@
 const express=require("express");
-// var nodemailer = require('nodemailer');
+var nodemailer = require('nodemailer');
 const bodyParser=require("body-parser");
 const ejs=require("ejs");
 const firebase = require("firebase");
@@ -20,8 +20,6 @@ firebase.initializeApp(firebaseConfig);
 
 
 
-
- 
   
  
 
@@ -33,16 +31,19 @@ app.use(express.static(__dirname + '/public'));
 
 
 
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+           user: 'scriptink.writofest.2020@gmail.com',
+           pass: process.env.PASS
+       }
+   });
 
 //home route
 app.get("/",function(req,res){
     res.render("landing");
 })
 
-
-// var API_KEY = '2a60b96a4dec6c0db1b04bcb34811bd6-4879ff27-3eb0d390';
-// var DOMAIN = 'sandboxade4fa6e9b5a4349bde9fad073879113.mailgun.org';
-// var mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
 
 
 
@@ -123,7 +124,6 @@ app.post("/registerParticipants",(req,res)=>{
                 checkParticipants(email,usn,(info)=>{
                     // console.log(info);
                     if(info === "already exists"){
-                        console.log("true");
                         messageback=info;
                         res.send({message:messageback});
                     }else{
@@ -145,22 +145,40 @@ app.post("/registerParticipants",(req,res)=>{
                             }else{
                                 messageback="success";
 
-                                // const data = {
-                                //     from: 'ScriptInk <no-reply@scriptink.com>',
-                                //     to: email,
-                                //     subject: 'Registration Confirmation ✓',
-                                //     html: "<p>Thank you <b>"+name+"</b> for registering for WritoFest 2k20. We are looking forward to meet you on 27 December 2020, Sunday at 10:00 AM on Cisco Webex.</p>"
-                                //   };
+                                const mailOptions = {
+                                    from: '"ScriptInk" <sender@email.com>',
+                                    to: email, 
+                                    subject: 'WritoFest 2k20',
+                                    html: `<p>Greetings ${name}<br><br>
+                                    
+                                    You have been successfully registered for WritoFest 2K20.<br>
+                                    Follow following instructions:<br><br>
+                                    
+                                    •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
+                                    •You will be provided with meetings details 24hrs before the beginning of event<br>
+                                    •Writing competition and submission will be taken via our android application<br>
+                                    •You can download our app from the following link:<br>
+                                    https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
+                                    
+                                    For further information feel free to reach us anytime via following Contacts:<br><br>
+                                    
+                                    Email: reachscriptink@gmail.com<br>
+                                    Phone: +91-80950-30481<br><br>
+                                    
+                                    We are open 24x7.<br><br>
+                                    
+                                    Team Scriptink </p>`
+                                  };
+
+                                  transporter.sendMail(mailOptions, function (err, info) {
+                                    if(err)
+                                      console.log(err)
+                                    else
+                                      console.log(info);
+                                      
+                                });
 
 
-                                  
-                                //     mailgun.messages().send(data, (error, body) => {
-                                //         if(error){
-                                //             console.log(error);
-                                //         }else{
-                                //             res.send({message:messageback});
-                                //         }
-                                //     });
                                 res.send({message:messageback});
                             }
                         });
