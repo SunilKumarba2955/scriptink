@@ -116,7 +116,6 @@ a:hover{
 }
 /* ********************Header Section End *********************** */
 
-
 .event-section-landing{
     display: flex;
     flex-direction: column;
@@ -588,7 +587,7 @@ iframe{
     padding: 3rem 2rem;
 }
 .event-heading{
-    text-align: left;
+    text-align: center;
 }
 .event-container p{
     text-align: left;
@@ -795,8 +794,7 @@ form button{
     background-image: linear-gradient(to right,orangered,yellowgreen);
     color: transparent;
     -webkit-background-clip: text;
-    font-size: 2rem;
-    animation: changeimage 1s infinite linear;
+    font-size: 1.5rem;
 }
 
 
