@@ -151,7 +151,7 @@ app.post("/registerParticipants",(req,res)=>{
                                     subject: 'WritoFest 2k20',
                                     html: `<p>Greetings ${name}<br><br>
                                     
-                                    You have been successfully registered for WritoFest 2K20.<br>
+                                    You have been successfully registered for WritoFest 2K20.<br><br>
                                     Follow following instructions:<br><br>
                                     
                                     •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
