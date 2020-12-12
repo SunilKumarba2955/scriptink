@@ -738,8 +738,8 @@ form button{
     border-radius: .5rem;
     align-content: center;
     position: relative;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr 2fr;
     box-shadow: .3rem .3rem .5rem rgb(124, 85, 223);
 }
 .guest-image-container{
@@ -748,7 +748,6 @@ form button{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex: 0 0 40%;
     padding-top: 1.5rem ;
     position: relative;
     z-index: 1;
@@ -809,7 +808,7 @@ form button{
     align-items: center;
     background-image: linear-gradient(to right,#9c7eaf,#552375);
     align-items: flex-start;
-    flex: 0 0 60%;
+
     padding: 2rem;
     color: rgb(236, 235, 235);
 
