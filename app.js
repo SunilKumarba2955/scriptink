@@ -64,6 +64,7 @@ var firebaseConfig = {
   var participants;
 
   app.get("/registrationDetails",(req,res)=>{
+      count=0;
     participants=[];
     var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2020/ViaWebsite");
      
