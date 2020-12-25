@@ -161,56 +161,7 @@ var firebaseConfig = {
               if(email===element.val().Email || usn===element.val().USN){
                    message="already exists";
               }
-              if(element.val().College.includes("Siddaganga") || element.val().College.includes("SIT") || element.val().College.includes("siddaganga") || element.val().College.includes("sit") || element.val().College.includes("Sit") || element.val().College.includes("SIDDAGANGA")){
-                 counts++;
-              }
-              if(element.val().USN.includes("cs")||element.val().USN.includes("CS")){
-                count1++;
-              }
-              if(element.val().USN.includes("is")||element.val().USN.includes("IS")){
-                count2++;
-             }
-             if(element.val().USN.includes("ec")||element.val().USN.includes("EC")){
-                count3++;
-             }
-             if(element.val().USN.includes("ee")||element.val().USN.includes("EE")){
-                count4++;
-             }
-             if(element.val().USN.includes("te")||element.val().USN.includes("TE")){
-                count5++;
-             }
-             if(element.val().USN.includes("te")||element.val().USN.includes("ET")){
-                count6++;
-             }
-             if(element.val().USN.includes("te")||element.val().USN.includes("EI")){
-                count7++;
-             }
-             if(element.val().USN.includes("te")||element.val().USN.includes("ME")){
-                count8++;
-             }
-            if(element.val().USN.includes("ch")||element.val().USN.includes("CH")){
-                count9++;
-             }
-
-
-            if(element.val().USN.toLowerCase().includes("1si16")){
-                count16++;
-            }
-            if(element.val().USN.toLowerCase().includes("1si17")){
-                count17++;
-            }
-            if(element.val().USN.toLowerCase().includes("1si18")){
-                count18++;
-            }
-            if(element.val().USN.toLowerCase().includes("1si19")){
-                count19++;
-            }
-
-          });
-          console.log(count1 +" "+ count2+" "+ count3+" "+ count4+" "+ count5+" "+ count6+" "+ count7+" "+ count8+" ch: "+count9 );
-          console.log("Total :"+counts+"  "+count);
-          console.log("16- "+count16+" 17- "+count17+" 18- "+count18+" 19- "+count19);
-
+            });
             return callback(message);
       }else{
           return callback(message);
