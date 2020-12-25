@@ -35,7 +35,7 @@ var firebaseConfig = {
       service: 'gmail',
       auth: {
              user: 'scriptink.writofest.2020@gmail.com',
-             pass: process.env.PASS
+             pass: 'writofest2020scriptink'
          }
      });
   
