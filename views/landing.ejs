@@ -21,6 +21,7 @@
       width: .2rem;
       bottom: 0;
       position: absolute;
+      color: wheat;
       background-color: rgb(213, 213, 213);
       display: inline-block;"></div>
       <div class="social d-flex justify-content-center rotate-90" style="display: inline-block;">
@@ -38,9 +39,14 @@
             <li class="nav-item active">
               <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/event">Event</a>
-              </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Event
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/event/RAGE">RAGE</a>
+                <a class="dropdown-item" href="/event/WritoFest">WritoFest</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="#about">About</a>
             </li>
@@ -67,7 +73,7 @@
                             <h1 id="heading">ScriptInk</h1>
                         <p><i>voice of the thoughts</i><p>
                             <p id ="info" style="font-size: 1.5rem;">A not-for-profit Google regd. organization and the Literary Club of SIT </p>
-                            <a class="button" href="https://play.google.com/store/apps/details?id=com.scriptink.official"><i class="fab fa-google-play"></i>Get the App</a>
+                            <a class="button" href="https://play.google.com/store/apps/details?id=com.scriptink.official"><i class="fab fa-google-play"></i> Get the App</a>
                         </div>
                     </div>
                     <div data-aos="fade-left" data-aos-duration="3000" class="col-md-6" style="text-align: left;">
@@ -86,7 +92,7 @@
       <div class="container">
         <a href="/event"><img src="https://cdn.glitch.com/8a655da0-11d2-4fec-9ae2-219040e16297%2Fb.jpg?v=1607787418314" alt="poster-writofest" class="poster-writofest"></a>
         <div class="register-part">
-           <a href="/register"><h3 class="highlighted">Register Here for WritoFest 2k20</h3></a>
+           <!-- <a href="/register"><h1 class="highlighted">Register Here for WritoFest 2k20</h3></a> -->
             
         </div>
       </div>
@@ -158,13 +164,13 @@
 
     <!-- -------------------------Category Section End-------------------------->
     <section class="wordOfDay" >
-      <div class="content" data-aos="fade-up" data-aos-duration="2000">
+      <div class="container content" data-aos="fade-up" data-aos-duration="2000">
         <div class="section-heading">
             <h2 class=" heading-wordOfDay">Word of the Day</h2>
         </div>
             <div class="container wordOfDay-content">
                <div id="wordimg">
-                 <p>12.12.2020</p>
+                 <p id="date"></p>
                  <h3>VOW</h3>
                  <i>verb</i>
                  <p style="width: 30%; margin: auto;">to make a determined decision or promise to do something</p>

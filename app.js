@@ -19,8 +19,6 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   
   
-  
-    
    
   
   app.set('view engine','ejs');
@@ -46,93 +44,165 @@ var firebaseConfig = {
 
 
   
-  var count1=0;
-  var count2=0;
-  var count3=0;
-  var count4=0;
-  var count5=0;
-  var count6=0;
-  var count7=0;
-  var count8=0;
-  var count9=0;
-  var counts=0;
-  var count16=0;
-  var count17=0;
-  var count18=0;
-  var count19=0;
-  var count=0;
-  var participants;
+//   var count1=0;
+//   var count2=0;
+//   var count3=0;
+//   var count4=0;
+//   var count5=0;
+//   var count6=0;
+//   var count7=0;
+//   var count8=0;
+//   var count9=0;
+//   var counts=0;
+//   var count16=0;
+//   var count17=0;
+//   var count18=0;
+//   var count19=0;
+//   var count=0;
+//   var participants;
 
-  app.get("/registrationDetails",(req,res)=>{
-      count=0;
-    participants=[];
-    var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2020/ViaWebsite");
+//   app.get("/registrationDetails",(req,res)=>{
+//       count=0;
+//     participants=[];
+//     var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2020/ViaWebsite");
      
-      ref.once('value').then(snap=>{
-          if(snap.val()!=null){
-          snap.forEach(element=>{
-            count++;
-            participants.push(element.val());
+//       ref.once('value').then(snap=>{
+//           if(snap.val()!=null){
+//           snap.forEach(element=>{
+//             count++;
+//             participants.push(element.val());
               
-              if(element.val().College.includes("Siddaganga") || element.val().College.includes("SIT") || element.val().College.includes("siddaganga") || element.val().College.includes("sit") || element.val().College.includes("Sit") || element.val().College.includes("SIDDAGANGA")){
-                 counts++;
-              }
-              if(element.val().USN.includes("cs")||element.val().USN.includes("CS")){
-                count1++;
-              }
-              if(element.val().USN.includes("is")||element.val().USN.includes("IS")){
-                count2++;
-             }
-             if(element.val().USN.includes("ec")||element.val().USN.includes("EC")){
-                count3++;
-             }
-             if(element.val().USN.includes("ee")||element.val().USN.includes("EE")){
-                count4++;
-             }
-             if(element.val().USN.includes("te")||element.val().USN.includes("TE")){
-                count5++;
-             }
-             if(element.val().USN.includes("te")||element.val().USN.includes("ET")){
-                count6++;
-             }
-             if(element.val().USN.includes("te")||element.val().USN.includes("EI")){
-                count7++;
-             }
-             if(element.val().USN.includes("te")||element.val().USN.includes("ME")){
-                count8++;
-             }
-            if(element.val().USN.includes("ch")||element.val().USN.includes("CH")){
-                count9++;
-             }
+//               if(element.val().College.includes("Siddaganga") || element.val().College.includes("SIT") || element.val().College.includes("siddaganga") || element.val().College.includes("sit") || element.val().College.includes("Sit") || element.val().College.includes("SIDDAGANGA")){
+//                  counts++;
+//               }
+//               if(element.val().USN.includes("cs")||element.val().USN.includes("CS")){
+//                 count1++;
+//               }
+//               if(element.val().USN.includes("is")||element.val().USN.includes("IS")){
+//                 count2++;
+//              }
+//              if(element.val().USN.includes("ec")||element.val().USN.includes("EC")){
+//                 count3++;
+//              }
+//              if(element.val().USN.includes("ee")||element.val().USN.includes("EE")){
+//                 count4++;
+//              }
+//              if(element.val().USN.includes("te")||element.val().USN.includes("TE")){
+//                 count5++;
+//              }
+//              if(element.val().USN.includes("te")||element.val().USN.includes("ET")){
+//                 count6++;
+//              }
+//              if(element.val().USN.includes("te")||element.val().USN.includes("EI")){
+//                 count7++;
+//              }
+//              if(element.val().USN.includes("te")||element.val().USN.includes("ME")){
+//                 count8++;
+//              }
+//             if(element.val().USN.includes("ch")||element.val().USN.includes("CH")){
+//                 count9++;
+//              }
 
 
-            if(element.val().USN.toLowerCase().includes("1si16")){
-                count16++;
-            }
-            if(element.val().USN.toLowerCase().includes("1si17")){
-                count17++;
-            }
-            if(element.val().USN.toLowerCase().includes("1si18")){
-                count18++;
-            }
-            if(element.val().USN.toLowerCase().includes("1si19")){
-                count19++;
-            }
+//             if(element.val().USN.toLowerCase().includes("1si16")){
+//                 count16++;
+//             }
+//             if(element.val().USN.toLowerCase().includes("1si17")){
+//                 count17++;
+//             }
+//             if(element.val().USN.toLowerCase().includes("1si18")){
+//                 count18++;
+//             }
+//             if(element.val().USN.toLowerCase().includes("1si19")){
+//                 count19++;
+//             }
 
-          });
-        //   console.log(count1 +" "+ count2+" "+ count3+" "+ count4+" "+ count5+" "+ count6+" "+ count7+" "+ count8+" ch: "+count9 );
-        //   console.log("Total :"+counts+"  "+count);
-        //   console.log("16- "+count16+" 17- "+count17+" 18- "+count18+" 19- "+count19);
-          participants.push({"Total : ":count});
-        //   console.log(participants);
+//           });
+//         //   console.log(count1 +" "+ count2+" "+ count3+" "+ count4+" "+ count5+" "+ count6+" "+ count7+" "+ count8+" ch: "+count9 );
+//         //   console.log("Total :"+counts+"  "+count);
+//         //   console.log("16- "+count16+" 17- "+count17+" 18- "+count18+" 19- "+count19);
+//           participants.push({"Total : ":count});
+//           console.log(participants);
 
-          res.send(participants);
+//           res.send(participants);
          
 
-      }
-      })
+//       }
+//       })
 
-  })
+//   })
+
+
+//   app.get("/registrationDetailsMobile",(req,res)=>{
+//     count=0;
+//   participants=[];
+//   var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2020/ViaWebsite");
+   
+//     ref.once('value').then(snap=>{
+//         if(snap.val()!=null){
+//         snap.forEach(element=>{
+//           count++;
+//           participants.push(element.val()["Phone Number"]);
+            
+//             if(element.val().College.includes("Siddaganga") || element.val().College.includes("SIT") || element.val().College.includes("siddaganga") || element.val().College.includes("sit") || element.val().College.includes("Sit") || element.val().College.includes("SIDDAGANGA")){
+//                counts++;
+//             }
+//             if(element.val().USN.includes("cs")||element.val().USN.includes("CS")){
+//               count1++;
+//             }
+//             if(element.val().USN.includes("is")||element.val().USN.includes("IS")){
+//               count2++;
+//            }
+//            if(element.val().USN.includes("ec")||element.val().USN.includes("EC")){
+//               count3++;
+//            }
+//            if(element.val().USN.includes("ee")||element.val().USN.includes("EE")){
+//               count4++;
+//            }
+//            if(element.val().USN.includes("te")||element.val().USN.includes("TE")){
+//               count5++;
+//            }
+//            if(element.val().USN.includes("te")||element.val().USN.includes("ET")){
+//               count6++;
+//            }
+//            if(element.val().USN.includes("te")||element.val().USN.includes("EI")){
+//               count7++;
+//            }
+//            if(element.val().USN.includes("te")||element.val().USN.includes("ME")){
+//               count8++;
+//            }
+//           if(element.val().USN.includes("ch")||element.val().USN.includes("CH")){
+//               count9++;
+//            }
+
+
+//           if(element.val().USN.toLowerCase().includes("1si16")){
+//               count16++;
+//           }
+//           if(element.val().USN.toLowerCase().includes("1si17")){
+//               count17++;
+//           }
+//           if(element.val().USN.toLowerCase().includes("1si18")){
+//               count18++;
+//           }
+//           if(element.val().USN.toLowerCase().includes("1si19")){
+//               count19++;
+//           }
+
+//         });
+//       //   console.log(count1 +" "+ count2+" "+ count3+" "+ count4+" "+ count5+" "+ count6+" "+ count7+" "+ count8+" ch: "+count9 );
+//       //   console.log("Total :"+counts+"  "+count);
+//       //   console.log("16- "+count16+" 17- "+count17+" 18- "+count18+" 19- "+count19);
+//         participants.push({"Total : ":count});
+//       //   console.log(participants);
+
+//         res.send(participants);
+       
+
+//     }
+//     })
+
+// })
   
   
   
@@ -148,17 +218,24 @@ var firebaseConfig = {
           callback(snap.val().registrationstart);
       })
   }
+
+  const checkWorkshopRegistrationStart =(callback)=>{
+    var ref = firebase.database().ref("/Workshop");
+    ref.once('value').then(snap=>{
+        // console.log(snap.val());
+        callback(snap.val().registrationstart);
+    })
+  }
   
 
-  const checkParticipants=(email,usn,callback)=>{
+  const checkParticipants=(email,usn,url,callback)=>{
       var message="";
-      var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2020/ViaWebsite");
+      var ref = firebase.database().ref(url);
      
       ref.once('value').then(snap=>{
           if(snap.val()!=null){
           snap.forEach(element=>{
-            count++;
-              if(email===element.val().Email || usn===element.val().USN){
+              if(email===element.val().Email || usn===element.val().USN ){
                    message="already exists";
               }
             });
@@ -168,6 +245,31 @@ var firebaseConfig = {
       }
       })
   }
+
+
+  const  checkParticipantWorkshop=(email,usn,selected,url,callback)=>{
+    var message="";
+    var key="";
+    var ref = firebase.database().ref(url);
+    ref.orderByChild("USN").equalTo(usn).once('value').then(snap=>{
+        if(snap.val()!=null){
+        snap.forEach(element=>{
+            console.log(selected,element.val().OptedFor);
+            if((email===element.val().Email || usn===element.val().USN) ){
+                if(JSON.stringify(selected)===JSON.stringify(element.val().OptedFor)){
+                       message="already exists";
+                }else{
+                        message="different";
+                        key=element.key;
+                }
+            }
+          });
+          return callback(message,key);
+    }else{
+        return callback(message,null);
+    }
+    })
+}
   
   
   
@@ -175,8 +277,16 @@ var firebaseConfig = {
       res.render("members");
   })
   
-  app.get("/event",(req,res)=>{
+  app.get("/event/WritoFest",(req,res)=>{
       res.render("event");
+  })
+
+  app.get("/event/RAGE",(req,res)=>{
+    res.render("workshop");
+})
+
+  app.get("/registerWorkshop",(req,res)=>{
+    res.render("registerWorkshop");
   })
   
   app.get("/register",(req,res)=>{
@@ -186,8 +296,8 @@ var firebaseConfig = {
   app.post("/registerParticipants",(req,res)=>{
       var messageback="";
       var name=req.body.name;
-      var usn=req.body.usn;
-      var email=req.body.email;
+      var usn=req.body.usn.toLowerCase();
+      var email=req.body.email.toLowerCase();
       var phone=req.body.phone;
       var city=req.body.city;
       var college=req.body.college;
@@ -197,7 +307,8 @@ var firebaseConfig = {
         
          if(selected === ""){
              res.send({message:"checkbox not selected"});
-         }else{
+         }
+         else{
   
           var date=new Date();
   
@@ -208,7 +319,7 @@ var firebaseConfig = {
           checkRegistrationStart((start)=>{
               
               if(start===1){
-                  checkParticipants(email,usn,(info)=>{
+                  checkParticipants(email,usn,"/WritoFest/Registrations/WritoFest2020/ViaWebsite",(info)=>{
                       // console.log(info);
                       if(info === "already exists"){
                           messageback=info;
@@ -285,6 +396,180 @@ var firebaseConfig = {
           
      
   })
+
+
+
+  app.post("/registerForWorkshop",(req,res)=>{
+    var messageback="";
+    var name=req.body.name;
+    var usn=req.body.usn.toLowerCase();
+    var email=req.body.email.toLowerCase();
+    var phone=req.body.phone;
+    var city=req.body.city;
+    var selected=req.body.selected;
+    var year=req.body.year;
+    var androidLink="";
+    var openRecitalLink="";
+    var graphicLink="";
+    //  console.log(req.body);
+
+        var date=new Date();
+
+        var ref = firebase.database().ref("/Workshop/Registrations/ViaWebsite");
+        var userkey = ref.push().key;
+        // console.log(name,usn,email,phone,city,selected,year);
+
+        selected.forEach(element => {
+            if(typeof(element)==="object"){
+                    openRecitalLink="•Join WhatsApp Group for Open Recital <br>https://chat.whatsapp.com/DWTjK9EcJS5JsVXqkaW9V6<br>";
+            }else {
+                   if(element==="androidDevelopment"){
+                            androidLink="•Join WhatsApp Group for Android Workshop <br>https://chat.whatsapp.com/BOthLS5csTCAZOa38R5XlF<br>";
+                   }else{
+                           graphicLink="•Join WhatsApp Group for Graphics Workshop <br>https://chat.whatsapp.com/Jb5EfWIGCt2GEOBfsIztlm<br>";
+                   }
+            }
+        });
+
+
+
+        checkWorkshopRegistrationStart((start)=>{
+            
+            if(start===1){
+                checkParticipantWorkshop(email,usn,selected,`/Workshop/Registrations/ViaWebsite/`,(info,key)=>{
+                    // console.log(info);
+                    if(info === "already exists"){
+                        messageback=info;
+                        res.send({message:messageback});
+                    }else if(info === "different"){
+                      
+                          console.log(key);
+                          ref.child(key).update({
+                            "OptedFor":selected,
+                            "Time of Registration":date.toString(),
+                            "Date of Registration":date.toLocaleDateString(),
+                          },(error)=>{
+                            if(error){
+                                res.send({message:"error"});
+                            }else{
+                                messageback="success";
+                                
+
+                                const mailOptions = {
+                                    from: '"ScriptInk" <sender@email.com>',
+                                    to: email, 
+                                    subject: 'RAGE',
+                                    html: `<p>Greetings ${name}<br><br>
+                                    
+                                    <b>Your details have been successfully updated for RAGE.</b><br>
+                                    Follow following instructions:<br><br>
+
+                                    ${androidLink}
+                                    ${openRecitalLink}
+                                    ${graphicLink}
+                                    •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
+                                    •You will be provided with meetings details 24hrs before the beginning of event<br>
+                                    •You can download our app from the following link:<br>
+                                    https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
+                                    
+                                    For further information feel free to reach us anytime via following Contacts:<br><br>
+                                    
+                                    Email: reachscriptink@gmail.com<br>
+                                    Phone: +91-80950-30481<br><br>
+                                    
+                                    We are open 24x7.<br><br>
+                                    
+                                    Team Scriptink </p>`
+                                  };
+
+                                  transporter.sendMail(mailOptions, function (err, info) {
+                                    if(err)
+                                      res.send({message:messageback});
+                                    else
+                                      res.send({message:messageback});
+                                });
+                                    
+                                // res.send({message:messageback});
+
+                                
+                            }
+                        });
+                      
+                    }else{
+                        
+                       
+                        ref.child(`+91${phone}`).set({
+                            Name:name,
+                            Email:email,
+                            USN:usn,
+                            year:year,
+                            "Phone Number":phone,
+                            City:city,
+                            "Time of Registration":date.toString(),
+                            "Date of Registration":date.toLocaleDateString(),
+                            "OptedFor":selected
+                        },(error)=>{
+                            if(error){
+                                res.send({message:"error"});
+                            }else{
+                                messageback="success";
+                               
+
+                                const mailOptions = {
+                                    from: '"ScriptInk" <sender@email.com>',
+                                    to: email, 
+                                    subject: 'RAGE',
+                                    html: `<p>Greetings ${name}<br><br>
+                                    
+                                   <b>You have been successfully registered for RAGE</b>.<br>
+                                    Follow following instructions:<br><br>
+
+                                    ${androidLink}<br>
+                                    ${openRecitalLink}<br>
+                                    ${graphicLink}<br>
+                                    •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
+                                    •You will be provided with meetings details 24hrs before the beginning of event<br>
+                                    •You can download our app from the following link:<br>
+                                    https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
+                                    
+                                    For further information feel free to reach us anytime via following Contacts:<br><br>
+                                    
+                                    Email: reachscriptink@gmail.com<br>
+                                    Phone: +91-80950-30481<br><br>
+                                    
+                                    We are open 24x7.<br><br>
+                                    
+                                    Team Scriptink </p>`
+                                  };
+
+                                  transporter.sendMail(mailOptions, function (err, info) {
+                                    if(err)
+                                      res.send({message:messageback});
+                                    else
+                                      res.send({message:messageback});
+                                });
+                                    
+                                // res.send({message:messageback});
+
+                                
+                            }
+                        });
+
+
+                    
+                    }
+                })
+            }else{
+                messageback="not started";
+                res.send({message:messageback});
+            }
+        })
+    
+      
+      
+        
+   
+})
   
   
   app.post("/getTeam",(req,res)=>{

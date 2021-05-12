@@ -17,8 +17,11 @@ var mybutton =document.getElementById('myBtn');
 
 var date =new Date;
 var year=date.getFullYear();
+var day =date.getDate();
+var month=date.getMonth();
 
 $(".footer p").html('Copyright © ScriptInk '+year);
+$("#date").html(day+"/"+month+"/"+year);
 
 window.onscroll=function(){
     scrollfunction()
@@ -45,6 +48,7 @@ $('.close').on('click',function(){
 
   $("#register").on("submit",(e)=>{
     e.preventDefault();
+    $(".btn-event").prop('disabled', true);
     $('.loading').show();
     var name=$('#name').val();
     var usn=$('#usn').val();
@@ -71,6 +75,7 @@ $('.close').on('click',function(){
          data:{name:name,email:email,usn:usn,city:city,phone:phone,college:college,selected:selected},
          success:function(result,status,xhr){
             //    console.log(result.message);
+            $(".btn-event").prop('disabled', false);
                 if(result.message==='empty'){
                   $(".message").css({"display":"block"})
                   $(".message").css({'background-color':"red"});
@@ -130,8 +135,11 @@ $('.close').on('click',function(){
    
          },
          error:function(status,xhr,error){
+            $('.loading').hide();
+            $(".btn-event").prop('disabled', false);
                console.log(error);
          }
    
        })
   })
+  
