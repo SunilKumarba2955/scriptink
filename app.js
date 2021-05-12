@@ -8,10 +8,10 @@ const { google } = require('googleapis');
 require('dotenv').config()
 
 
-const CLIENT_ID = '506027700836-lpa439ckdhbu9gu2821forg4otont536.apps.googleusercontent.com';
-const CLEINT_SECRET = '3orjqSGL2bbK8N6rA54Ga_kl';
+const CLIENT_ID = '522749130630-10at0eq0rplpt6d7vcka5ejlmvmhjl91.apps.googleusercontent.com';
+const CLEINT_SECRET = '2YM2x3DtPnAtlQibXcv9KnjV';
 const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN = '1//04DFTCoqc5oruCgYIARAAGAQSNwF-L9IrIvACOCBoI70o0xa-Yc_WoANsa1O-RjNwKO9lMF_7XuGIYALVYROYFDdS8EH1KM1cJJA';
+const REFRESH_TOKEN = '1//04yWbpQXsUkc6CgYIARAAGAQSNwF-L9IrTxpPTOtwVnc0Rgbn2df_qD2po6ZSX-1omG3065y_Udm5rT4s0pgDsNQM0PNpkf5Jnvw';
 
 var firebaseConfig = {
     apiKey: "AIzaSyAbM6QwPmIlHxSdLiWDjmWsyefmPiTl-bM",
@@ -49,7 +49,7 @@ var firebaseConfig = {
         service: 'gmail',
         auth: {
           type: 'OAuth2',
-          user: 'scriptink.writofest.2020@gmail.com',
+          user: 'scriptink.events@gmail.com',
           clientId: CLIENT_ID,
           clientSecret: CLEINT_SECRET,
           refreshToken: REFRESH_TOKEN,
