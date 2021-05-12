@@ -4,7 +4,14 @@ const bodyParser=require("body-parser");
 const ejs=require("ejs");
 const firebase = require("firebase");
 const app=express();
+const { google } = require('googleapis');
 require('dotenv').config()
+
+
+const CLIENT_ID = '506027700836-lpa439ckdhbu9gu2821forg4otont536.apps.googleusercontent.com';
+const CLEINT_SECRET = '3orjqSGL2bbK8N6rA54Ga_kl';
+const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
+const REFRESH_TOKEN = '1//04DFTCoqc5oruCgYIARAAGAQSNwF-L9IrIvACOCBoI70o0xa-Yc_WoANsa1O-RjNwKO9lMF_7XuGIYALVYROYFDdS8EH1KM1cJJA';
 
 var firebaseConfig = {
     apiKey: "AIzaSyAbM6QwPmIlHxSdLiWDjmWsyefmPiTl-bM",
@@ -18,6 +25,13 @@ var firebaseConfig = {
   
   firebase.initializeApp(firebaseConfig);
   
+
+  const oAuth2Client = new google.auth.OAuth2(
+    CLIENT_ID,
+    CLEINT_SECRET,
+    REDIRECT_URI
+  );
+  oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
   
    
   
@@ -27,15 +41,112 @@ var firebaseConfig = {
   
   app.use(express.static(__dirname + '/public'));
   
+  async function sendMail(type,email,name,androidLink,openRecitalLink,graphicLink) {
+    try {
+      const accessToken = await oAuth2Client.getAccessToken();
+  
+      const transport = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          type: 'OAuth2',
+          user: 'scriptink.writofest.2020@gmail.com',
+          clientId: CLIENT_ID,
+          clientSecret: CLEINT_SECRET,
+          refreshToken: REFRESH_TOKEN,
+          accessToken: accessToken,
+        },
+      });
+    var mailOptions;
+      if(type==="writoFest"){
+          mailOptions = {
+            from: '"ScriptInk" <sender@email.com>',
+            to: email, 
+            subject: 'WritoFest 2k20',
+            html: `<p>Greetings ${name}<br><br>
+            
+            You have been successfully registered for WritoFest 2K20.<br>
+            Follow following instructions:<br><br>
+            
+            •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
+            •You will be provided with meetings details 24hrs before the beginning of event<br>
+            •Writing competition and submission will be taken via our android application<br>
+            •You can download our app from the following link:<br>
+            https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
+            
+            For further information feel free to reach us anytime via following Contacts:<br><br>
+            
+            Email: reachscriptink@gmail.com<br>
+            Phone: +91-80950-30481<br><br>
+            
+            We are open 24x7.<br><br>
+            
+            Team Scriptink </p>`
+          };
+      }else if(type==="rage"){
+          mailOptions = {
+            from: '"ScriptInk" <sender@email.com>',
+            to: email, 
+            subject: 'RAGE',
+            html: `<p>Greetings ${name}<br><br>
+            
+            <b>Your details have been successfully updated for RAGE.</b><br>
+            Follow following instructions:<br><br>
+    
+            ${androidLink}
+            ${openRecitalLink}
+            ${graphicLink}
+            •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
+            •You will be provided with meetings details 24hrs before the beginning of event<br>
+            •You can download our app from the following link:<br>
+            https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
+            
+            For further information feel free to reach us anytime via following Contacts:<br><br>
+            
+            Email: reachscriptink@gmail.com<br>
+            Phone: +91-80950-30481<br><br>
+            
+            We are open 24x7.<br><br>
+            
+            Team Scriptink </p>`
+          };
+      }else{
+         mailOptions = {
+                from: '"ScriptInk" <sender@email.com>',
+                to: email, 
+                subject: 'RAGE',
+                html: `<p>Greetings ${name}<br><br>
+                
+                <b>Your details have been successfully updated for RAGE.</b><br>
+                Follow following instructions:<br><br>
+
+                ${androidLink}
+                ${openRecitalLink}
+                ${graphicLink}
+                •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
+                •You will be provided with meetings details 24hrs before the beginning of event<br>
+                •You can download our app from the following link:<br>
+                https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
+                
+                For further information feel free to reach us anytime via following Contacts:<br><br>
+                
+                Email: reachscriptink@gmail.com<br>
+                Phone: +91-80950-30481<br><br>
+                
+                We are open 24x7.<br><br>
+                
+                Team Scriptink </p>`
+              };
+      }
+      
+  
+      const result = await transport.sendMail(mailOptions);
+      return result;
+    } catch (error) {
+      return error;
+    }
+  }
   
   
-  var transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-             user: 'scriptink.writofest.2020@gmail.com',
-             pass: 'writofest2020scriptink'
-         }
-     });
   
   //home route
   app.get("/",function(req,res){
@@ -342,40 +453,50 @@ var firebaseConfig = {
                                   res.send({message:"error"});
                               }else{
                                   messageback="success";
+                                  
+
+                                  sendMail("writoFest",email,name,"","","")
+                                        .then((result) =>{
+                                            console.log(result);
+                                            res.send({message:messageback});
+                                        })
+                                        .catch((error) =>{console.log(error.message)
+                                                      res.send({message:messageback});
+                                        });
   
-                                  const mailOptions = {
-                                      from: '"ScriptInk" <sender@email.com>',
-                                      to: email, 
-                                      subject: 'WritoFest 2k20',
-                                      html: `<p>Greetings ${name}<br><br>
+                                //   const mailOptions = {
+                                //       from: '"ScriptInk" <sender@email.com>',
+                                //       to: email, 
+                                //       subject: 'WritoFest 2k20',
+                                //       html: `<p>Greetings ${name}<br><br>
                                       
-                                      You have been successfully registered for WritoFest 2K20.<br>
-                                      Follow following instructions:<br><br>
+                                //       You have been successfully registered for WritoFest 2K20.<br>
+                                //       Follow following instructions:<br><br>
                                       
-                                      •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
-                                      •You will be provided with meetings details 24hrs before the beginning of event<br>
-                                      •Writing competition and submission will be taken via our android application<br>
-                                      •You can download our app from the following link:<br>
-                                      https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
+                                //       •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
+                                //       •You will be provided with meetings details 24hrs before the beginning of event<br>
+                                //       •Writing competition and submission will be taken via our android application<br>
+                                //       •You can download our app from the following link:<br>
+                                //       https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
                                       
-                                      For further information feel free to reach us anytime via following Contacts:<br><br>
+                                //       For further information feel free to reach us anytime via following Contacts:<br><br>
                                       
-                                      Email: reachscriptink@gmail.com<br>
-                                      Phone: +91-80950-30481<br><br>
+                                //       Email: reachscriptink@gmail.com<br>
+                                //       Phone: +91-80950-30481<br><br>
                                       
-                                      We are open 24x7.<br><br>
+                                //       We are open 24x7.<br><br>
                                       
-                                      Team Scriptink </p>`
-                                    };
+                                //       Team Scriptink </p>`
+                                //     };
   
-                                    transporter.sendMail(mailOptions, function (err, info) {
-                                      if(err){
-                                          console.log(err);
-                                        res.send({message:messageback});
-                                      }
-                                      else
-                                        res.send({message:messageback});
-                                  });
+                                //     transporter.sendMail(mailOptions, function (err, info) {
+                                //       if(err){
+                                //           console.log(err);
+                                //         res.send({message:messageback});
+                                //       }
+                                //       else
+                                //         res.send({message:messageback});
+                                //   });
                                       
   
   
@@ -457,43 +578,52 @@ var firebaseConfig = {
                                 messageback="success";
                                 
 
-                                const mailOptions = {
-                                    from: '"ScriptInk" <sender@email.com>',
-                                    to: email, 
-                                    subject: 'RAGE',
-                                    html: `<p>Greetings ${name}<br><br>
+                                // const mailOptions = {
+                                //     from: '"ScriptInk" <sender@email.com>',
+                                //     to: email, 
+                                //     subject: 'RAGE',
+                                //     html: `<p>Greetings ${name}<br><br>
                                     
-                                    <b>Your details have been successfully updated for RAGE.</b><br>
-                                    Follow following instructions:<br><br>
+                                //     <b>Your details have been successfully updated for RAGE.</b><br>
+                                //     Follow following instructions:<br><br>
 
-                                    ${androidLink}
-                                    ${openRecitalLink}
-                                    ${graphicLink}
-                                    •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
-                                    •You will be provided with meetings details 24hrs before the beginning of event<br>
-                                    •You can download our app from the following link:<br>
-                                    https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
+                                //     ${androidLink}
+                                //     ${openRecitalLink}
+                                //     ${graphicLink}
+                                //     •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
+                                //     •You will be provided with meetings details 24hrs before the beginning of event<br>
+                                //     •You can download our app from the following link:<br>
+                                //     https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
                                     
-                                    For further information feel free to reach us anytime via following Contacts:<br><br>
+                                //     For further information feel free to reach us anytime via following Contacts:<br><br>
                                     
-                                    Email: reachscriptink@gmail.com<br>
-                                    Phone: +91-80950-30481<br><br>
+                                //     Email: reachscriptink@gmail.com<br>
+                                //     Phone: +91-80950-30481<br><br>
                                     
-                                    We are open 24x7.<br><br>
+                                //     We are open 24x7.<br><br>
                                     
-                                    Team Scriptink </p>`
-                                  };
+                                //     Team Scriptink </p>`
+                                //   };
 
-                                  transporter.sendMail(mailOptions, function (err, info) {
-                                    if(err){
-                                        console.log(err);
-                                      res.send({message:messageback});
-                                    }
-                                    else
-                                      res.send({message:messageback});
-                                });
+                                //   transporter.sendMail(mailOptions, function (err, info) {
+                                //     if(err){
+                                //         console.log(err);
+                                //       res.send({message:messageback});
+                                //     }
+                                //     else
+                                //       res.send({message:messageback});
+                                // });
                                     
                                 // res.send({message:messageback});
+
+                                sendMail("",email,name,androidLink,openRecitalLink,graphicLink)
+                                        .then((result) =>{
+                                            console.log(result);
+                                            res.send({message:messageback});
+                                        })
+                                        .catch((error) =>{console.log(error.message)
+                                                      res.send({message:messageback});
+                                        });
 
                                 
                             }
@@ -519,40 +649,48 @@ var firebaseConfig = {
                                 messageback="success";
                                
 
-                                const mailOptions = {
-                                    from: '"ScriptInk" <sender@email.com>',
-                                    to: email, 
-                                    subject: 'RAGE',
-                                    html: `<p>Greetings ${name}<br><br>
+                                // const mailOptions = {
+                                //     from: '"ScriptInk" <sender@email.com>',
+                                //     to: email, 
+                                //     subject: 'RAGE',
+                                //     html: `<p>Greetings ${name}<br><br>
                                     
-                                   <b>You have been successfully registered for RAGE</b>.<br>
-                                    Follow following instructions:<br><br>
+                                //    <b>You have been successfully registered for RAGE</b>.<br>
+                                //     Follow following instructions:<br><br>
 
-                                    ${androidLink}<br>
-                                    ${openRecitalLink}<br>
-                                    ${graphicLink}<br>
-                                    •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
-                                    •You will be provided with meetings details 24hrs before the beginning of event<br>
-                                    •You can download our app from the following link:<br>
-                                    https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
+                                //     ${androidLink}<br>
+                                //     ${openRecitalLink}<br>
+                                //     ${graphicLink}<br>
+                                //     •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
+                                //     •You will be provided with meetings details 24hrs before the beginning of event<br>
+                                //     •You can download our app from the following link:<br>
+                                //     https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
                                     
-                                    For further information feel free to reach us anytime via following Contacts:<br><br>
+                                //     For further information feel free to reach us anytime via following Contacts:<br><br>
                                     
-                                    Email: reachscriptink@gmail.com<br>
-                                    Phone: +91-80950-30481<br><br>
+                                //     Email: reachscriptink@gmail.com<br>
+                                //     Phone: +91-80950-30481<br><br>
                                     
-                                    We are open 24x7.<br><br>
+                                //     We are open 24x7.<br><br>
                                     
-                                    Team Scriptink </p>`
-                                  };
+                                //     Team Scriptink </p>`
+                                //   };
 
-                                  transporter.sendMail(mailOptions, function (err, info) {
-                                    if(err){
-                                      console.log(err);
-                                      res.send({message:messageback});
-                                    }
-                                    else
-                                      res.send({message:messageback});
+                                //   transporter.sendMail(mailOptions, function (err, info) {
+                                //     if(err){
+                                //       console.log(err);
+                                //       res.send({message:messageback});
+                                //     }
+                                //     else
+                                //       res.send({message:messageback});
+                                // });
+                                sendMail("rage",email,name,androidLink,openRecitalLink,graphicLink)
+                                .then((result) =>{
+                                    console.log(result);
+                                    res.send({message:messageback});
+                                })
+                                .catch((error) =>{console.log(error.message)
+                                              res.send({message:messageback});
                                 });
                                     
                                 // res.send({message:messageback});
