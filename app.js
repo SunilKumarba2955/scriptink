@@ -82,7 +82,7 @@ var firebaseConfig = {
             
             Team Scriptink </p>`
           };
-      }else if(type==="rage"){
+      }else{
         mailOptions = {
             from: '"ScriptInk" <sender@email.com>',
             to: email, 
@@ -111,34 +111,6 @@ var firebaseConfig = {
             
             Team Scriptink </p>`
           };
-      }else{
-        mailOptions = {
-            from: '"ScriptInk" <sender@email.com>',
-            to: email, 
-            subject: 'RAGE',
-            html: `<p>Greetings ${name}<br><br>
-            
-            <b>Your details have been successfully updated for RAGE.</b><br>
-            Follow following instructions:<br><br>
-    
-            ${androidLink}
-            ${openRecitalLink}
-            ${graphicLink}
-            •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
-            •You will be provided with meetings details 24hrs before the beginning of event<br>
-            •You can download our app from the following link:<br>
-            https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
-            
-            For further information feel free to reach us anytime via following Contacts:<br><br>
-            
-            Email: reachscriptink@gmail.com<br>
-            Phone: +91-80950-30481<br><br>
-            
-            We are open 24x7.<br><br>
-            
-            Team Scriptink </p>`
-          };
-      
       }
       
   
@@ -149,17 +121,6 @@ var firebaseConfig = {
     }
   }
 
-
-  const getCount = (callback)=>{
-    var ref = firebase.database().ref("Workshop/Registrations/ViaWebsite/count");
-    ref.once('value').then(snap=>{
-        if(snap.val()!=null){
-            callback(snap.val());
-        }
-        callback(0);
-    })
-  }
-  
   
   
   //home route
@@ -544,7 +505,7 @@ var firebaseConfig = {
     var openRecitalLink="";
     var graphicLink="";
     var recital=false;
-    //  console.log(req.body);
+     console.log(selected);
 
         var date=new Date();
 
@@ -557,7 +518,7 @@ var firebaseConfig = {
             if(typeof(element)==="object"){
                     openRecitalLink="•Join WhatsApp Group for Open Mic <br>https://chat.whatsapp.com/DWTjK9EcJS5JsVXqkaW9V6<br>";
                     element.option.forEach(item => {
-                        if(item==="Performer"){
+                        if(item!=="Audience"){
                             recital=true;
                         }
                     });
@@ -679,17 +640,17 @@ var firebaseConfig = {
                                     }else{
                                         messageback="success";
                                        
-                                        sendMail("rage",email,name,androidLink,openRecitalLink,graphicLink)
+                                        sendMail("",email,name,androidLink,openRecitalLink,graphicLink)
                                         .then((result) =>{
-                                          
-                                                   return res.send({message:messageback});
+                                                    console.log(result);
+                                                //    return res.send({message:messageback});
                                           
                                         })
                                         .catch((error) =>{console.log(error.message)
-                                                      res.send({message:messageback});
+                                                    //   res.send({message:messageback});
                                         });
                                             
-                                        // res.send({message:messageback});
+                                        res.send({message:messageback});
         
                                         
                                     }
@@ -712,17 +673,17 @@ var firebaseConfig = {
                             }else{
                                 messageback="success";
                                
-                                sendMail("rage",email,name,androidLink,openRecitalLink,graphicLink)
+                                sendMail("",email,name,androidLink,openRecitalLink,graphicLink)
                                 .then((result) =>{
-                                  
-                                    return res.send({message:messageback});
+                                    console.log(result);
+                                    // return res.send({message:messageback});
                     
                                 })
                                 .catch((error) =>{console.log(error.message)
-                                              res.send({message:messageback});
+                                            //   res.send({message:messageback});
                                 });
                                     
-                                // res.send({message:messageback});
+                                res.send({message:messageback});
 
                                 
                             }

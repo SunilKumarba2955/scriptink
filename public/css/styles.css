@@ -4,6 +4,10 @@ Date:6.09.2020
 Css for the Website
 */
 
+@font-face {
+    font-family: funGame;
+    src: url(/fonts/Fungames-lgPnq.otf);
+  }
 
 *,
 *::after,

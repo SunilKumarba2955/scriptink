@@ -14,7 +14,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  
     
 </head>
 <body>
@@ -61,7 +63,7 @@
           
             <h2 class="heading-posts" style="color: white;">Registration for RAGE </h2>
             <i class="fa fa-user-plus fa-4x text-white" style="border: .3rem solid white;border-radius: .7rem;padding: .3rem;margin: 1rem 0;"></i>
-            <p class="text-white">Enter your info to register for RAGE(workshop)</p>
+            <p class="text-white">Enter your info to register for RAGE</p>
             <div style="
             width: 100%;
             display: flex;
@@ -118,6 +120,12 @@
                           <li>
                             <input class="subOption" type="checkbox"  id="writing-item2" value="Performer" >  <label class="text-white" for="writing-item2">Performer</label><br>
                           </li>
+                          <li> <select  style = "padding: .5rem;border-radius: 1rem;background-color: rgb(236, 236, 241); margin-left: 1rem;" name="language" id="language">
+                            <option value="Hindi">Hindi</option>
+                            <option value="English">English</option>
+                            <option value="Urdu">Urdu</option>
+                            <option value="Kannada">Kannada</option>
+                          </select></li>
                         </ul>
                        </li>
                      </ul>
@@ -196,6 +204,7 @@
    
    
 <script>
+  $("#language").hide();
   let count =0;
   var checkboxes = document.querySelectorAll('input.subOption'),
   checkall = document.getElementById('writing');
@@ -208,11 +217,25 @@
    for(var i=0; i<checkboxes.length; i++) {
      checkboxes[i].checked = this.checked;
    }
+   if(!this.checked){
+      $("#language").hide();
+      document.getElementById("language").required =false;
+   }else{
+    $("#language").show();
+    document.getElementById("language").required =true;
+   }
  }
   
     for(var i=0;i<checkboxes.length;i++){
      
          checkboxes[i].onclick = (e)=>{
+           if(e.target.value==="Performer" && e.target.checked){
+            $("#language").show();
+            document.getElementById("language").required =true;
+           }else{
+            $("#language").hide();
+            document.getElementById("language").required =false;
+           }
             if(e.target.checked){
                count++;
             }else{
@@ -257,7 +280,13 @@
                }
                      for(let j=0;j<checkboxes.length;j++){
                         if(checkboxes[j].checked===true){
-                           obj.option.push(checkboxes[j].getAttribute("value"));
+                         if( checkboxes[j].getAttribute("value")==="Performer"){
+                             var language = $("#language").val();
+                            //  console.log(language);
+                             obj.option.push(language);
+                         }else{
+                            obj.option.push(checkboxes[j].getAttribute("value"));
+                         }
                         }
                      }
                      selected.push(obj);
@@ -266,6 +295,7 @@
             }
          }
     }
+    // console.log(selected);
     if(selected.length===0){
       $(".message").css({"display":"block"})
       $(".message").css({'background-color':"red"});
