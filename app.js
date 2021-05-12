@@ -254,7 +254,7 @@ var firebaseConfig = {
     ref.orderByChild("USN").equalTo(usn).once('value').then(snap=>{
         if(snap.val()!=null){
         snap.forEach(element=>{
-            console.log(selected,element.val().OptedFor);
+            // console.log(selected,element.val().OptedFor);
             if((email===element.val().Email || usn===element.val().USN) ){
                 if(JSON.stringify(selected)===JSON.stringify(element.val().OptedFor)){
                        message="already exists";
@@ -443,7 +443,7 @@ var firebaseConfig = {
                         res.send({message:messageback});
                     }else if(info === "different"){
                       
-                          console.log(key);
+                        //   console.log(key);
                           ref.child(key).update({
                             "OptedFor":selected,
                             "Time of Registration":date.toString(),
@@ -483,8 +483,9 @@ var firebaseConfig = {
                                   };
 
                                   transporter.sendMail(mailOptions, function (err, info) {
-                                    if(err)
-                                      res.send({message:messageback});
+                                    if(err){
+                                        res.send({message:messageback});
+                                      }
                                     else
                                       res.send({message:messageback});
                                 });
@@ -543,8 +544,9 @@ var firebaseConfig = {
                                   };
 
                                   transporter.sendMail(mailOptions, function (err, info) {
-                                    if(err)
+                                    if(err){
                                       res.send({message:messageback});
+                                    }
                                     else
                                       res.send({message:messageback});
                                 });
