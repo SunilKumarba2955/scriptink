@@ -369,8 +369,10 @@ var firebaseConfig = {
                                     };
   
                                     transporter.sendMail(mailOptions, function (err, info) {
-                                      if(err)
+                                      if(err){
+                                          console.log(err);
                                         res.send({message:messageback});
+                                      }
                                       else
                                         res.send({message:messageback});
                                   });
@@ -484,8 +486,9 @@ var firebaseConfig = {
 
                                   transporter.sendMail(mailOptions, function (err, info) {
                                     if(err){
-                                        res.send({message:messageback});
-                                      }
+                                        console.log(err);
+                                      res.send({message:messageback});
+                                    }
                                     else
                                       res.send({message:messageback});
                                 });
@@ -545,6 +548,7 @@ var firebaseConfig = {
 
                                   transporter.sendMail(mailOptions, function (err, info) {
                                     if(err){
+                                      console.log(err);
                                       res.send({message:messageback});
                                     }
                                     else
