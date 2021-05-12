@@ -83,7 +83,36 @@ var firebaseConfig = {
             Team Scriptink </p>`
           };
       }else if(type==="rage"){
-          mailOptions = {
+        mailOptions = {
+            from: '"ScriptInk" <sender@email.com>',
+            to: email, 
+            subject: 'RAGE',
+            html: `<p>Greetings ${name}<br><br>
+            
+            <b>Your details have been successfully registered for RAGE.</b><br>
+            Follow following instructions:<br><br>
+
+            ${androidLink}
+            ${openRecitalLink}
+            ${graphicLink}
+            •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
+            •You will be provided with meetings details 24hrs before the beginning of event<br>
+            •You can download our app from the following link:<br>
+            https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
+            
+            For further information feel free to reach us anytime via following Contacts:<br><br>
+            
+            Email: reachscriptink@gmail.com<br>
+            Phone: +91-80950-30481<br><br>
+
+            Android
+            
+            We are open 24x7.<br><br>
+            
+            Team Scriptink </p>`
+          };
+      }else{
+        mailOptions = {
             from: '"ScriptInk" <sender@email.com>',
             to: email, 
             subject: 'RAGE',
@@ -109,33 +138,7 @@ var firebaseConfig = {
             
             Team Scriptink </p>`
           };
-      }else{
-         mailOptions = {
-                from: '"ScriptInk" <sender@email.com>',
-                to: email, 
-                subject: 'RAGE',
-                html: `<p>Greetings ${name}<br><br>
-                
-                <b>Your details have been successfully updated for RAGE.</b><br>
-                Follow following instructions:<br><br>
-
-                ${androidLink}
-                ${openRecitalLink}
-                ${graphicLink}
-                •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
-                •You will be provided with meetings details 24hrs before the beginning of event<br>
-                •You can download our app from the following link:<br>
-                https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
-                
-                For further information feel free to reach us anytime via following Contacts:<br><br>
-                
-                Email: reachscriptink@gmail.com<br>
-                Phone: +91-80950-30481<br><br>
-                
-                We are open 24x7.<br><br>
-                
-                Team Scriptink </p>`
-              };
+      
       }
       
   
@@ -144,6 +147,17 @@ var firebaseConfig = {
     } catch (error) {
       return error;
     }
+  }
+
+
+  const getCount = (callback)=>{
+    var ref = firebase.database().ref("Workshop/Registrations/ViaWebsite/count");
+    ref.once('value').then(snap=>{
+        if(snap.val()!=null){
+            callback(snap.val());
+        }
+        callback(0);
+    })
   }
   
   
@@ -358,7 +372,7 @@ var firebaseConfig = {
   }
 
 
-  const  checkParticipantWorkshop=(email,usn,selected,url,callback)=>{
+  const  checkParticipantWorkshop=(email,usn,url,callback)=>{
     var message="";
     var key="";
     var ref = firebase.database().ref(url);
@@ -367,12 +381,7 @@ var firebaseConfig = {
         snap.forEach(element=>{
             // console.log(selected,element.val().OptedFor);
             if((email===element.val().Email || usn===element.val().USN) ){
-                if(JSON.stringify(selected)===JSON.stringify(element.val().OptedFor)){
                        message="already exists";
-                }else{
-                        message="different";
-                        key=element.key;
-                }
             }
           });
           return callback(message,key);
@@ -534,22 +543,29 @@ var firebaseConfig = {
     var androidLink="";
     var openRecitalLink="";
     var graphicLink="";
+    var recital=false;
     //  console.log(req.body);
 
         var date=new Date();
 
         var ref = firebase.database().ref("/Workshop/Registrations/ViaWebsite");
+        var refCount = firebase.database().ref("/Workshop/Registrations/ViaWebsite/count");
         var userkey = ref.push().key;
         // console.log(name,usn,email,phone,city,selected,year);
 
         selected.forEach(element => {
             if(typeof(element)==="object"){
-                    openRecitalLink="•Join WhatsApp Group for Open Recital <br>https://chat.whatsapp.com/DWTjK9EcJS5JsVXqkaW9V6<br>";
+                    openRecitalLink="•Join WhatsApp Group for Open Mic <br>https://chat.whatsapp.com/DWTjK9EcJS5JsVXqkaW9V6<br>";
+                    element.option.forEach(item => {
+                        if(item==="Performer"){
+                            recital=true;
+                        }
+                    });
             }else {
                    if(element==="androidDevelopment"){
                             androidLink="•Join WhatsApp Group for Android Workshop <br>https://chat.whatsapp.com/BOthLS5csTCAZOa38R5XlF<br>";
                    }else{
-                           graphicLink="•Join WhatsApp Group for Graphics Workshop <br>https://chat.whatsapp.com/Jb5EfWIGCt2GEOBfsIztlm<br>";
+                           graphicLink="•Join WhatsApp Group for After Effects Workshop <br>https://chat.whatsapp.com/Jb5EfWIGCt2GEOBfsIztlm<br>";
                    }
             }
         });
@@ -559,80 +575,128 @@ var firebaseConfig = {
         checkWorkshopRegistrationStart((start)=>{
             
             if(start===1){
-                checkParticipantWorkshop(email,usn,selected,`/Workshop/Registrations/ViaWebsite/`,(info,key)=>{
+                checkParticipantWorkshop(email,usn,`/Workshop/Registrations/ViaWebsite/All`,(info,key)=>{
                     // console.log(info);
                     if(info === "already exists"){
                         messageback=info;
                         res.send({message:messageback});
-                    }else if(info === "different"){
+                    // }else if(info === "different"){
                       
-                        //   console.log(key);
-                          ref.child(key).update({
-                            "OptedFor":selected,
+                    //     //   console.log(key);
+                    //       ref.child(key).update({
+                    //         "OptedFor":selected,
+                    //         "Time of Registration":date.toString(),
+                    //         "Date of Registration":date.toLocaleDateString(),
+                    //       },(error)=>{
+                    //         if(error){
+                    //             res.send({message:"error"});
+                    //         }else{
+                    //             messageback="success";
+                                
+
+                    //             // const mailOptions = {
+                    //             //     from: '"ScriptInk" <sender@email.com>',
+                    //             //     to: email, 
+                    //             //     subject: 'RAGE',
+                    //             //     html: `<p>Greetings ${name}<br><br>
+                                    
+                    //             //     <b>Your details have been successfully updated for RAGE.</b><br>
+                    //             //     Follow following instructions:<br><br>
+
+                    //             //     ${androidLink}
+                    //             //     ${openRecitalLink}
+                    //             //     ${graphicLink}
+                    //             //     •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
+                    //             //     •You will be provided with meetings details 24hrs before the beginning of event<br>
+                    //             //     •You can download our app from the following link:<br>
+                    //             //     https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
+                                    
+                    //             //     For further information feel free to reach us anytime via following Contacts:<br><br>
+                                    
+                    //             //     Email: reachscriptink@gmail.com<br>
+                    //             //     Phone: +91-80950-30481<br><br>
+                                    
+                    //             //     We are open 24x7.<br><br>
+                                    
+                    //             //     Team Scriptink </p>`
+                    //             //   };
+
+                    //             //   transporter.sendMail(mailOptions, function (err, info) {
+                    //             //     if(err){
+                    //             //         console.log(err);
+                    //             //       res.send({message:messageback});
+                    //             //     }
+                    //             //     else
+                    //             //       res.send({message:messageback});
+                    //             // });
+                                    
+                    //             // res.send({message:messageback});
+
+                    //             sendMail("",email,name,androidLink,openRecitalLink,graphicLink)
+                    //                     .then((result) =>{
+                    //                         console.log(result);
+                    //                         res.send({message:messageback});
+                    //                     })
+                    //                     .catch((error) =>{console.log(error.message)
+                    //                                   res.send({message:messageback});
+                    //                     });
+
+                                
+                    //         }
+                    //     });
+                      
+                    }else{
+                            var ref1;
+                       if(recital===true){
+                           ref1 =  ref.child("Performer").child(`+91${phone}`);
+                           ref1.set({
+                            Name:name,
+                            Email:email,
+                            USN:usn,
+                            year:year,
+                            "Phone Number":phone,
+                            City:city,
                             "Time of Registration":date.toString(),
                             "Date of Registration":date.toLocaleDateString(),
-                          },(error)=>{
+                            "OptedFor":selected
+                        },(error)=>{
                             if(error){
                                 res.send({message:"error"});
                             }else{
-                                messageback="success";
-                                
-
-                                // const mailOptions = {
-                                //     from: '"ScriptInk" <sender@email.com>',
-                                //     to: email, 
-                                //     subject: 'RAGE',
-                                //     html: `<p>Greetings ${name}<br><br>
-                                    
-                                //     <b>Your details have been successfully updated for RAGE.</b><br>
-                                //     Follow following instructions:<br><br>
-
-                                //     ${androidLink}
-                                //     ${openRecitalLink}
-                                //     ${graphicLink}
-                                //     •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
-                                //     •You will be provided with meetings details 24hrs before the beginning of event<br>
-                                //     •You can download our app from the following link:<br>
-                                //     https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
-                                    
-                                //     For further information feel free to reach us anytime via following Contacts:<br><br>
-                                    
-                                //     Email: reachscriptink@gmail.com<br>
-                                //     Phone: +91-80950-30481<br><br>
-                                    
-                                //     We are open 24x7.<br><br>
-                                    
-                                //     Team Scriptink </p>`
-                                //   };
-
-                                //   transporter.sendMail(mailOptions, function (err, info) {
-                                //     if(err){
-                                //         console.log(err);
-                                //       res.send({message:messageback});
-                                //     }
-                                //     else
-                                //       res.send({message:messageback});
-                                // });
-                                    
-                                // res.send({message:messageback});
-
-                                sendMail("",email,name,androidLink,openRecitalLink,graphicLink)
+                                ref.child("All").child(`+91${phone}`).set({
+                                    Name:name,
+                                    Email:email,
+                                    USN:usn,
+                                    year:year,
+                                    "Phone Number":phone,
+                                    City:city,
+                                    "Time of Registration":date.toString(),
+                                    "Date of Registration":date.toLocaleDateString(),
+                                    "OptedFor":selected
+                                },(error)=>{
+                                    if(error){
+                                        res.send({message:"error"});
+                                    }else{
+                                        messageback="success";
+                                       
+                                        sendMail("rage",email,name,androidLink,openRecitalLink,graphicLink)
                                         .then((result) =>{
-                                            console.log(result);
-                                            res.send({message:messageback});
+                                          
+                                                   return res.send({message:messageback});
+                                          
                                         })
                                         .catch((error) =>{console.log(error.message)
                                                       res.send({message:messageback});
                                         });
-
-                                
-                            }
-                        });
-                      
-                    }else{
-                        
-                       
-                        ref.child(`+91${phone}`).set({
+                                            
+                                        // res.send({message:messageback});
+        
+                                        
+                                    }
+                                });
+                            }});
+                       }else{
+                        ref.child("All").child(`+91${phone}`).set({
                             Name:name,
                             Email:email,
                             USN:usn,
@@ -648,46 +712,11 @@ var firebaseConfig = {
                             }else{
                                 messageback="success";
                                
-
-                                // const mailOptions = {
-                                //     from: '"ScriptInk" <sender@email.com>',
-                                //     to: email, 
-                                //     subject: 'RAGE',
-                                //     html: `<p>Greetings ${name}<br><br>
-                                    
-                                //    <b>You have been successfully registered for RAGE</b>.<br>
-                                //     Follow following instructions:<br><br>
-
-                                //     ${androidLink}<br>
-                                //     ${openRecitalLink}<br>
-                                //     ${graphicLink}<br>
-                                //     •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
-                                //     •You will be provided with meetings details 24hrs before the beginning of event<br>
-                                //     •You can download our app from the following link:<br>
-                                //     https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
-                                    
-                                //     For further information feel free to reach us anytime via following Contacts:<br><br>
-                                    
-                                //     Email: reachscriptink@gmail.com<br>
-                                //     Phone: +91-80950-30481<br><br>
-                                    
-                                //     We are open 24x7.<br><br>
-                                    
-                                //     Team Scriptink </p>`
-                                //   };
-
-                                //   transporter.sendMail(mailOptions, function (err, info) {
-                                //     if(err){
-                                //       console.log(err);
-                                //       res.send({message:messageback});
-                                //     }
-                                //     else
-                                //       res.send({message:messageback});
-                                // });
                                 sendMail("rage",email,name,androidLink,openRecitalLink,graphicLink)
                                 .then((result) =>{
-                                    console.log(result);
-                                    res.send({message:messageback});
+                                  
+                                    return res.send({message:messageback});
+                    
                                 })
                                 .catch((error) =>{console.log(error.message)
                                               res.send({message:messageback});
@@ -698,6 +727,8 @@ var firebaseConfig = {
                                 
                             }
                         });
+                    }
+            
 
 
                     
