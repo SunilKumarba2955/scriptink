@@ -100,12 +100,19 @@ var firebaseConfig = {
             •You can download our app from the following link:<br>
             https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
             
-            For further information feel free to reach us anytime via following Contacts:<br><br>
-            
+            For further information feel free to reach us anytime via following contacts:<br><br>
+
+            For Android<br>
+            Phone:+91-9380381379 <br><br>
+
+            For After Effect <br>
+            Phone:+91-8147019239 <br><br>
+
+            For Open Mic<br>
+            Phone:+91-9838260414<br><br>
+
             Email: reachscriptink@gmail.com<br>
             Phone: +91-80950-30481<br><br>
-
-            Android
             
             We are open 24x7.<br><br>
             
