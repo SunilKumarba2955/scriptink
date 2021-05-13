@@ -109,7 +109,7 @@ var firebaseConfig = {
             Phone:+91-8147019239 <br><br>
 
             For Open Mic<br>
-            Phone:+91-9838260414<br><br>
+            Phone:+91-9260927430<br><br>
 
             Email: reachscriptink@gmail.com<br>
             Phone: +91-80950-30481<br><br>
