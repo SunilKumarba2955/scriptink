@@ -232,7 +232,7 @@
            if(e.target.value==="Performer" && e.target.checked){
             $("#language").show();
             document.getElementById("language").required =true;
-           }else{
+           }else if(e.target.value==="Performer" && !e.target.checked){
             $("#language").hide();
             document.getElementById("language").required =false;
            }
