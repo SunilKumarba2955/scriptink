@@ -217,7 +217,7 @@ var firebaseConfig = {
         //   console.log("Total :"+counts+"  "+count);
         //   console.log("16- "+count16+" 17- "+count17+" 18- "+count18+" 19- "+count19);
           participants.push({"Total : ":count});
-          console.log(participants);
+        //   console.log(participants);
 
           res.send(participants);
          
@@ -298,6 +298,19 @@ var firebaseConfig = {
 
 // })
   
+
+
+app.get("/getRageParticipantsEmail",(req,res)=>{
+    var ref = firebase.database().ref("/Workshop/Registrations/ViaWebsite/All");
+    var arr =[];
+    ref.once('value').then(snap=>{
+        snap.forEach(element => {
+            arr.push(element.val().Email);
+        });
+        res.send(arr);
+    })
+  
+})
   
   
   
