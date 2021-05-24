@@ -4,9 +4,11 @@ $(document).ready(function(){
     var navbarChange = function () {
         if ($(".navbar").offset().top > 100) {
             $(".navbar").addClass("navbar-transparent");
+            $('.dropdown-menu').addClass("navbar-transparent");
         
         } else {
             $(".navbar").removeClass("navbar-transparent");
+            $('.dropdown-menu').removeClass("navbar-transparent");
     
         }
     };

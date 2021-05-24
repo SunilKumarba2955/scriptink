@@ -56,9 +56,9 @@
 </div>
       </nav>
 
-      <div class="header-member" style="background-image:linear-gradient(to right bottom,#231B34,rgb(58, 31, 62));" >
+      <div class="header-member" style=" background-image: linear-gradient(to right bottom,#12101F,rgb(48, 31, 62));" >
         <section class="header-section">  
-                <div class="filter-article">
+                <div class="filter-article" style="margin-bottom:5rem">
                     <h2 class="heading-posts">Team Members</h2>
                   </div>
                   <ul class="team-list" id="teams" >
@@ -142,9 +142,11 @@ function loadMembers(){
         for (var i = 0; i < result.array.length; i++) {
           result2 +=
             `<li class="card-team" data-aos="zoom-in" style="display:flex;justify-content:center;align-items:center;height:300px;flex-direction:column">
-                <div style="background-image:url('${result.array[i].image}');background-size:cover;background-position:top;border-radius:50%;width:200px;height:200px;border:.2rem solid white;box-shadow:0 .2rem .5rem  rgba(0, 0, 0, 0.489)"></div>
+              <div class ="card-view center-1">
+                <div class="team-image" style="background-image:url('${result.array[i].image}');background-size:cover;background-position:top;border-radius:50%;width:125px;height:125px;border:.2rem solid white;box-shadow:0 .2rem .5rem  rgba(0, 0, 0, 0.489)"></div>
                 <h2 class="heading-posts" style="font-size:1rem;margin-top:5px">${result.array[i].title}</h2>
                 <p class="desc">${result.array[i].desc}</p>
+                </div>
           
               </li>
               `
