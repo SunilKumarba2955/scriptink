@@ -119,6 +119,10 @@
                   <div class="form-div">
                     <button class="submit-button btn-workshop" type="submit">Register</button>
                   </div>
+                    <a href="/docs/ScriptinkResume.pdf" download>
+                    Download Resume
+                    </a>
+                    <p class="text-white">Mail your updated Resume to <a href = "mailto:info@scriptink.in">info@scriptink.in</a> <p></p>
                   
                
                 </form>
@@ -204,7 +208,7 @@
     var options = document.querySelectorAll('.option');
     for(let i=0;i<options.length;i++){
          if(options[i].checked===true){
-            console.log(options[i].getAttribute("value"));
+            // console.log(options[i].getAttribute("value"));
                selected.push(options[i].getAttribute("value"));
          }
     }
@@ -246,7 +250,7 @@
                  $(".message").css({"display":"block"})
                  $(".message").css({'background-color':"green"});
                  $(".message-info").html(
-                   "<p style="+"margin:0;"+">Successfully Submitted </p> Please Download our App from the Play store  <a class="+"message-anchor"+" href="+"https://play.google.com/store/apps/details?id=com.scriptink.official&hl=en"+"><i class="+"fab fa-google-play"+"></i>Get the App</a>"
+                   "<p style="+"margin:0;"+">Successfully Submitted </p> Please download the resume and send updated resume to info@scriptink.in"
                    
                  )
                     
@@ -261,15 +265,15 @@
                 }
                 $('.loading').hide();
                 $("#year").val("1");
-                setTimeout(() => {
-                    window.location.href="https://play.google.com/store/apps/details?id=com.scriptink.official&hl=en";
-                }, 4000);
+                // setTimeout(() => {
+                //     window.location.href="https://play.google.com/store/apps/details?id=com.scriptink.official&hl=en";
+                // }, 4000);
                 }
                 else if(result.message==="not started"){
                     $(".message").css({"display":"block"})
                     $(".message").css({'background-color':"red"});
                     $(".message-info").html(
-                       "Registration has not been started yet!"
+                       "Registration has not been started yet !"
                     )
                     $('.loading').hide();
                  }else if(result.message==="error"){
