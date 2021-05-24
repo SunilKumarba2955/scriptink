@@ -145,7 +145,7 @@ var firebaseConfig = {
     
     count=0;
     participants=[];
-    var ref = firebase.database().ref("/Workshop/Registrations/ViaWebsite/All");
+    var ref = firebase.database().ref("Recruitments/Registrations/ViaWebsite");
      
     await ref.once('value').then(snap=>{
           if(snap.val()!=null){
