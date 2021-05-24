@@ -136,21 +136,7 @@ var firebaseConfig = {
   })
 
 
-  
-//   var count1=0;
-//   var count2=0;
-//   var count3=0;
-//   var count4=0;
-//   var count5=0;
-//   var count6=0;
-//   var count7=0;
-//   var count8=0;
-//   var count9=0;
-//   var counts=0;
-//   var count16=0;
-//   var count17=0;
-//   var count18=0;
-//   var count19=0;
+
   var count;
   var participants;
 
@@ -315,8 +301,12 @@ app.get("/getRageParticipantsEmail",(req,res)=>{
   
   
   
-  
-  
+const checkRecruitmentsRegistrationStart = (callback)=>{
+    var ref = firebase.database().ref("/Recruitments");
+    ref.once('value').then(snap=>{
+        callback(snap.val().registrationstart);
+    })
+}
   
   
   const checkRegistrationStart = (callback)=>{
@@ -394,6 +384,78 @@ app.get("/getRageParticipantsEmail",(req,res)=>{
   app.get("/register",(req,res)=>{
       res.render("register");
   })
+
+  app.get("/recruitments",(req,res)=>{
+    res.render("recruit");
+})
+
+app.post("/registerForRecruitments",(req,res)=>{
+    var messageback="";
+    var name=req.body.name;
+    var usn=req.body.usn.toLowerCase();
+    var email=req.body.email.toLowerCase();
+    var phone=req.body.phone;
+    var selected=req.body.selected;
+    var year=req.body.year;
+
+    console.log(name,usn,email,phone,selected,year);
+    var date=new Date();
+  
+    var ref = firebase.database().ref("/Recruitments/Registrations/ViaWebsite");
+    checkRecruitmentsRegistrationStart((start)=>{
+            
+        if(start===1){
+            checkParticipantWorkshop(email,usn,`/Recruitments/Registrations/ViaWebsite`,(info,key)=>{
+                // console.log(info);
+                if(info === "already exists"){
+                    messageback=info;
+                    res.send({message:messageback});
+                }else{
+                    ref.child(`+91${phone}`).set({
+                        Name:name,
+                        Email:email,
+                        USN:usn,
+                        year:year,
+                        "Phone Number":phone,
+                        "Time of Registration":date.toString(),
+                        "Date of Registration":date.toLocaleDateString(),
+                        "IntersetedIn":selected
+                    },(error)=>{
+                        if(error){
+                            res.send({message:"error"});
+                        }else{
+                            messageback="success";
+                           
+                            // sendMail("",email,name,androidLink,openRecitalLink,graphicLink)
+                            // .then((result) =>{
+                            //     console.log(result);
+                            //     // return res.send({message:messageback});
+                
+                            // })
+                            // .catch((error) =>{console.log(error.message)
+                            //             //   res.send({message:messageback});
+                            // });
+                                
+                            res.send({message:messageback});
+
+                            
+                        }
+                    });
+                
+        
+
+
+                
+                }
+            })
+        }else{
+            messageback="not started";
+            res.send({message:messageback});
+        }
+    })
+
+})
+
   
   app.post("/registerParticipants",(req,res)=>{
       var messageback="";
@@ -804,7 +866,7 @@ app.get("/getRageParticipantsEmail",(req,res)=>{
           });
        })
   });
-  
+
   
   
   app.listen(process.env.PORT||3000,function(){

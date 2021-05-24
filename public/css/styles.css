@@ -677,7 +677,7 @@ iframe{
 }
 
 
-#register ,#registerWorkshop{
+#register ,#registerWorkshop,#registerRecruitments{
     width: 65%;
 }
 
@@ -719,6 +719,9 @@ form button{
 }
 .form-div{
     padding-bottom: 15px;
+}
+label{
+    cursor: pointer;
 }
 .text-field{
     padding: .7rem;
@@ -1028,7 +1031,7 @@ form button{
     .guest-info{
         width: 100%;
     }
-    #register,#registerWorkshop{
+    #register,#registerWorkshop,#registerRecruitments{
         width: 100%;
     }
     .guest-container{
