@@ -332,7 +332,7 @@ const checkRecruitmentsRegistrationStart = (callback)=>{
       ref.once('value').then(snap=>{
           if(snap.val()!=null){
           snap.forEach(element=>{
-              if(email===element.val().Email || usn===element.val().USN ){
+              if(email===element.val().Email || usn===element.val().USN){
                    message="already exists";
               }
             });
@@ -348,7 +348,7 @@ const checkRecruitmentsRegistrationStart = (callback)=>{
     var message="";
     var key="";
     var ref = firebase.database().ref(url);
-    ref.orderByChild("USN").equalTo(usn).once('value').then(snap=>{
+    ref.once('value').then(snap=>{
         if(snap.val()!=null){
         snap.forEach(element=>{
             // console.log(selected,element.val().OptedFor);
@@ -398,14 +398,14 @@ app.post("/registerForRecruitments",(req,res)=>{
     var selected=req.body.selected;
     var year=req.body.year;
 
-    console.log(name,usn,email,phone,selected,year);
+    // console.log(name,usn,email,phone,selected,year);
     var date=new Date();
   
     var ref = firebase.database().ref("/Recruitments/Registrations/ViaWebsite");
     checkRecruitmentsRegistrationStart((start)=>{
             
         if(start===1){
-            checkParticipantWorkshop(email,usn,`/Recruitments/Registrations/ViaWebsite`,(info,key)=>{
+            checkParticipants(email,usn,`/Recruitments/Registrations/ViaWebsite`,(info,key)=>{
                 // console.log(info);
                 if(info === "already exists"){
                     messageback=info;
