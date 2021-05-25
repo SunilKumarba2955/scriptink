@@ -362,7 +362,7 @@ iframe{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
+
     position: relative;
     transform: skewY(3deg);
     color: rgb(43, 30, 71);
