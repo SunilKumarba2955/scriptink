@@ -139,6 +139,10 @@ a:hover{
     
    
 }
+#heading{
+    font-size: 3rem;
+    font-weight: 700;
+}
 
 /* ********************Category Section Start *********************** */
 .category{
@@ -273,6 +277,8 @@ a:hover{
         -3deg
         );
     color: transparent;
+    font-size: 2.5rem;
+    font-weight: 700;
 }
 .waves{
     position: absolute;
@@ -1132,10 +1138,11 @@ label{
     background-image: linear-gradient(to right,rgb(92, 213, 253),purple);
     -webkit-background-clip: text;
     color: transparent;
+    font-size: 2.5rem;
+    font-weight: 700;
 }
 .heading-posts{
     text-transform: uppercase;
-    font-size:2rem;
     display: inline-block;
     letter-spacing: .5rem;
     background-image: linear-gradient(to right,rgb(6, 103, 135),rgb(145, 3, 145));
@@ -1143,6 +1150,8 @@ label{
     color: transparent;
     text-align: center;
     margin-top: 1rem;
+    font-size: 2.5rem;
+    font-weight: 700;
 }
 
 /* .heading-secondary:hover{
