@@ -39,6 +39,7 @@ body{
   ::-webkit-scrollbar-thumb:hover {
     background: #b30000; 
   }
+  
 /* body{
     padding: 0 1.2rem;
 } */
@@ -404,7 +405,7 @@ iframe{
 }
 .about-content{
     transform: skewY(-3deg);
-    margin: 10rem 0;
+    margin: 5rem 0;
 }
 
 
