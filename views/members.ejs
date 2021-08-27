@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Anurag">
     <title>ScriptInk</title>
+    <meta name="csrf-token" content="<%=csrfToken%>">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css" integrity="sha256-6hqHMqXTVEds1R8HgKisLm3l/doneQs+rS1a5NLmwwo=" crossorigin="anonymous" />
@@ -137,9 +138,13 @@
 
 var result2=" ";
 function loadMembers(){
+  var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
   $.ajax({
       url:'/getTeam',
       method:'post',
+      headers: {
+    'CSRF-Token': token 
+  },
       success:function(result,status,xhr){
         // console.log("worrking!!");
         for (var i = 0; i < result.array.length; i++) {

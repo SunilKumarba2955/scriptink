@@ -52,6 +52,7 @@ $('.close').on('click',function(){
     e.preventDefault();
     $(".btn-event").prop('disabled', true);
     $('.loading').show();
+    var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     var name=$('#name').val();
     var usn=$('#usn').val();
     var email=$('#email').val();
@@ -74,6 +75,9 @@ $('.close').on('click',function(){
        $.ajax({
          url:"/registerParticipants",
          method:"post",
+         headers:{
+            'CSRF-Token': token
+         },
          data:{name:name,email:email,usn:usn,city:city,phone:phone,college:college,selected:selected},
          success:function(result,status,xhr){
             //    console.log(result.message);

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Anurag">
     <title>ScriptInk</title>
+    <meta name="csrf-token" content="<%=csrfToken%>">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.0/animate.min.css" integrity="sha256-6hqHMqXTVEds1R8HgKisLm3l/doneQs+rS1a5NLmwwo=" crossorigin="anonymous" />
@@ -196,6 +197,7 @@
   $("#registerRecruitments").on("submit",(e)=>{
    $(".message").css({"display":"none"})
    $(".btn-workshop").prop('disabled', true);
+   var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     e.preventDefault();
     $('.loading').show();
     var name=$('#name').val();
@@ -214,7 +216,7 @@
                selected.push(options[i].getAttribute("value"));
          }
     }
-    // console.log(selected);
+    console.log(selected);
     if(selected.length===0){
       $(".message").css({"display":"block"})
       $(".message").css({'background-color':"red"});
@@ -236,6 +238,9 @@
        $.ajax({
          url:"/registerForRecruitments",
          method:"post",
+         headers:{
+          'CSRF-Token': token
+         },
          data:{name:name,email:email,usn:usn,phone:phone,selected:selected,year:year},
          success:function(result,status,xhr){
             //    console.log(result.message);

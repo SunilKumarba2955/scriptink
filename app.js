@@ -3,6 +3,8 @@ var nodemailer = require('nodemailer');
 const bodyParser=require("body-parser");
 const ejs=require("ejs");
 const firebase = require("firebase");
+var cookieParser = require('cookie-parser')
+var csrf = require('csurf')
 const app=express();
 const { google } = require('googleapis');
 require('dotenv').config()
@@ -33,10 +35,12 @@ var firebaseConfig = {
   );
   oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
   
-   
+  app.use(cookieParser())
+  app.use(csrf({ cookie: true }))
   
   app.set('view engine','ejs');
   
+  app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({extended: true}));
   
   app.use(express.static(__dirname + '/public'));
@@ -127,13 +131,12 @@ var firebaseConfig = {
       return error;
     }
   }
-
-  
   
   //home route
   app.get("/",function(req,res){
-      res.render("landing");
+      res.render("landing",{csrfToken:req.csrfToken()});
   })
+  
 
 
 
@@ -141,69 +144,23 @@ var firebaseConfig = {
   var participants;
 
 
-  app.get("/registrationDetailsAll",async (req,res)=>{
+
+  app.get("/registrationDetailsAll", (req,res)=>{
     
     count=0;
     participants=[];
     var ref = firebase.database().ref("Recruitments/Registrations/ViaWebsite");
      
-    await ref.once('value').then(snap=>{
+     ref.once('value').then(snap=>{
           if(snap.val()!=null){
           snap.forEach(element=>{
             count++;
             participants.push(element.val());
-              
-            //   if(element.val().College.includes("Siddaganga") || element.val().College.includes("SIT") || element.val().College.includes("siddaganga") || element.val().College.includes("sit") || element.val().College.includes("Sit") || element.val().College.includes("SIDDAGANGA")){
-            //      counts++;
-            //   }
-            //   if(element.val().USN.includes("cs")||element.val().USN.includes("CS")){
-            //     count1++;
-            //   }
-            //   if(element.val().USN.includes("is")||element.val().USN.includes("IS")){
-            //     count2++;
-            //  }
-            //  if(element.val().USN.includes("ec")||element.val().USN.includes("EC")){
-            //     count3++;
-            //  }
-            //  if(element.val().USN.includes("ee")||element.val().USN.includes("EE")){
-            //     count4++;
-            //  }
-            //  if(element.val().USN.includes("te")||element.val().USN.includes("TE")){
-            //     count5++;
-            //  }
-            //  if(element.val().USN.includes("te")||element.val().USN.includes("ET")){
-            //     count6++;
-            //  }
-            //  if(element.val().USN.includes("te")||element.val().USN.includes("EI")){
-            //     count7++;
-            //  }
-            //  if(element.val().USN.includes("te")||element.val().USN.includes("ME")){
-            //     count8++;
-            //  }
-            // if(element.val().USN.includes("ch")||element.val().USN.includes("CH")){
-            //     count9++;
-            //  }
-
-
-            // if(element.val().USN.toLowerCase().includes("1si16")){
-            //     count16++;
-            // }
-            // if(element.val().USN.toLowerCase().includes("1si17")){
-            //     count17++;
-            // }
-            // if(element.val().USN.toLowerCase().includes("1si18")){
-            //     count18++;
-            // }
-            // if(element.val().USN.toLowerCase().includes("1si19")){
-            //     count19++;
-            // }
-
+        
           });
-        //   console.log(count1 +" "+ count2+" "+ count3+" "+ count4+" "+ count5+" "+ count6+" "+ count7+" "+ count8+" ch: "+count9 );
-        //   console.log("Total :"+counts+"  "+count);
-        //   console.log("16- "+count16+" 17- "+count17+" 18- "+count18+" 19- "+count19);
+    
           participants.push({"Total : ":count});
-        //   console.log(participants);
+
 
           res.send(participants);
          
@@ -211,6 +168,39 @@ var firebaseConfig = {
     });
 
   })
+  app.get("/getAndroidWeb", (req,res)=>{
+    let array;
+    participants= new Set();
+    var ref = firebase.database().ref("Recruitments/Registrations/ViaWebsite");
+     
+     ref.once('value').then(snap=>{
+          if(snap.val()!=null){
+          snap.forEach(element=>{
+            //   console.log(element.val());
+            if(element.val().year==="2" ){
+                element.val().IntersetedIn.forEach(ele=>{
+                    console.log(ele);
+                    if(ele==="androidDevelopment" || ele === "webDevelopment"){
+                        participants.add(element.val().Email);
+                    }
+                })
+              
+            }
+        
+          });
+    
+          participants.add({"Total : ":count});
+          array=[...participants];
+
+
+          res.send(array);
+         
+      }
+    });
+
+  })
+
+  
 
 
 //   app.get("/registrationDetailsMobile",(req,res)=>{
@@ -366,27 +356,27 @@ const checkRecruitmentsRegistrationStart = (callback)=>{
   
   
   app.get("/team",(req,res)=>{
-      res.render("members");
+      res.render("members",{csrfToken:req.csrfToken()});
   })
   
   app.get("/event/WritoFest",(req,res)=>{
-      res.render("event");
+      res.render("event",{csrfToken:req.csrfToken()});
   })
 
   app.get("/event/RAGE",(req,res)=>{
-    res.render("workshop");
+    res.render("workshop",{csrfToken:req.csrfToken()});
 })
 
   app.get("/registerWorkshop",(req,res)=>{
-    res.render("registerWorkshop");
+    res.render("registerWorkshop",{csrfToken:req.csrfToken()});
   })
   
   app.get("/register",(req,res)=>{
-      res.render("register");
+      res.render("register",{csrfToken:req.csrfToken()});
   })
 
   app.get("/recruitments",(req,res)=>{
-    res.render("recruit");
+    res.render("recruit",{csrfToken:req.csrfToken()});
 })
 
 app.post("/registerForRecruitments",(req,res)=>{
@@ -588,7 +578,7 @@ app.post("/registerForRecruitments",(req,res)=>{
     var openRecitalLink="";
     var graphicLink="";
     var recital=false;
-     console.log(selected);
+     console.log(req.body);
 
         var date=new Date();
 
@@ -838,7 +828,7 @@ app.post("/registerForRecruitments",(req,res)=>{
           res.send("Error 404");
       }
      
-      res.render(__dirname+"/views/posts.ejs",{category:categoryName,caption:caption,image:image,back:back});
+      res.render(__dirname+"/views/posts.ejs",{category:categoryName,caption:caption,image:image,back:back,csrfToken:req.csrfToken()});
       
       
   

@@ -24,9 +24,13 @@ function newFunction() {
     });
 
     function loadData(type, result1, message) {
+      var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
       $.ajax({
         url: '/getData',
         method: 'post',
+        headers:{
+          'CSRF-Token': token
+        },
         data: { type: type, category: category },
         success: function (result, status, xhr) {
           for (var i = 0; i < result.array.length; i++) {
