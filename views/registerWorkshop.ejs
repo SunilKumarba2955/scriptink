@@ -23,43 +23,7 @@
     
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="mainNav">
-        <div class="container">
-        <a class="navbar-brand" href="/"><img class="nav-logo" src="/images/Captureaaaa.png" width="50" height="50" class="d-inline-block align-top" alt="">ScriptInk</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-p="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Event
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/event/RAGE">RAGE</a>
-                    <a class="dropdown-item" href="/event/WritoFest">WritoFest</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/team">Our Team</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link" href="/#category">Category</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact us</a>
-                  </li>
-                
-              </ul>
-    </div>
-</div>
-      </nav>
+  <%- include('partials/navbar.ejs') %>
 
       <div class="header-register" style="height: auto;min-height:100vh ;background-image:linear-gradient(to right bottom,#231b34ea 40%,rgba(22, 10, 36, 0.966) 80%),url('../images/workshop.jpg');background-size: cover;background-repeat: no-repeat;display: flex;flex-direction:column;justify-content: center;align-items: center;" >
         <div class="form-container">
@@ -165,45 +129,7 @@
           
     </div>
   </section>
-  <section class="contact-section" id="contact">
-    <div class="container contact-sec">
-        <div class="row">
-            <div class="col-md-4 mb-3 mb-md-0">
-            
-              <img height="50" width="50" src="/images/placeholder.png"/>
-                        <h4 class="text-uppercase m-0">Address</h4>
-                        <div class="small ">ScriptInk</div>
-              
-            </div>
-            <div class="col-md-4 mb-3 mb-md-0">
-              
-              <img  height="50" width="50" src="/images/email.png"/>
-                        <h4 class="text-uppercase  m-0">Email</h4>
-                        <div class="small "><a href = "mailto:info@scriptink.in">info@scriptink.in</a></div>
-              
-            </div>
-            <div class="col-md-4 mb-3 mb-md-0">
-                    
-              <img height="50" width="50" src="/images/phone-call.png"/>
-                        <h4 class="text-uppercase  m-0">Phone</h4>
-                        <div class="small "><a  href="tel:+91-80950-30481">Call Now</a></div>
-                 
-                  </div>
-            </div>
-            <div class="map" style="text-align: center;"> <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15529.528091766753!2d77.1258022!3d13.3264961!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb1f104efe2eaf8fa!2sScriptink!5e0!3m2!1sen!2sin!4v1607256738223!5m2!1sen!2sin" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-            </div>
-            <div class="social d-flex justify-content-center">
-                <a class="mx-2" href="https://www.instagram.com/scriptink_official/"><i class="fa fa fa-instagram fa-2x"></i></a><a class="mx-2" href="https://www.facebook.com/ScriptInk-101960781188230"><i class="fa fa fa-facebook-f fa-2x"></i></a><a class="mx-2" href="https://www.linkedin.com/company/scriptink-official/?originalSubdomain=in"><i class="fa fa fa-linkedin fa-2x"></i></a><a class="mx-2" href="https://t.me/scriptink"><i class="fa fa fa-telegram fa-2x"></i></a>
-            </div>
-    
-    <footer class="footer bg-black small text-center"><div class="container"><p></p></div>
-    
-    </footer>
-</div>
-</section>
-      <div class="scrolltop float-right">
-        <i class="fa fa-arrow-up" onclick="topFunction()" id="myBtn"></i>
-    </div>
+  <%- include('partials/footer') %>
    
    
 <script>

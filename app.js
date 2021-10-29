@@ -6,34 +6,22 @@ const firebase = require("firebase");
 var cookieParser = require('cookie-parser')
 var csrf = require('csurf')
 const app=express();
-const { google } = require('googleapis');
 require('dotenv').config()
 
 
-const CLIENT_ID = '522749130630-10at0eq0rplpt6d7vcka5ejlmvmhjl91.apps.googleusercontent.com';
-const CLEINT_SECRET = '2YM2x3DtPnAtlQibXcv9KnjV';
-const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN = '1//04EyUGPQqg85sCgYIARAAGAQSNwF-L9IrRsZ4a9h8wz677EhhiKyoe8i0X4qguahxxevlfEkcuabw5Dx-i1RsCLGnS_9BmbNoHB8';
-
 var firebaseConfig = {
-    apiKey: "AIzaSyAbM6QwPmIlHxSdLiWDjmWsyefmPiTl-bM",
-    authDomain: "android-app-5c25d.firebaseapp.com",
-    databaseURL: "https://android-app-5c25d.firebaseio.com",
-    projectId: "android-app-5c25d",
-    storageBucket: "android-app-5c25d.appspot.com",
-    messagingSenderId: "862615088549",
-    appId: "1:862615088549:web:6390609e12b6015a174c4c"
+    apiKey: process.env.apiKey,
+    authDomain: process.env.authDomain,
+    databaseURL: process.env.databaseURL,
+    projectId: process.env.projectId,
+    storageBucket: process.env.storageBucket,
+    messagingSenderId: process.env.messagingSenderId,
+    appId:process.env.appId
   };
   
   firebase.initializeApp(firebaseConfig);
   
 
-  const oAuth2Client = new google.auth.OAuth2(
-    CLIENT_ID,
-    CLEINT_SECRET,
-    REDIRECT_URI
-  );
-  oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
   
   app.use(cookieParser())
   app.use(csrf({ cookie: true }))
@@ -47,23 +35,17 @@ var firebaseConfig = {
   
   async function sendMail(type,email,name,androidLink,openRecitalLink,graphicLink) {
     try {
-      const accessToken = await oAuth2Client.getAccessToken();
-  
       const transport = nodemailer.createTransport({
-        service: 'gmail',
+        service: 'hotmail',
         auth: {
-          type: 'OAuth2',
-          user: 'scriptink.events@gmail.com',
-          clientId: CLIENT_ID,
-          clientSecret: CLEINT_SECRET,
-          refreshToken: REFRESH_TOKEN,
-          accessToken: accessToken,
+          user:'scriptink.events@outlook.com',
+          pass:'process.env.pass'
         },
       });
     var mailOptions;
       if(type==="writoFest"){
           mailOptions = {
-            from: '"ScriptInk" <sender@email.com>',
+            from: '"ScriptInk" <scriptink.events@outlook.com>',
             to: email, 
             subject: 'WritoFest 2k20',
             html: `<p>Greetings ${name}<br><br>
@@ -88,7 +70,7 @@ var firebaseConfig = {
           };
       }else{
         mailOptions = {
-            from: '"ScriptInk" <sender@email.com>',
+            from: '"ScriptInk" <scriptink.events@outlook.com>',
             to: email, 
             subject: 'RAGE',
             html: `<p>Greetings ${name}<br><br>
@@ -138,12 +120,8 @@ var firebaseConfig = {
   })
   
 
-
-
   var count;
   var participants;
-
-
 
   app.get("/registrationDetailsAll", (req,res)=>{
     
@@ -200,80 +178,7 @@ var firebaseConfig = {
 
   })
 
-  
 
-
-//   app.get("/registrationDetailsMobile",(req,res)=>{
-//     count=0;
-//   participants=[];
-//   var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2020/ViaWebsite");
-   
-//     ref.once('value').then(snap=>{
-//         if(snap.val()!=null){
-//         snap.forEach(element=>{
-//           count++;
-//           participants.push(element.val()["Phone Number"]);
-            
-//             if(element.val().College.includes("Siddaganga") || element.val().College.includes("SIT") || element.val().College.includes("siddaganga") || element.val().College.includes("sit") || element.val().College.includes("Sit") || element.val().College.includes("SIDDAGANGA")){
-//                counts++;
-//             }
-//             if(element.val().USN.includes("cs")||element.val().USN.includes("CS")){
-//               count1++;
-//             }
-//             if(element.val().USN.includes("is")||element.val().USN.includes("IS")){
-//               count2++;
-//            }
-//            if(element.val().USN.includes("ec")||element.val().USN.includes("EC")){
-//               count3++;
-//            }
-//            if(element.val().USN.includes("ee")||element.val().USN.includes("EE")){
-//               count4++;
-//            }
-//            if(element.val().USN.includes("te")||element.val().USN.includes("TE")){
-//               count5++;
-//            }
-//            if(element.val().USN.includes("te")||element.val().USN.includes("ET")){
-//               count6++;
-//            }
-//            if(element.val().USN.includes("te")||element.val().USN.includes("EI")){
-//               count7++;
-//            }
-//            if(element.val().USN.includes("te")||element.val().USN.includes("ME")){
-//               count8++;
-//            }
-//           if(element.val().USN.includes("ch")||element.val().USN.includes("CH")){
-//               count9++;
-//            }
-
-
-//           if(element.val().USN.toLowerCase().includes("1si16")){
-//               count16++;
-//           }
-//           if(element.val().USN.toLowerCase().includes("1si17")){
-//               count17++;
-//           }
-//           if(element.val().USN.toLowerCase().includes("1si18")){
-//               count18++;
-//           }
-//           if(element.val().USN.toLowerCase().includes("1si19")){
-//               count19++;
-//           }
-
-//         });
-//       //   console.log(count1 +" "+ count2+" "+ count3+" "+ count4+" "+ count5+" "+ count6+" "+ count7+" "+ count8+" ch: "+count9 );
-//       //   console.log("Total :"+counts+"  "+count);
-//       //   console.log("16- "+count16+" 17- "+count17+" 18- "+count18+" 19- "+count19);
-//         participants.push({"Total : ":count});
-//       //   console.log(participants);
-
-//         res.send(participants);
-       
-
-//     }
-//     })
-
-// })
-  
 
 
 app.get("/getRageParticipantsEmail",(req,res)=>{
@@ -287,8 +192,6 @@ app.get("/getRageParticipantsEmail",(req,res)=>{
     })
   
 })
-  
-  
   
   
 const checkRecruitmentsRegistrationStart = (callback)=>{
@@ -466,14 +369,14 @@ app.post("/registerForRecruitments",(req,res)=>{
   
           var date=new Date();
   
-          var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2020/ViaWebsite");
+          var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2021/ViaWebsite");
           
           var userkey = ref.push().key;
   
           checkRegistrationStart((start)=>{
               
               if(start===1){
-                  checkParticipants(email,usn,"/WritoFest/Registrations/WritoFest2020/ViaWebsite",(info)=>{
+                  checkParticipants(email,usn,"/WritoFest/Registrations/WritoFest2021/ViaWebsite",(info)=>{
                       // console.log(info);
                       if(info === "already exists"){
                           messageback=info;
@@ -507,39 +410,7 @@ app.post("/registerForRecruitments",(req,res)=>{
                                                       res.send({message:messageback});
                                         });
   
-                                //   const mailOptions = {
-                                //       from: '"ScriptInk" <sender@email.com>',
-                                //       to: email, 
-                                //       subject: 'WritoFest 2k20',
-                                //       html: `<p>Greetings ${name}<br><br>
-                                      
-                                //       You have been successfully registered for WritoFest 2K20.<br>
-                                //       Follow following instructions:<br><br>
-                                      
-                                //       •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
-                                //       •You will be provided with meetings details 24hrs before the beginning of event<br>
-                                //       •Writing competition and submission will be taken via our android application<br>
-                                //       •You can download our app from the following link:<br>
-                                //       https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
-                                      
-                                //       For further information feel free to reach us anytime via following Contacts:<br><br>
-                                      
-                                //       Email: reachscriptink@gmail.com<br>
-                                //       Phone: +91-80950-30481<br><br>
-                                      
-                                //       We are open 24x7.<br><br>
-                                      
-                                //       Team Scriptink </p>`
-                                //     };
-  
-                                //     transporter.sendMail(mailOptions, function (err, info) {
-                                //       if(err){
-                                //           console.log(err);
-                                //         res.send({message:messageback});
-                                //       }
-                                //       else
-                                //         res.send({message:messageback});
-                                //   });
+            
                                       
   
   
@@ -585,7 +456,7 @@ app.post("/registerForRecruitments",(req,res)=>{
         var ref = firebase.database().ref("/Workshop/Registrations/ViaWebsite");
         var refCount = firebase.database().ref("/Workshop/Registrations/ViaWebsite/count");
         var userkey = ref.push().key;
-        // console.log(name,usn,email,phone,city,selected,year);
+
 
         selected.forEach(element => {
             if(typeof(element)==="object"){
