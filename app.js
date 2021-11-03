@@ -39,7 +39,7 @@ var firebaseConfig = {
         service: 'hotmail',
         auth: {
           user:'scriptink.events@outlook.com',
-          pass:'process.env.pass'
+          pass:process.env.pass
         },
       });
     var mailOptions;
@@ -661,6 +661,10 @@ app.post("/registerForRecruitments",(req,res)=>{
           })
           res.send({array:member});
       })
+  })
+
+  app.get("/timeline",(req,res)=>{
+        res.render('timeline.ejs',{csrfToken:req.csrfToken()})
   })
   
   
