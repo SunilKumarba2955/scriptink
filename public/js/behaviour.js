@@ -49,6 +49,7 @@ $('.close').on('click',function(){
   })
 
   $("#register").on("submit",(e)=>{
+      console.log("clicke");
     e.preventDefault();
     $(".btn-event").prop('disabled', true);
     $('.loading').show();
@@ -127,6 +128,14 @@ $('.close').on('click',function(){
                     $(".message").css({'background-color':"red"});
                     $(".message-info").html(
                        "Please select the checkbox !!!"
+                    )
+                    $('.loading').hide();
+                 }
+                 else if(result.message === "invalid"){
+                    $(".message").css({"display":"block"})
+                    $(".message").css({'background-color':"red"});
+                    $(".message-info").html(
+                       "Please enter a valid email/phone."
                     )
                     $('.loading').hide();
                  }

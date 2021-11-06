@@ -7,6 +7,10 @@ var cookieParser = require('cookie-parser')
 var csrf = require('csurf')
 const app=express();
 require('dotenv').config()
+const Mymodule = require("./controllers/helper")
+const isValidEmail = Mymodule.isValidEmail;
+const isValidPhone = Mymodule.isValidPhone;
+
 
 
 var firebaseConfig = {
@@ -382,8 +386,11 @@ app.post("/registerForRecruitments",(req,res)=>{
                           messageback=info;
                           res.send({message:messageback});
                       }else{
-                          
-                         
+                          isValidEmail(email,isValid=>{
+                              isValidPhone(phone,isValidnumber=>{
+                                  console.log(isValid,isValidnumber);
+                                if(isValid && isValidnumber){      
+
                           ref.child(userkey).set({
                               Name:name,
                               Email:email,
@@ -411,15 +418,18 @@ app.post("/registerForRecruitments",(req,res)=>{
                                         });
   
             
-                                      
-  
-  
+            
                                   
                               }
                           });
-  
-  
-                      
+                        }else{
+                            messageback="invalid";
+                            res.send({message:messageback});
+                        }
+                    })
+                        })
+                     
+                        
                       }
                   })
               }else{
