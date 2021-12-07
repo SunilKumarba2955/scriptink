@@ -54,16 +54,7 @@ var firebaseConfig = {
   
   async function sendMail(type,email,name,usn,razorpay_id,androidLink,openRecitalLink,graphicLink) {
     try {
-    //   const transport = nodemailer.createTransport({
-    //     service: "gmail",
-    //     auth: {
-    //       type: "OAuth2",
-    //       user: process.env.EMAIL,
-    //       accessToken,
-    //       clientId: process.env.CLIENT_ID,
-    //       clientSecret: process.env.CLIENT_SECRET,
-    //       refreshToken: process.env.REFRESH_TOKEN
-    //     }
+
 
     const createTransporter = async () => {
         const oauth2Client = new OAuth2(
@@ -99,19 +90,7 @@ var firebaseConfig = {
       
         return transporter;
       };
-        // host: 'smtp.zoho.com',
-        // port: 465,
-        // secure: true, //ssl
-        // auth: {
-        //     user: 'scriptink.events@zohomail.in',
-        //     pass: 'X27YzVjh358t'
-        // }
-        // service: 'hotmail',
-        // auth: {
-        //   user:'scriptink.events@outlook.com',
-        //   pass:process.env.pass
-        // },
-    //   });
+
     var mailOptions;
       if(type==="writoFest"){
           var transport = await createTransporter();
@@ -126,30 +105,7 @@ var firebaseConfig = {
               root:'./views/',
             },
           });
-        //   mailOptions = {
-        //     from: '"ScriptInk" <scriptink.events@outlook.com>',
-        //     to: email, 
-        //     subject: 'WritoFest 2k20',
-        //     html: `<p>Greetings ${name}<br><br>
-            
-        //     You have been successfully registered for WritoFest 2K20.<br>
-        //     Follow following instructions:<br><br>
-            
-        //     •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
-        //     •You will be provided with meetings details 24hrs before the beginning of event<br>
-        //     •Writing competition and submission will be taken via our android application<br>
-        //     •You can download our app from the following link:<br>
-        //     https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
-            
-        //     For further information feel free to reach us anytime via following Contacts:<br><br>
-            
-        //     Email: reachscriptink@gmail.com<br>
-        //     Phone: +91-80950-30481<br><br>
-            
-        //     We are open 24x7.<br><br>
-            
-        //     Team Scriptink </p>`
-        //   };
+
       }else{
         mailOptions = {
             from: '"ScriptInk" <scriptink.events@zohomail.in>',
@@ -197,11 +153,11 @@ var firebaseConfig = {
             subject:'WritoFest 2k21 ',
             attachments: [{
                 filename: 'scriptWbg.png',
-                path: `./public/images/scriptWbg.png`,
+                path: __dirname+'/public/images/scriptWbg.png',
                 cid: 'logo' //same cid value as in the html img src
     },{
         filename: 'back.jpg',
-                path: `./public/images/bg14new.jpg`,
+                path: __dirname+'/public/images/bg14new.jpg',
                 cid: 'back' //same cid value as in the html img src   
     }]
           },
