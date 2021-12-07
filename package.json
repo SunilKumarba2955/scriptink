@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "ScriptInk Official Website",
   "main": "app.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,9 +15,15 @@
     "csurf": "^1.11.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
+    "email-templates": "^8.0.8",
     "express": "^4.17.1",
     "firebase": "^7.19.1",
+    "js-sha256": "^0.9.0",
     "node-fetch": "^3.0.0",
-    "nodemailer": "^6.4.16"
+    "nodemailer": "^6.4.16",
+    "razorpay": "^2.8.0"
+  },
+  "devDependencies": {
+    "googleapis": "^92.0.0"
   }
 }

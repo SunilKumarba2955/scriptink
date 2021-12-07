@@ -5,8 +5,8 @@ body{
     min-height: 100vh;
     position: relative;
     padding:2rem;
-    z-index: -2;
-    background: linear-gradient(to bottom,rgb(12, 10, 17),rgb(14, 11, 29) 85%)
+    
+    background-image:linear-gradient(to right bottom,#231b34cd,rgb(32, 14, 72)),url('/images/bg14new.jpg');
 }
 .center{
     display: flex;
@@ -85,7 +85,7 @@ body{
         position: relative;
         height: 100%;
     }
-    .timeline-list::after{
+    .timeline-list::before{
         content: "";
         width: 5px;
         background-image: linear-gradient(to bottom,rgb(92, 213, 253),purple);
@@ -93,7 +93,6 @@ body{
         left: 50%;
         height: 100%;
         transform: translateX(-50%);
-        z-index: -1;
     }
     .timeline-li:nth-child(odd) .timeline-heading,.timeline-li:nth-child(odd) .timeline-date{
         align-self: flex-start;
@@ -109,7 +108,7 @@ body{
         border-radius: 50%;
         background-color: white;
         position: absolute;
-        z-index: 1000000;
+        z-index: 10000;
         top: 20px;
     }
     .timeline-list .timeline-li:nth-child(even)::after{

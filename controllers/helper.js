@@ -2,7 +2,7 @@ const axios = require('axios');
 const isValidEmail =async (email,callback)=>{
     const response = await axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=${process.env.apikeyemail}&email=${email}`);
     // const body = await response.json();
-    if(response.data.deliverability==="DELIVERABLE")callback(true);
+    if(response.data.deliverability!=="UNDELIVERABLE")callback(true);
     else callback(false);
 
     console.log(response);

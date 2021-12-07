@@ -1,15 +1,24 @@
 const express=require("express");
-var nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 const bodyParser=require("body-parser");
 const ejs=require("ejs");
 const firebase = require("firebase");
-var cookieParser = require('cookie-parser')
-var csrf = require('csurf')
+const cookieParser = require('cookie-parser')
+const csrf = require('csurf')
+const Razorpay = require('razorpay');
+const sha256 = require('js-sha256');
+const Email = require('email-templates');
+const path = require('path');
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
+
+    
+  
+
 const app=express();
+
 require('dotenv').config()
-const Mymodule = require("./controllers/helper")
-const isValidEmail = Mymodule.isValidEmail;
-const isValidPhone = Mymodule.isValidPhone;
+
 
 
 
@@ -22,6 +31,12 @@ var firebaseConfig = {
     messagingSenderId: process.env.messagingSenderId,
     appId:process.env.appId
   };
+
+
+  const razorpay = new Razorpay({
+      key_id:process.env.key_id,
+      key_secret:process.env.key_secret
+  })
   
   firebase.initializeApp(firebaseConfig);
   
@@ -37,44 +52,107 @@ var firebaseConfig = {
   
   app.use(express.static(__dirname + '/public'));
   
-  async function sendMail(type,email,name,androidLink,openRecitalLink,graphicLink) {
+  async function sendMail(type,email,name,usn,razorpay_id,androidLink,openRecitalLink,graphicLink) {
     try {
-      const transport = nodemailer.createTransport({
-        service: 'hotmail',
-        auth: {
-          user:'scriptink.events@outlook.com',
-          pass:process.env.pass
-        },
-      });
+    //   const transport = nodemailer.createTransport({
+    //     service: "gmail",
+    //     auth: {
+    //       type: "OAuth2",
+    //       user: process.env.EMAIL,
+    //       accessToken,
+    //       clientId: process.env.CLIENT_ID,
+    //       clientSecret: process.env.CLIENT_SECRET,
+    //       refreshToken: process.env.REFRESH_TOKEN
+    //     }
+
+    const createTransporter = async () => {
+        const oauth2Client = new OAuth2(
+          process.env.CLIENT_ID,
+          process.env.CLIENT_SECRET,
+          "https://developers.google.com/oauthplayground"
+        );
+      
+        oauth2Client.setCredentials({
+          refresh_token: process.env.REFRESH_TOKEN
+        });
+      
+        const accessToken = await new Promise((resolve, reject) => {
+          oauth2Client.getAccessToken((err, token) => {
+            if (err) {
+              reject("Failed to create access token :(");
+            }
+            resolve(token);
+          });
+        });
+      
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            type: "OAuth2",
+            user: process.env.EMAIL,
+            accessToken,
+            clientId: process.env.CLIENT_ID,
+            clientSecret: process.env.CLIENT_SECRET,
+            refreshToken: process.env.REFRESH_TOKEN
+          }
+        });
+      
+        return transporter;
+      };
+        // host: 'smtp.zoho.com',
+        // port: 465,
+        // secure: true, //ssl
+        // auth: {
+        //     user: 'scriptink.events@zohomail.in',
+        //     pass: 'X27YzVjh358t'
+        // }
+        // service: 'hotmail',
+        // auth: {
+        //   user:'scriptink.events@outlook.com',
+        //   pass:process.env.pass
+        // },
+    //   });
     var mailOptions;
       if(type==="writoFest"){
-          mailOptions = {
-            from: '"ScriptInk" <scriptink.events@outlook.com>',
-            to: email, 
-            subject: 'WritoFest 2k20',
-            html: `<p>Greetings ${name}<br><br>
+          var transport = await createTransporter();
+          mailOptions= new Email({
+            transport: transport,
+            send: true,
+            preview: false,
+            views: {
+              options: {
+                extension: 'ejs',
+              },
+              root:'./views/',
+            },
+          });
+        //   mailOptions = {
+        //     from: '"ScriptInk" <scriptink.events@outlook.com>',
+        //     to: email, 
+        //     subject: 'WritoFest 2k20',
+        //     html: `<p>Greetings ${name}<br><br>
             
-            You have been successfully registered for WritoFest 2K20.<br>
-            Follow following instructions:<br><br>
+        //     You have been successfully registered for WritoFest 2K20.<br>
+        //     Follow following instructions:<br><br>
             
-            •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
-            •You will be provided with meetings details 24hrs before the beginning of event<br>
-            •Writing competition and submission will be taken via our android application<br>
-            •You can download our app from the following link:<br>
-            https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
+        //     •Event will be hosted in a virtual environment on Cisco Webex Meetings.<br>
+        //     •You will be provided with meetings details 24hrs before the beginning of event<br>
+        //     •Writing competition and submission will be taken via our android application<br>
+        //     •You can download our app from the following link:<br>
+        //     https://play.google.com/store/apps/details?id=com.scriptink.official<br><br>
             
-            For further information feel free to reach us anytime via following Contacts:<br><br>
+        //     For further information feel free to reach us anytime via following Contacts:<br><br>
             
-            Email: reachscriptink@gmail.com<br>
-            Phone: +91-80950-30481<br><br>
+        //     Email: reachscriptink@gmail.com<br>
+        //     Phone: +91-80950-30481<br><br>
             
-            We are open 24x7.<br><br>
+        //     We are open 24x7.<br><br>
             
-            Team Scriptink </p>`
-          };
+        //     Team Scriptink </p>`
+        //   };
       }else{
         mailOptions = {
-            from: '"ScriptInk" <scriptink.events@outlook.com>',
+            from: '"ScriptInk" <scriptink.events@zohomail.in>',
             to: email, 
             subject: 'RAGE',
             html: `<p>Greetings ${name}<br><br>
@@ -111,9 +189,32 @@ var firebaseConfig = {
       }
       
   
-      const result = await transport.sendMail(mailOptions);
+      const result = await mailOptions.send({
+          template:path.join(__dirname, 'views', 'template'),
+          message:{
+            from: '"ScriptInk" <scriptink.writofest.2020@gmail.com>',
+            to: email,
+            subject:'WritoFest 2k21 ',
+            attachments: [{
+                filename: 'scriptWbg.png',
+                path: `./public/images/scriptWbg.png`,
+                cid: 'logo' //same cid value as in the html img src
+    },{
+        filename: 'back.jpg',
+                path: `./public/images/bg14new.jpg`,
+                cid: 'back' //same cid value as in the html img src   
+    }]
+          },
+          locals:{
+              name:name,
+              razorpay_id:razorpay_id,
+              usn:usn
+          }
+      })
+    //   transport.sendMail(mailOptions);
       return result;
     } catch (error) {
+        console.log(error);
       return error;
     }
   }
@@ -265,6 +366,10 @@ const checkRecruitmentsRegistrationStart = (callback)=>{
   app.get("/team",(req,res)=>{
       res.render("members",{csrfToken:req.csrfToken()});
   })
+
+  app.get("/event/WritoFest2k21",(req,res)=>{
+    res.render("writoFest2k21",{csrfToken:req.csrfToken()});
+  })
   
   app.get("/event/WritoFest",(req,res)=>{
       res.render("event",{csrfToken:req.csrfToken()});
@@ -284,6 +389,76 @@ const checkRecruitmentsRegistrationStart = (callback)=>{
 
   app.get("/recruitments",(req,res)=>{
     res.render("recruit",{csrfToken:req.csrfToken()});
+})
+
+
+
+const checkCouponCode = (code,callback)=>{
+    var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2021/coupon");
+    ref.once('value').then(snap=>{
+        if(code===snap.val()){
+            return callback("valid");
+        }else{
+            return callback("invalid");
+        }
+    })
+
+}
+
+
+app.post('/createOrder',(req,res)=>{
+    var email = req.body.email;
+    var usn = req.body.usn;
+    var code = req.body.code;
+    checkRegistrationStart(start=>{
+        if(start===1){
+            checkParticipants(email,usn,"/WritoFest/Registrations/WritoFest2021/Paid",(info)=>{
+                if(info === "already exists"){
+                    res.send({message:"already exists"});
+                }else{
+                    var amount = 5000;
+                    if(code.trim()===""){
+                                razorpay.orders.create({
+                                    amount: amount,
+                                    currency: "INR",
+                                  },(err,order)=>{
+                                      if(!err)
+                                      res.status(200).send({message:order});
+                                      else
+                                      res.status(409).send({error:err});
+                                  });
+                    }else{
+                        checkCouponCode(code,(status)=>{
+                            if(status==="valid"){
+                                amount = 2500;
+                                razorpay.orders.create({
+                                    amount: amount,
+                                    currency: "INR",
+                                  },(err,order)=>{
+                                      if(!err)
+                                      res.status(200).send({message:order});
+                                      else
+                                      res.status(409).send({error:err});
+                                  });
+                            }else{
+                                res.status(200).send({message:"invalid code"});
+                            }
+                            
+                        })
+                    }
+                    
+                  
+                } 
+        })
+        }else{
+            res.status(200).send({message:""});
+        }
+    })
+
+})
+
+app.post("/checkStart",(req,res)=>{
+   
 })
 
 app.post("/registerForRecruitments",(req,res)=>{
@@ -362,82 +537,92 @@ app.post("/registerForRecruitments",(req,res)=>{
       var phone=req.body.phone;
       var city=req.body.city;
       var college=req.body.college;
-      var selected=req.body.selected;
+    //   var selected=req.body.selected;
+      var razorpay_payment_id =req.body.razorpay_payment_id;
+      var order_id = req.body.order_id;
+
+
+      razorpay.payments.fetch(razorpay_payment_id).then(doc=>{
+          if(doc.status === "captured"){
+
+            var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2021/Paid/"+razorpay_payment_id);
+          
+    // var userkey = ref.push().key;
+
+    // checkRegistrationStart((start)=>{
+        
+        // if(start===1){
+            // checkParticipants(email,usn,"/WritoFest/Registrations/WritoFest2021/ViaWebsite",(info)=>{
+                // console.log(info);
+                // if(info === "already exists"){
+                //     messageback=info;
+                //     res.send({message:messageback});
+                // }else{
+                    
+                  //   isValidEmail(email,isValid=>{
+                  //       isValidPhone(phone,isValidnumber=>{
+                  //           console.log(isValid,isValidnumber);
+                  //         if(isValid && isValidnumber){      
+                    var date=new Date();
+  
+                    ref.set({
+                        Name:name,
+                        Email:email,
+                        USN:usn,
+                        "Phone Number":phone,
+                        City:city,
+                        College:college,
+                        "Time of Registration":date.toString(),
+                        "Date of Registration":date.toLocaleDateString(),
+                        "order_id":order_id,
+                        "razorpay_payment_id":razorpay_payment_id
+                    },(error)=>{
+                        if(error){
+                            res.send({message:"error"});
+                        }else{
+                            messageback="success";
+                            sendMail("writoFest",email,name,usn,razorpay_payment_id,"","","")
+                                  .then((result) =>{
+                                    //   console.log(result);
+                                      res.send({message:messageback});
+                                     
+                                  })
+                                  .catch((error) =>{console.log(error.message)
+                                                res.send({message:messageback});
+                                  });
+   
+                            
+                        }
+                    });
+              //     }else{
+              //         messageback="invalid";
+              //         res.send({message:messageback});
+              //     }
+              // })
+              //     })
+               
+                  
+                // }
+            // })
+        // }else{
+        //     messageback="not started";
+        //     res.send({message:messageback});
+        // }
+                }else{
+                    res.send({message:"error"});
+                }
+    // })
+                });
      
       
         
-         if(selected === ""){
-             res.send({message:"checkbox not selected"});
-         }
-         else{
+        //  if(selected === ""){
+        //      res.send({message:"checkbox not selected"});
+        //  }
+        //  else{
   
-          var date=new Date();
-  
-          var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2021/ViaWebsite");
           
-          var userkey = ref.push().key;
-  
-          checkRegistrationStart((start)=>{
-              
-              if(start===1){
-                  checkParticipants(email,usn,"/WritoFest/Registrations/WritoFest2021/ViaWebsite",(info)=>{
-                      // console.log(info);
-                      if(info === "already exists"){
-                          messageback=info;
-                          res.send({message:messageback});
-                      }else{
-                          isValidEmail(email,isValid=>{
-                              isValidPhone(phone,isValidnumber=>{
-                                  console.log(isValid,isValidnumber);
-                                if(isValid && isValidnumber){      
-
-                          ref.child(userkey).set({
-                              Name:name,
-                              Email:email,
-                              USN:usn,
-                              "Phone Number":phone,
-                              City:city,
-                              College:college,
-                              "Time of Registration":date.toString(),
-                              "Date of Registration":date.toLocaleDateString(),
-                              "Opted For":selected
-                          },(error)=>{
-                              if(error){
-                                  res.send({message:"error"});
-                              }else{
-                                  messageback="success";
-                                  
-
-                                  sendMail("writoFest",email,name,"","","")
-                                        .then((result) =>{
-                                            console.log(result);
-                                            res.send({message:messageback});
-                                        })
-                                        .catch((error) =>{console.log(error.message)
-                                                      res.send({message:messageback});
-                                        });
-  
-            
-            
-                                  
-                              }
-                          });
-                        }else{
-                            messageback="invalid";
-                            res.send({message:messageback});
-                        }
-                    })
-                        })
-                     
-                        
-                      }
-                  })
-              }else{
-                  messageback="not started";
-                  res.send({message:messageback});
-              }
-          })
-      }
+      
         
         
           
@@ -445,6 +630,9 @@ app.post("/registerForRecruitments",(req,res)=>{
   })
 
 
+ app.get("/boarding",(req,res)=>{
+     res.render("boarding",{name:"Anurag",usn:"1si19cs014",razorpay_id:"qwerty"})
+ })
 
   app.post("/registerForWorkshop",(req,res)=>{
     var messageback="";
