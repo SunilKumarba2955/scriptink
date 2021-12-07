@@ -152,8 +152,8 @@ var firebaseConfig = {
             to: email,
             subject:'WritoFest 2k21 ',
             attachments: [{
-                filename: 'scriptWbg.png',
-                path: 'public/images/scriptwbg.png',
+                filename: 'scriptwbg.png',
+                path: 'public/images/logo_bg.png',
                 cid: 'logo' //same cid value as in the html img src
     },{
         filename: 'back.jpg',
