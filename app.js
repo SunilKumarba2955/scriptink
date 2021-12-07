@@ -153,11 +153,11 @@ var firebaseConfig = {
             subject:'WritoFest 2k21 ',
             attachments: [{
                 filename: 'scriptWbg.png',
-                path: __dirname+'/public/images/scriptWbg.png',
+                path: 'public/images/scriptWbg.png',
                 cid: 'logo' //same cid value as in the html img src
     },{
         filename: 'back.jpg',
-                path: __dirname+'/public/images/bg14new.jpg',
+                path: 'public/images/bg14new.jpg',
                 cid: 'back' //same cid value as in the html img src   
     }]
           },
