@@ -148,7 +148,6 @@ h1{
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 1rem 1rem 1rem 0;
-  background-repeat: no-repeat;
   color: antiquewhite;
   border: 0.5rem solid;
   border-image-slice: 1;
@@ -157,6 +156,7 @@ h1{
   background: linear-gradient(to left,rgba(23, 75, 138, 0.558),rgba(183, 91, 186, 0.48)),url("/images/neon-back/vecteezy_neon-background_dp1220.jpg");
   background-size: cover;
   background-position: bottom;
+  background-repeat: no-repeat;
   /* box-shadow: 0 0 50px 15px rgb(73 74 121 / 68%); */
 }
 .container .guest-2 .image{
