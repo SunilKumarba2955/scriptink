@@ -368,7 +368,7 @@ app.post('/createOrder',(req,res)=>{
     var code = req.body.code;
     checkRegistrationStart(start=>{
         if(start===1){
-            checkParticipants(email,usn,"/WritoFest/Registrations/WritoFest2021/Paid",(info)=>{
+            checkParticipants(email,usn,"/WritoFest/Registrations/WritoFest2021/ViaWebsite",(info)=>{
                 if(info === "already exists"){
                     res.send({message:"already exists"});
                 }else{
@@ -501,7 +501,7 @@ app.post("/registerForRecruitments",(req,res)=>{
       razorpay.payments.fetch(razorpay_payment_id).then(doc=>{
           if(doc.status === "captured"){
 
-            var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2021/Paid/"+razorpay_payment_id);
+            var ref = firebase.database().ref("/WritoFest/Registrations/WritoFest2021/ViaWebsite/"+razorpay_payment_id);
           
     // var userkey = ref.push().key;
 
