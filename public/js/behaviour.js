@@ -113,7 +113,7 @@ $("#register").on("submit", (e) => {
       }
        else {
         var options = {
-          key: "rzp_test_IcUQvZAMSvC5cP",
+          key: "rzp_live_cExm0aHbEaDtt4",
           name: "WritoFest 2k21",
           description: "Scriptink",
           image:

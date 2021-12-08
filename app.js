@@ -372,7 +372,7 @@ app.post('/createOrder',(req,res)=>{
                 if(info === "already exists"){
                     res.send({message:"already exists"});
                 }else{
-                    var amount = 5000;
+                    var amount = 200;
                     if(code.trim()===""){
                                 razorpay.orders.create({
                                     amount: amount,
@@ -386,7 +386,7 @@ app.post('/createOrder',(req,res)=>{
                     }else{
                         checkCouponCode(code,(status)=>{
                             if(status==="valid"){
-                                amount = 2500;
+                                amount = 100;
                                 razorpay.orders.create({
                                     amount: amount,
                                     currency: "INR",
