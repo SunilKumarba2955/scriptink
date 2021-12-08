@@ -104,10 +104,10 @@ h1{
   margin-right: 1rem;
 }
 .container .guest-1{
-  background: linear-gradient(to left,rgba(23, 75, 138, 0.558),#b941816d),url("/images/neon-back/vecteezy_neon-background_dp1220.jpg");
+  /* background: linear-gradient(to left,rgba(23, 75, 138, 0.558),#b941816d),url("/images/neon-back/vecteezy_neon-background_dp1220.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: left,bottom;
+  background-position: left,bottom; */
   margin-top: 7rem;
   display: grid;
   color: antiquewhite;
@@ -153,10 +153,10 @@ h1{
   border-image-slice: 1;
   border-image-source: linear-gradient(to left, #550fce, #b941816d);
   font-family: "Poppins",sans-serif;
-  background: linear-gradient(to left,rgba(23, 75, 138, 0.558),rgba(183, 91, 186, 0.48)),url("/images/neon-back/vecteezy_neon-background_dp1220.jpg");
+  /* background: linear-gradient(to left,rgba(23, 75, 138, 0.558),rgba(183, 91, 186, 0.48)),url("/images/neon-back/vecteezy_neon-background_dp1220.jpg");
   background-size: cover;
   background-position: bottom;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   /* box-shadow: 0 0 50px 15px rgb(73 74 121 / 68%); */
 }
 .container .guest-2 .image{

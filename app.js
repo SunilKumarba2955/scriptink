@@ -156,7 +156,7 @@ var firebaseConfig = {
                 path: 'public/images/logo_bg.png',
                 cid: 'logo' //same cid value as in the html img src
     },{
-        filename: 'back.jpg',
+        filename: 'ticket.jpg',
                 path: 'public/images/bg14new.jpg',
                 cid: 'back' //same cid value as in the html img src   
     }]
