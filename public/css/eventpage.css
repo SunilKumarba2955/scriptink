@@ -199,8 +199,9 @@ h1{
 .info-1,.info-2{
   /* background: linear-gradient(to right,#c723a4,#4d9ceb);
    */
+   background: linear-gradient(to right,#81206c1f,#214e7a);
   padding: 0 1rem 0 1rem;
-  background-color: #1c102fe1;
+  /* background-color: #1c102fe1; */
   text-align: justify;
   width: 100%;
 }
