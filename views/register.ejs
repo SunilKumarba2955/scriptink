@@ -60,17 +60,27 @@
                    
                     <input class="text-field" id="phone" type="tel" name="phone" placeholder="Phone Number ( Enter 10 digit Number )" pattern="^\d{10}$" required>
                   </div>
-                  <div class="form-div">
+                 
+
+                   <div class="form-div">
+                   <select class="text-field" name="college" id="college">
+                    <option value="" disabled selected hidden>Choose your college</option>
+                     <option value="Siddaganga Institute of Technology">SIT</option>
+                     <option value="Others">Others</option>
+                   </select>
+                   </div>
+
+                   <div class="form-div">
                    
-                    <input class="text-field" id="college" placeholder="College Name" name="college" type="text" required>
+                    <input class="text-field" id="collegeName" placeholder="College Name" name="collegeName" type="text">
                    </div>
 
                    <div class="form-div">
                    
                     <input class="text-field" id="code" placeholder="Coupon code(optional)" name="code" type="text" >
-                    <p class="small" style="color: white;
+                    <p class="small message-cuopon" style="color: white;
                     padding-top: 0.2rem
-                ;">Use Coupon code "WRITOFEST50" to get 50% off</p>
+                ;"></p>
                    </div>
                    <!-- <div class="form-div">
                     <input type="checkbox" id="writing" value="writing">
@@ -124,6 +134,26 @@
 <script>
   $('.loading').hide();
   $('.warning').hide();
+  $("#code").hide();
+  $("#collegeName").hide();
+  var collegeSelector = document.querySelector("#college");
+  collegeSelector.addEventListener("change", function() {
+    if(collegeSelector.value ==="Siddaganga Institute of Technology")
+    {
+        $("#code").hide();
+        $("#collegeName").hide();
+        $(".message-cuopon").html("Flat 50% discount applied.");
+        $("#collegeName").removeAttr('required');
+        $("#collegeName").val("Siddaganga Institute of Technology");
+
+    }else{
+      $("#code").show();
+      $("#collegeName").show();
+      $(".message-cuopon").html("");
+      $("#collegeName").attr('required', '');
+      $("#collegeName").val("");
+    }
+});
   AOS.init();
 </script>
 <script src="/js/behaviour.js"></script>

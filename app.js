@@ -366,6 +366,7 @@ app.post('/createOrder',(req,res)=>{
     var email = req.body.email;
     var usn = req.body.usn;
     var code = req.body.code;
+    var college = req.body.college;
     checkRegistrationStart(start=>{
         if(start===1){
             checkParticipants(email,usn,"/WritoFest/Registrations/WritoFest2021/ViaWebsite",(info)=>{
@@ -373,7 +374,7 @@ app.post('/createOrder',(req,res)=>{
                     res.send({message:"already exists"});
                 }else{
                     var amount = 10000;
-                    if(code.trim()===""){
+                    if(code.trim()==="" && college==="Others"){
                                 razorpay.orders.create({
                                     amount: amount,
                                     currency: "INR",
@@ -383,7 +384,7 @@ app.post('/createOrder',(req,res)=>{
                                       else
                                       res.status(409).send({error:err});
                                   });
-                    }else{
+                    }else if(code.length>0 && college==="Others"){
                         checkCouponCode(code,(status)=>{
                             if(status==="valid"){
                                 amount = 5000;
@@ -401,8 +402,18 @@ app.post('/createOrder',(req,res)=>{
                             }
                             
                         })
+                    }else if(college==="Siddaganga Institute of Technology"){
+                        amount = 5000;
+                                razorpay.orders.create({
+                                    amount: amount,
+                                    currency: "INR",
+                                  },(err,order)=>{
+                                      if(!err)
+                                      res.status(200).send({message:order});
+                                      else
+                                      res.status(409).send({error:err});
+                                  });
                     }
-                    
                   
                 } 
         })

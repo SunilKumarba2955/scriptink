@@ -61,6 +61,7 @@ $("#register").on("submit", (e) => {
   var phone = $("#phone").val();
   var city = $("#city").val();
   var college = $("#college").val();
+  var collegeName = $("#collegeName").val();
   var code = $('#code').val();
   // var selected="";
   // if($('#writing').prop("checked") == true && $('#micOfMotivation').prop("checked") == false){
@@ -81,6 +82,14 @@ $("#register").on("submit", (e) => {
   //                 $(".btn-event").prop('disabled', false);
   //                 return;
   // }
+  // console.log(college);
+  if(college===null){
+    $(".message").css({ display: "block" });
+    $(".message").css({ "background-color": "red" });
+    $(".message-info").html("Choose your college.");
+    $(".loading").hide();
+    return;
+  }
 
   $.ajax({
     url: "/createOrder",
@@ -88,7 +97,7 @@ $("#register").on("submit", (e) => {
     headers: {
       "CSRF-Token": token,
     },
-    data: { email, usn ,code},
+    data: { email, usn ,college,code},
     success: function (result, status, xhr) {
       // console.log(result.message);
       if (result.message === "") {
@@ -138,7 +147,7 @@ $("#register").on("submit", (e) => {
                 usn: usn,
                 city: city,
                 phone: phone,
-                college: college,
+                college: collegeName,
                 razorpay_payment_id: response.razorpay_payment_id,
                 order_id: result.message.id,
               },
@@ -168,6 +177,8 @@ $("#register").on("submit", (e) => {
                   $("#writing").prop("checked", false);
                   $(".btn-event").prop("disabled", false);
                   $("#micOfMotivation").prop("checked", false);
+                  $("#code").val("");
+                  $("#collegeName").val("");
                   $(".loading").hide();
                   $(".warning").hide();
                 }
