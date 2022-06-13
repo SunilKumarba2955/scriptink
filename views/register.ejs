@@ -137,6 +137,23 @@
   $("#code").hide();
   $("#collegeName").hide();
   var collegeSelector = document.querySelector("#college");
+
+  if(collegeSelector.value ==="Siddaganga Institute of Technology")
+    {
+        $("#code").hide();
+        $("#collegeName").hide();
+        $(".message-cuopon").html("Flat 50% discount applied.");
+        $("#collegeName").removeAttr('required');
+        $("#collegeName").val("Siddaganga Institute of Technology");
+
+    }else if(collegeSelector.value ==="Others"){
+      $("#code").show();
+      $("#collegeName").show();
+      $(".message-cuopon").html("");
+      $("#collegeName").attr('required', '');
+      $("#collegeName").val("");
+    }
+
   collegeSelector.addEventListener("change", function() {
     if(collegeSelector.value ==="Siddaganga Institute of Technology")
     {

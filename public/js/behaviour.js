@@ -45,7 +45,10 @@ $(document).ready(function () {
 $(".close").on("click", function () {
   $(".message").css({ display: "none" });
 });
-
+var token = document
+.querySelector('meta[name="csrf-token"]')
+.getAttribute("content");
+console.log(token);
 $("#register").on("submit", (e) => {
   // console.log("clicke");
   $(".message").css({ display: "none" });
@@ -90,6 +93,7 @@ $("#register").on("submit", (e) => {
     $(".loading").hide();
     return;
   }
+
 
   $.ajax({
     url: "/createOrder",
@@ -196,6 +200,7 @@ $("#register").on("submit", (e) => {
           theme: {
             color: "#0f326b",
           },
+          redirect:true
         };
         var rzp1 = new Razorpay(options);
         $(".loading").hide();

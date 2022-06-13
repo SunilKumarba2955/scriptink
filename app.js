@@ -70,6 +70,7 @@ var firebaseConfig = {
         const accessToken = await new Promise((resolve, reject) => {
           oauth2Client.getAccessToken((err, token) => {
             if (err) {
+                console.log(err);
               reject("Failed to create access token :(");
             }
             resolve(token);
@@ -207,6 +208,81 @@ var firebaseConfig = {
     });
 
   })
+
+  app.get("/registrationDetailsOut", (req,res)=>{
+    
+    count=0;
+    participants=[];
+    var ref = firebase.database().ref("WritoFest/Registrations/WritoFest2021/ViaWebsite");
+     
+     ref.once('value').then(snap=>{
+          if(snap.val()!=null){
+          snap.forEach(element=>{
+              if(element.val().College!=="Siddaganga Institute of Technology"){
+            count++;
+            participants.push(element.val());
+              }
+        
+          });
+    
+          participants.push({"Total : ":count});
+
+
+          res.send(participants);
+         
+      }
+    });
+
+  })
+
+   app.get("/registrationDetails20", (req,res)=>{
+    
+    count=0;
+    participants=[];
+    var ref = firebase.database().ref("WritoFest/Registrations");
+     
+     ref.once('value').then(snap=>{
+          if(snap.val()!=null){
+          snap.forEach(element=>{
+            count++;
+            participants.push(element.val());
+        
+          });
+    
+          participants.push({"Total : ":count});
+
+
+          res.send(participants);
+         
+      }
+    });
+
+  })
+
+  app.get("/registrationDetails19", (req,res)=>{
+    
+    count=0;
+    participants=[];
+    var ref = firebase.database().ref("WritoFest/Registrations/WritoFest2020/ViaWebsite");
+     
+     ref.once('value').then(snap=>{
+          if(snap.val()!=null){
+          snap.forEach(element=>{
+            count++;
+            participants.push(element.val());
+        
+          });
+    
+          participants.push({"Total : ":count});
+
+
+          res.send(participants);
+         
+      }
+    });
+
+  })
+
   app.get("/getAndroidWeb", (req,res)=>{
     let array;
     participants= new Set();
@@ -361,6 +437,23 @@ const checkCouponCode = (code,callback)=>{
 
 }
 
+app.post('/sendMail',(req,res)=>{
+      var name=req.body.name;
+      var usn=req.body.usn.toLowerCase();
+      var email=req.body.email.toLowerCase();
+      var razo =req.body.razo;
+      console.log(name,usn,email,razo);
+    sendMail("writoFest",email,name,usn,razo,"","","")
+    .then((result) =>{
+        console.log(result);
+        res.send({message:"success"});
+       
+    })
+    .catch((error) =>{console.log(error.message)
+                  res.send({message:"error"});
+    });
+})
+
 
 app.post('/createOrder',(req,res)=>{
     var email = req.body.email;
@@ -424,9 +517,9 @@ app.post('/createOrder',(req,res)=>{
 
 })
 
-app.post("/checkStart",(req,res)=>{
+// app.post("/checkStart",(req,res)=>{
    
-})
+// })
 
 app.post("/registerForRecruitments",(req,res)=>{
     var messageback="";
@@ -614,12 +707,16 @@ app.post("/registerForRecruitments",(req,res)=>{
     var openRecitalLink="";
     var graphicLink="";
     var recital=false;
+
+    var todate = new Date();
+    todate = todate.getFullYear();
+
      console.log(req.body);
 
         var date=new Date();
 
-        var ref = firebase.database().ref("/Workshop/Registrations/ViaWebsite");
-        var refCount = firebase.database().ref("/Workshop/Registrations/ViaWebsite/count");
+        var ref = firebase.database().ref(`/Workshop/Registrations/${todate}/ViaWebsite`);
+        var refCount = firebase.database().ref(`/Workshop/Registrations/${todate}/ViaWebsite/count`);
         var userkey = ref.push().key;
 
 
