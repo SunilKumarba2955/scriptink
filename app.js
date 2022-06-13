@@ -189,7 +189,8 @@ var firebaseConfig = {
     
     count=0;
     participants=[];
-    var ref = firebase.database().ref("WritoFest/Registrations/WritoFest2021/ViaWebsite");
+    var todate = new Date().getFullYear();
+    var ref = firebase.database().ref(`/Workshop/Registrations/${todate}/ViaWebsite`);
      
      ref.once('value').then(snap=>{
           if(snap.val()!=null){
