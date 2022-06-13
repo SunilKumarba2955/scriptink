@@ -9,8 +9,8 @@ const Razorpay = require('razorpay');
 const sha256 = require('js-sha256');
 const Email = require('email-templates');
 const path = require('path');
-const { google } = require("googleapis");
-const OAuth2 = google.auth.OAuth2;
+// const { google } = require("googleapis");
+// const OAuth2 = google.auth.OAuth2;
 
     
   
