@@ -190,21 +190,16 @@ var firebaseConfig = {
     count=0;
     participants=[];
     var todate = new Date().getFullYear();
-    var ref = firebase.database().ref(`/Workshop/Registrations/${todate}/ViaWebsite`);
+    var ref = firebase.database().ref(`/Workshop/Registrations/${todate}/ViaWebsite/All`);
      
      ref.once('value').then(snap=>{
           if(snap.val()!=null){
           snap.forEach(element=>{
             count++;
             participants.push(element.val());
-        
           });
-    
-          participants.push({"Total : ":count});
-
-
-          res.send(participants);
-         
+          console.log(participants.length);
+          res.send({participants:participants,"Total":participants.length});
       }
     });
 
