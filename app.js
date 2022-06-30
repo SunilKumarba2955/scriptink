@@ -529,11 +529,11 @@ app.post("/registerForRecruitments",(req,res)=>{
     // console.log(name,usn,email,phone,selected,year);
     var date=new Date();
   
-    var ref = firebase.database().ref("/Recruitments/Registrations/ViaWebsite");
+    var ref = firebase.database().ref(`/Recruitments/Registrations/${date.getFullYear()}/ViaWebsite`);
     checkRecruitmentsRegistrationStart((start)=>{
             
         if(start===1){
-            checkParticipants(email,usn,`/Recruitments/Registrations/ViaWebsite`,(info,key)=>{
+            checkParticipants(email,usn,`/Recruitments/Registrations/${date.getFullYear()}/ViaWebsite`,(info,key)=>{
                 // console.log(info);
                 if(info === "already exists"){
                     messageback=info;
