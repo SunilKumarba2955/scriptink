@@ -190,7 +190,7 @@ var firebaseConfig = {
     count=0;
     participants=[];
     var todate = new Date().getFullYear();
-    var ref = firebase.database().ref(`/Workshop/Registrations/${todate}/ViaWebsite/All`);
+    var ref = firebase.database().ref(`/Recruitments/Registrations/${todate}/ViaWebsite`);
      
      ref.once('value').then(snap=>{
           if(snap.val()!=null){
