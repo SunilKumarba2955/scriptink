@@ -4,27 +4,28 @@
   "description": "ScriptInk Official Website",
   "main": "app.js",
   "scripts": {
-    
     "dev": "nodemon app"
   },
   "author": "Anurag",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.5",
     "csurf": "^1.11.0",
     "dotenv": "^8.2.0",
-    "ejs": "^3.1.5",
+    "ejs": "^3.1.9",
     "email-templates": "^8.0.8",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "firebase": "^7.19.1",
     "googleapis": "^92.0.0",
     "js-sha256": "^0.9.0",
     "node-fetch": "^3.0.0",
     "nodemailer": "^6.4.16",
     "path": "^0.12.7",
-    "razorpay": "^2.8.0"
+    "razorpay": "^2.9.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "googleapis": "^92.0.0"
