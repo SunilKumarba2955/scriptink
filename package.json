@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon app"
   },
-  "author": "Anurag",
+  "author": "Sunil Kumar B A",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
