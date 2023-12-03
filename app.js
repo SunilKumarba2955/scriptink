@@ -648,10 +648,10 @@ app.post('/createOrder', (req, res) => {
                 if (info === "already exists") {
                     res.send({ message: "already exists" });
                 } else {
-                    var baseAmount = 6000;  
+                    var baseAmount = 7000;  
                     if (referral.trim() !== "") {
                         if (validReferralCode(referral.trim())) {
-                            baseAmount = 4000;  // Adjust amount for referrals (replace with your referral amount)
+                            baseAmount = 5000;  // Adjust amount for referrals (replace with your referral amount)
                         } else {
                             res.status(200).send({ message: "invalid code" });
                             return;
@@ -702,15 +702,8 @@ app.post("/checkUserExistence", (req, res) => {
                 if (snapshotPhone.exists()) {
                     res.send({ message: "already exists" });
                 } else {
-                    // Check if the user with the given USN exists
-                    ref.orderByChild("USN").equalTo(usn).once("value", function (snapshotUsn) {
-                        if (snapshotUsn.exists()) {
-                            res.send({ message: "already exists" });
-                        } else {
-                            // No user with the given email, USN, and phone number exists
-                            res.send({ message: "not exists" });
-                        }
-                    });
+                    // No user with the given email, USN, and phone number exists
+                    res.send({ message: "not exists" });
                 }
             });
         }

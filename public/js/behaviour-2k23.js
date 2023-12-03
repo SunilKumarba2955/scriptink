@@ -67,7 +67,7 @@ $(document).ready(function () {
                 if (result.message === "already exists") {
                     $(".message").css({ display: "block" });
                     $(".message").css({ "background-color": "red" });
-                    $(".message-info").html("You have already registered. Check your email for details.");
+                    $(".message-info").html("You have already registered. Please check your email for details. If you don't get email please contact us +91 9380812955 or +91 9019841867");
                     $(".btn-event").prop("disabled", false);
                     $(".loading").hide();
                 } else {
@@ -146,7 +146,7 @@ $(document).ready(function () {
                             $(".message").css({ display: "block" });
                             $(".message").css({ "background-color": "green" });
                             $(".message-info").html(
-                                "<p style='margin:0;'>Registered Successfully </p> Please Download our App from the Play store  <a class='message-anchor' href='https://play.google.com/store/apps/details?id=com.scriptink.official&hl=en'><i class='fab fa-google-play'></i>Get the App</a>"
+                                "<p style='margin:0;'>You have Registered Successfully, soon you will get event details and payment confirmation from us via email. Hope we will see you on the day of event <br/> </p> Please Download our App from the Play store  <a class='message-anchor' href='https://play.google.com/store/apps/details?id=com.scriptink.official&hl=en'><i class='fab fa-google-play'></i>Get the App</a>"
                             );
                             $("#name").val("");
                             $("#email").val("");
@@ -155,6 +155,7 @@ $(document).ready(function () {
                             $("#city").val("");
                             $("#college").val("");
                             $("#code").val("");
+                            $("#referral").val("");
                             $("#writing").prop("checked", false);
                             $(".btn-event").prop("disabled", false);
                             $("#micOfMotivation").prop("checked", false);
