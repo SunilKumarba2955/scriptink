@@ -391,8 +391,16 @@ app.get("/team", (req, res) => {
     res.render("members", { csrfToken: req.csrfToken() });
 })
 
+// app.get("/event/WritoFest2k23", (req, res) => {
+//     return res.render("register-2k23", { csrfToken: req.csrfToken() });
+// })
+
 app.get("/event/WritoFest2k23", (req, res) => {
-    return res.render("register-2k23", { csrfToken: req.csrfToken() });
+    return res.render("writofest2k23", { csrfToken: req.csrfToken() });
+})
+
+app.get("/writofest2k23", (req, res) => {
+    return res.render("writofest2k23", { csrfToken: req.csrfToken() });
 })
 
 app.get("/event/WritoFest2k22", (req, res) => {
