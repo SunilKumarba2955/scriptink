@@ -400,6 +400,7 @@ app.get("/event/WritoFest2k23", (req, res) => {
 })
 
 app.get("/writofest2k23", (req, res) => {
+    console.log("request came");
     return res.render("writofest2k23", { csrfToken: req.csrfToken() });
 })
 
