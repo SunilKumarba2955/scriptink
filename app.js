@@ -1150,6 +1150,6 @@ app.post("/getData", function (req, res) {
 });
 
 
-app.listen(process.env.PORT || 3001, function () {
-    console.log("ScriptInk Website Is live on server 3001");
+app.listen(process.env.PORT || 3000, function () {
+    console.log("ScriptInk Website Is live on server 3000");
 });
